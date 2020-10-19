@@ -2,10 +2,12 @@ require('dotenv').config()
 const express = require('express')
 const session = require('express-session')
 const massive = require('massive')
+const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
+const authCtrl = require('./authController')
 
-const app = express()
+
 
 const {CONNECTION_STRING, SERVER_PORT, SESSION_SECRET} = process.env
 
@@ -20,6 +22,11 @@ app.use(
 )
 
 
+//auth endpoints
+app.post(`/api/auth/register`, authCtrl.register)
+app.post(`/api/auth/login`, authCtrl.login)
+app.delete(`/api/auth/logout`, authCtrl.logout)
+app.get(`/api/auth/user`, authCtrl.getUser)
 
 
 massive({
