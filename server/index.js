@@ -2,49 +2,52 @@ require('dotenv').config()
 const express = require('express')
 const session = require('express-session')
 const massive = require('massive')
+const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
+const ratingsCtrl = require('./ratingsController')
 
-const app = express()
 
-const {CONNECTION_STRING, SERVER_PORT, SESSION_SECRET} = process.env
+const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env
 
 app.use(express.json())
 app.use(
-    session({
-        secret: SESSION_SECRET,
-        resave: false,
-        saveUninitialized: true,
-        cookie: {maxAge: 1000 * 60 * 60 * 24 * 365}
-    })
+  session({
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 365 }
+  })
 )
 
-
-
+app.get('/api/users/:user_id/ratings/giverrating', ratingsCtrl.getUserAverageGiverRating)
+app.get('/api/users/:user_id/ratings/carrierrating', ratingsCtrl.getUserAverageCarrierRating)
+app.post('/api/users/:dono_id/ratings/giver', ratingsCtrl.carrierRatesGiver)
+app.post('/api/users/:dono_id/ratings/carrier', ratingsCtrl.giverRatesCarrier) //figure out the req.params here. could be dono_id on params instead of user_id. those ids are already generated in the donos table when a dono is completed.
 
 massive({
-    connectionString: CONNECTION_STRING,
-    ssl: {rejectUnauthorized: false},
+  connectionString: CONNECTION_STRING,
+  ssl: { rejectUnauthorized: false },
 }).then(dbInstance => {
-    app.set('db', dbInstance)
-    console.log('DB ready!')
-    app.listen(SERVER_PORT, () =>
+  app.set('db', dbInstance)
+  console.log('DB ready!')
+  app.listen(SERVER_PORT, () =>
     console.log(`Server ready on port ${SERVER_PORT}`)
-    )
+  )
 })
 
 
 
 
 io.on('connection', socket => {
-    socket.on('message', ({ name, message }) => {
-      io.emit('message', { name, message })
-    })
+  socket.on('message', ({ name, message }) => {
+    io.emit('message', { name, message })
   })
+})
 
-  http.listen(4000, function() {
-    console.log('listening on port 4000')
-  })
+http.listen(4000, function () {
+  console.log('listening on port 4000')
+})
 
 
 
