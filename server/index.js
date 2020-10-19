@@ -8,6 +8,9 @@ const io = require('socket.io')(http)
 const ratingsCtrl = require('./ratingsController')
 
 
+const donoCtrl = require('../server/donoController')
+const authCtrl = require('./authController')
+
 const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env
 
 app.use(express.json())
@@ -24,6 +27,20 @@ app.get('/api/users/:user_id/ratings/giverrating', ratingsCtrl.getUserAverageGiv
 app.get('/api/users/:user_id/ratings/carrierrating', ratingsCtrl.getUserAverageCarrierRating)
 app.post('/api/users/:dono_id/ratings/giver', ratingsCtrl.carrierRatesGiver)
 app.post('/api/users/:dono_id/ratings/carrier', ratingsCtrl.giverRatesCarrier) //figure out the req.params here. could be dono_id on params instead of user_id. those ids are already generated in the donos table when a dono is completed.
+//auth endpoints
+app.post(`/api/auth/register`, authCtrl.register)
+app.post(`/api/auth/login`, authCtrl.login)
+app.delete(`/api/auth/logout`, authCtrl.logout)
+app.get(`/api/auth/user`, authCtrl.getUser)
+
+//donos endpoints
+app.get('/api/donos', donoCtrl.getAllDonos);
+app.get('/api/donos/:dono_id', donoCtrl.getDono);
+app.post('/api/donos/', donoCtrl.createDono);
+app.put('/api/users/:user_id/dono/:dono_id', donoCtrl.acceptDono);
+app.put('/api/donos/:dono_id', donoCtrl.editDono);
+app.delete('/api/donos/:dono_id', donoCtrl.deleteDono);
+
 
 massive({
   connectionString: CONNECTION_STRING,
@@ -35,8 +52,6 @@ massive({
     console.log(`Server ready on port ${SERVER_PORT}`)
   )
 })
-
-
 
 
 io.on('connection', socket => {
