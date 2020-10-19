@@ -2,6 +2,8 @@ require('dotenv').config()
 const express = require('express')
 const session = require('express-session')
 const massive = require('massive')
+const http = require('http').createServer(app)
+const io = require('socket.io')(http)
 
 const app = express()
 
@@ -30,13 +32,6 @@ massive({
     console.log(`Server ready on port ${SERVER_PORT}`)
     )
 })
-
-
-const http = require('http').createServer(app)
-const io = require('socket.io')(http)
-
-
-
 
 
 
