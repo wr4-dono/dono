@@ -1,5 +1,9 @@
-const { ZIPCODE_API_KEY } = process.env
 const axios = require('axios')
+const nodemailer = require('nodemailer')
+const { EMAIL_ACCOUNT, EMAIL_PASS, ZIPCODE_API_KEY } = process.env
+
+
+
 module.exports = {
   getAllDonos: async (req, res) => {
 
@@ -37,6 +41,8 @@ module.exports = {
 
     const acceptedDono = await db.acceptDono(user_id, dono_id);
     res.status(200).send(acceptedDono);
+
+
   },
 
   createDono: async (req, res) => {
@@ -85,5 +91,44 @@ module.exports = {
     const { dono_id } = req.params;
     await db.deleteDono(dono_id);
     res.sendStatus(200);
+  },
+
+  acceptTest: async (req, res) => {
+
+
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: EMAIL_ACCOUNT,
+        pass: EMAIL_PASS
+      }
+    })
+
+    let notification = {
+      from: EMAIL_ACCOUNT,
+      to: 'nickamantia@gmail.com',
+      subject: 'Someone has accepted your dono',
+      html:
+        `<div style='font-family: Gill Sans, sans-serif; color: black; font-size: 18px;'>
+        <h1 style ='font-size: 20px' >Hi, </h1>
+        <div><p>Someone has accepted your dono:</p></div>
+        <div><p>Please login to contact the carrier</p></div>
+        <div><p>Thanks,</p></div>
+        <div><p>The dono. Team</p></div>
+        
+
+      </div>`
+    }
+
+    transporter.sendMail(notification, (err, info) => {
+      console.log(notification)
+      if (err) {
+        console.log('notification error');
+      } else {
+        console.log('Notification sent');
+      }
+    })
+
+    res.sendStatus(201);
   }
 }
