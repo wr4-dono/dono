@@ -4,7 +4,7 @@ module.exports = {
     const { dono_id } = req.params // not totally sure we need this since they connect on the dono table. if we need to show them both the specific rating, we can connect them via donos table.
     const { rating, comment } = req.body
 
-    let result = await db.giver_rates_carrier([dono_id, rating, comment])
+    await db.giver_rates_carrier([dono_id, rating, comment])
 
     res.status(200).send('rating submitted')
 
@@ -15,7 +15,7 @@ module.exports = {
     const { dono_id } = req.params
     const { rating, comment } = req.body
 
-    let result = await db.carrier_rates_giver([dono_id, rating, comment])
+    await db.carrier_rates_giver([dono_id, rating, comment])
 
     res.status(200).send('rating submitted')
   },

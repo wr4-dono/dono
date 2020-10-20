@@ -3,17 +3,15 @@ const express = require('express')
 const session = require('express-session')
 const massive = require('massive')
 const favoritesCtrl = require('./favoritesController')
-
 const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
+const aws = require('aws-sdk');
 const ratingsCtrl = require('./ratingsController')
-
-
 const donoCtrl = require('../server/donoController')
 const authCtrl = require('./authController')
 
-const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env
+const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET, S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = process.env
 
 app.use(express.json())
 app.use(
@@ -49,11 +47,46 @@ app.get(`/api/auth/user`, authCtrl.getUser)
 app.get('/api/donos', donoCtrl.getAllDonos);
 app.get('/api/donos/:dono_id', donoCtrl.getDono);
 app.post('/api/donos/', donoCtrl.createDono);
-app.put('/api/users/:user_id/donos/:dono_id', donoCtrl.acceptDono);
+app.post('/api/donos/newdono/pictures', donoCtrl.savePictureURL)
+app.put('/api/users/:user_id/dono/:dono_id', donoCtrl.acceptDono);
 app.put('/api/donos/:dono_id', donoCtrl.editDono);
 app.put('/api/dono/:dono_id', donoCtrl.updateDonoStatus);
 app.delete('/api/donos/:dono_id', donoCtrl.deleteDono);
 
+//AWS bucket endpoint
+app.get('/sign-s3', (req, res) => {
+
+  aws.config = {
+    region: 'us-west-1',
+    accessKeyId: AWS_ACCESS_KEY_ID,
+    secretAccessKey: AWS_SECRET_ACCESS_KEY
+  }
+
+  const s3 = new aws.S3();
+  const fileName = req.query['file-name'];
+  const fileType = req.query['file-type'];
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Expires: 60,
+    ContentType: fileType,
+    ACL: 'public-read'
+  };
+
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.end();
+    }
+    const returnData = {
+      signedRequest: data,
+      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+    };
+
+    return res.send(returnData)
+  });
+});
+//AWS Bucket endpoint ^^
 
 massive({
   connectionString: CONNECTION_STRING,

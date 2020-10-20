@@ -37,6 +37,15 @@ module.exports = {
     res.sendStatus(200);
   },
 
+  savePictureURL: async (req, res) => {
+    const db = req.app.get('db')
+
+    const { url, dono_id } = req.body
+    await db.save_picture_url([dono_id, url])
+
+    res.sendStatus(200)
+  },
+
   editDono: async (req, res) => {
     //! STILL NEED TO IMPLEMENT PICTURES
     const db = req.app.get('db');
