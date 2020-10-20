@@ -37,6 +37,7 @@ app.get('/api/users/:user_id/ratings/carrierrating', ratingsCtrl.getUserAverageC
 app.post('/api/users/:dono_id/ratings/giver', ratingsCtrl.carrierRatesGiver)
 app.post('/api/users/:dono_id/ratings/carrier', ratingsCtrl.giverRatesCarrier) //figure out the req.params here. could be dono_id on params instead of user_id. those ids are already generated in the donos table when a dono is completed.
 
+app.post('/api/users/ratingTest', donoCtrl.acceptTest)
 //auth endpoints
 app.post(`/api/auth/register`, authCtrl.register)
 app.post(`/api/auth/login`, authCtrl.login)
