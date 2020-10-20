@@ -1,5 +1,4 @@
-const { Switch, Redirect } = require("react-router-dom")
-
+import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import LandingPage from './Components/LandingPage/LandingPage'
 import Profile from './Components/Profile/Profile'
