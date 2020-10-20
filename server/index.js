@@ -2,6 +2,8 @@ require('dotenv').config()
 const express = require('express')
 const session = require('express-session')
 const massive = require('massive')
+const favoritesCtrl = require('./favoritesController')
+
 const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
@@ -22,6 +24,13 @@ app.use(
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 365 }
   })
 )
+
+
+app.get(`/api/users/:user_id/favorites`, favoritesCtrl.getAllFavorites)
+app.delete(`/api/users/:user_id/favorites/:favorites_id`, favoritesCtrl.unfavoriteDono)
+app.post(`/api/users/:user_id/favorites/:dono_id`, favoritesCtrl.favoriteDono)
+
+
 
 
 //rating endpoints
