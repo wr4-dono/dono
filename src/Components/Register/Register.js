@@ -14,7 +14,6 @@ const Register = (props) => {
       }).catch(err => alert(err.message));
   }
 
-
   return (
     <div>
       <input type='text' placeholder='Username' onChange={(e) => setUsername(e.target.value)}></input>
