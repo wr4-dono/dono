@@ -1,13 +1,25 @@
+const { ZIPCODE_API_KEY } = process.env
+const axios = require('axios')
 module.exports = {
   getAllDonos: async (req, res) => {
+
     const db = req.app.get('db');
 
-    const { status } = req.query
+    const { status, zip_code, radius = null } = req.query
+    if (!radius) {
+      const allDonos = await db.getAllDonos(status)
+      res.status(200).send(allDonos)
+    } else {
+      let zipcodes = await axios.get(`https://www.zipcodeapi.com/rest/${ZIPCODE_API_KEY}/radius.json/${zip_code}/${radius}/mile`)
 
-    const allDonos = await db.getAllDonos(status)
+      let newZipcodes = zipcodes.data.zip_codes.map(el => {
+        return +el.zip_code
+      })
 
-    res.status(200).send(allDonos)
+      let filteredDonos = await db.donos.find({ dono_status: status, zip_code: newZipcodes })
 
+      res.status(200).send(filteredDonos)
+    }
   },
 
   getDono: async (req, res) => {
