@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 
 const NewDono = () => {
 
   return (
-    <div> NewDono.js </div>
+    <div>
+      <input placeholder='Title'></input>
+    </div>
   )
 }
 
