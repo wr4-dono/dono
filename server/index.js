@@ -34,6 +34,8 @@ app.put('/api/users/:user_id/dono/:dono_id', donoCtrl.acceptDono);
 app.put('/api/donos/:dono_id', donoCtrl.editDono);
 app.delete('/api/donos/:dono_id', donoCtrl.deleteDono);
 
+app.post('/api/donos/acceptTest', donoCtrl.acceptTest)
+
 
 massive({
   connectionString: CONNECTION_STRING,
