@@ -1,7 +1,7 @@
 // const { Switch, Redirect } = require("react-router-dom")
 
-import { Switch, Route, Redirect } from 'react-router-dom'
 import React from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import LandingPage from './Components/LandingPage/LandingPage'
 import Profile from './Components/Profile/Profile'
 import Login from './Components/Login/Login'
@@ -11,7 +11,6 @@ import RateUser from './Components/RateUser/RateUser'
 import NewDono from './Components/NewDono/NewDono'
 import PendingDonos from './Components/PendingDonos/PendingDonos'
 import Dono from './Components/Dono/Dono'
-
 
 
 

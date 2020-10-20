@@ -44,6 +44,15 @@ module.exports = {
     res.sendStatus(200);
   },
 
+  savePictureURL: async (req, res) => {
+    const db = req.app.get('db')
+
+    const { url, dono_id } = req.body
+    await db.save_picture_url([dono_id, url])
+
+    res.sendStatus(200)
+  },
+
   editDono: async (req, res) => {
     //! STILL NEED TO IMPLEMENT PICTURES
     const db = req.app.get('db');
@@ -53,6 +62,17 @@ module.exports = {
     const updatedDono = await db.editDono(dono_id, zip_code, title, description, price, multiplePeople, truckTrailer);
 
     res.status(200).send(updatedDono);
+  },
+
+  //* Use this code below to change the status from 1 to 2 or 2 to 3
+  updateDonoStatus: async (req, res) => {
+    const db = req.app.get('db');
+    const { dono_id } = req.params;
+    const { status } = req.query;
+
+    await db.updateDonoStatus(dono_id, status);
+
+    res.sendStatus(200);
   },
 
   deleteDono: async (req, res) => {
