@@ -57,6 +57,17 @@ module.exports = {
     res.status(200).send(updatedDono);
   },
 
+  //* Use this code below to change the status from 1 to 2 or 2 to 3
+  updateDonoStatus: async (req, res) => {
+    const db = req.app.get('db');
+    const { dono_id } = req.params;
+    const { status } = req.query;
+
+    await db.updateDonoStatus(dono_id, status);
+
+    res.sendStatus(200);
+  },
+
   deleteDono: async (req, res) => {
     const db = req.app.get('db');
     const { dono_id } = req.params;
