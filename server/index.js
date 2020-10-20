@@ -25,6 +25,7 @@ app.use(
   })
 )
 
+
 app.get(`/api/users/:user_id/favorites`, favoritesCtrl.getAllFavorites)
 app.delete(`/api/users/:user_id/favorites/:favorites_id`, favoritesCtrl.unfavoriteDono)
 app.post(`/api/users/:user_id/favorites/:dono_id`, favoritesCtrl.favoriteDono)
@@ -32,10 +33,12 @@ app.post(`/api/users/:user_id/favorites/:dono_id`, favoritesCtrl.favoriteDono)
 
 
 
+//rating endpoints
 app.get('/api/users/:user_id/ratings/giverrating', ratingsCtrl.getUserAverageGiverRating)
 app.get('/api/users/:user_id/ratings/carrierrating', ratingsCtrl.getUserAverageCarrierRating)
 app.post('/api/users/:dono_id/ratings/giver', ratingsCtrl.carrierRatesGiver)
 app.post('/api/users/:dono_id/ratings/carrier', ratingsCtrl.giverRatesCarrier) //figure out the req.params here. could be dono_id on params instead of user_id. those ids are already generated in the donos table when a dono is completed.
+
 //auth endpoints
 app.post(`/api/auth/register`, authCtrl.register)
 app.post(`/api/auth/login`, authCtrl.login)
@@ -46,8 +49,9 @@ app.get(`/api/auth/user`, authCtrl.getUser)
 app.get('/api/donos', donoCtrl.getAllDonos);
 app.get('/api/donos/:dono_id', donoCtrl.getDono);
 app.post('/api/donos/', donoCtrl.createDono);
-app.put('/api/users/:user_id/dono/:dono_id', donoCtrl.acceptDono);
+app.put('/api/users/:user_id/donos/:dono_id', donoCtrl.acceptDono);
 app.put('/api/donos/:dono_id', donoCtrl.editDono);
+app.put('/api/dono/:dono_id', donoCtrl.updateDonoStatus);
 app.delete('/api/donos/:dono_id', donoCtrl.deleteDono);
 
 
@@ -61,7 +65,6 @@ massive({
     console.log(`Server ready on port ${SERVER_PORT}`)
   )
 })
-
 
 io.on('connection', socket => {
   socket.on('message', ({ name, message }) => {
