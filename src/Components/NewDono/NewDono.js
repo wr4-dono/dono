@@ -3,17 +3,25 @@ import axios from 'axios'
 import { v4 as randomString } from 'uuid'
 import Dropzone from 'react-dropzone'
 import { GridLoader } from 'react-spinners'
+import { connect } from 'react-redux';
 
 class NewDono extends Component {
-  constructor() {
+  constructor(props) {
     super()
     this.state = {
       isUploading: false,
       url: 'http://via.placeholder.com/450x450',
-      images: [],
+      title: '',
+      price: '',
+      description: '',
+      multiplePeople: false,
+      truckTrailer: false,
+      zip_code: props.auth.user.zip_code,
+      giver_id: props.auth.user.user_id,
+      // images: []
     }
-  }
 
+  }
   getSignedRequest = ([file]) => {
     this.setState({ isUploading: true })
 
@@ -62,17 +70,43 @@ class NewDono extends Component {
       });
   };
 
-  handleSubmitDono = (url) => {
-    //still needs to take in all inputs off of state. and grab the dono_id after it has been created.
-    axios.post(`/api/donos/newdono/pictures`, { url })
+  //handleChanges will update description/price/title depending on what field the user is typing into. 
+  handleChanges = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
+
+  alterTruckTrailer = () => {
+    this.setState({
+      truckTrailer: !this.state.truckTrailer
+    })
+  }
+
+  alterMultiplePeople = () => {
+    this.setState({
+      multiplePeople: !this.state.multiplePeople
+    })
+  }
+
+  handleSubmitDono = () => {
+    const { giver_id, zip_code, title, price, description, multiplePeople, truckTrailer, url } = this.state
+
+    axios.post('/api/donos/', { giver_id, zip_code, title, description, price, multiplePeople, truckTrailer }).then(res => {
+      let dono_id = res.data.dono_id
+
+      axios.post(`/api/donos/newdono/pictures`, { dono_id, url }).then(res => {
+        console.log(res.data)
+      }).catch(err => alert(err.message))
+    }).catch(err => alert(err.message))
+  }
+
 
   render() {
     const { url, isUploading } = this.state
     return (
-      <div> NewDono.js
+      <div>
         <h1>Upload</h1>
-        <h1>{url}</h1>
         <img src={url} alt="" width="450px" />
 
         <Dropzone
@@ -99,9 +133,20 @@ class NewDono extends Component {
             </div>
           )}
         </Dropzone>
+
+        <input name='title' type='text' placeholder='Dono Title' onChange={(e) => this.handleChanges(e)}></input>
+        <input name='price' type='number' placeholder='Price' onChange={(e) => this.handleChanges(e)}></input>
+        <input name='zip_code' type='number' placeholder='Pickup zip code' value={this.state.zip_code} onChange={(e) => this.handleChanges(e)}></input>
+        <textarea name='description' placeholder='Description' onChange={(e) => this.handleChanges(e)}></textarea>
+        <input type='checkbox' name='multiplePeople' onClick={() => this.alterMultiplePeople()}></input>
+        <input type='checkbox' name='truckTrailer' onClick={() => this.alterTruckTrailer()}></input>
+
+        <button onClick={() => this.handleSubmitDono()}>Submit Dono</button>
       </div>
     )
   }
 }
 
-export default NewDono
+const mapStateToProps = reduxState => reduxState;
+
+export default connect(mapStateToProps)(NewDono);

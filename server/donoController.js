@@ -49,16 +49,17 @@ module.exports = {
     //! STILL NEED TO IMPLEMENT PICTURES
     const db = req.app.get('db');
 
-    const { user_id, zip_code, title, description, price, multiplePeople, truckTrailer } = req.body;
-    await db.createDono(user_id, zip_code, title, description, price, multiplePeople, truckTrailer);
+    const { giver_id, zip_code, title, description, price, multiplePeople, truckTrailer } = req.body;
+    const [dono_id] = await db.createDono([giver_id, zip_code, title, description, price, multiplePeople, truckTrailer]);
 
-    res.sendStatus(200);
+
+    res.status(200).send(dono_id);
   },
 
   savePictureURL: async (req, res) => {
     const db = req.app.get('db')
 
-    const { url, dono_id } = req.body
+    const { dono_id, url } = req.body
     await db.save_picture_url([dono_id, url])
 
     res.sendStatus(200)
