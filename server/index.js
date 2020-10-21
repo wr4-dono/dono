@@ -25,7 +25,7 @@ app.use(
 
 
 app.get(`/api/users/:user_id/favorites`, favoritesCtrl.getAllFavorites)
-app.delete(`/api/users/:user_id/favorites/:favorites_id`, favoritesCtrl.unfavoriteDono)
+app.delete(`/api/users/:user_id/favorites/:dono_id`, favoritesCtrl.unfavoriteDono)
 app.post(`/api/users/:user_id/favorites/:dono_id`, favoritesCtrl.favoriteDono)
 
 //rating endpoints
