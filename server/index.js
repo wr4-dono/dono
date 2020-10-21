@@ -8,6 +8,13 @@ const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 const aws = require('aws-sdk');
 const ratingsCtrl = require('./ratingsController')
+<<<<<<< HEAD
+
+
+
+
+=======
+>>>>>>> main
 const donoCtrl = require('../server/donoController')
 const authCtrl = require('./authController')
 
