@@ -5,8 +5,8 @@ const DonoThumbnail = () => {
   return (
 
     <div className='dono-thumbnail'>DonoThumbnail.js
-      <div>title, Price, Zipcode and favorite button</div>
-      <div>picture of item(s)</div>
+      {/* <div>title, Price, Zipcode and favorite button</div> */}
+      {/* <div>picture of item(s)</div> */}
 
     </div>
   )

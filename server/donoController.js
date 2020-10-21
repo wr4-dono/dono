@@ -1,18 +1,30 @@
+const axios = require('axios')
 const nodemailer = require('nodemailer')
-const {EMAIL_ACCOUNT, EMAIL_PASS} = process.env
+const { EMAIL_ACCOUNT, EMAIL_PASS, ZIPCODE_API_KEY } = process.env
 
 
 
 module.exports = {
   getAllDonos: async (req, res) => {
+
     const db = req.app.get('db');
 
-    const { status } = req.query
+    const { status, zip_code, radius } = req.query
+    console.log(radius)
+    if (!radius) {
+      const allDonos = await db.getAllDonos(status)
+      res.status(200).send(allDonos)
+    } else {
+      let zipcodes = await axios.get(`https://www.zipcodeapi.com/rest/${ZIPCODE_API_KEY}/radius.json/${zip_code}/${radius}/mile`)
 
-    const allDonos = await db.getAllDonos(status)
+      let newZipcodes = zipcodes.data.zip_codes.map(el => {
+        return +el.zip_code
+      })
 
-    res.status(200).send(allDonos)
+      let filteredDonos = await db.donos.find({ dono_status: status, zip_code: newZipcodes })
 
+      res.status(200).send(filteredDonos)
+    }
   },
 
   getDono: async (req, res) => {
@@ -38,16 +50,17 @@ module.exports = {
     //! STILL NEED TO IMPLEMENT PICTURES
     const db = req.app.get('db');
 
-    const { user_id, zip_code, title, description, price, multiplePeople, truckTrailer } = req.body;
-    await db.createDono(user_id, zip_code, title, description, price, multiplePeople, truckTrailer);
+    const { giver_id, zip_code, title, description, price, multiplePeople, truckTrailer } = req.body;
+    const [dono_id] = await db.createDono([giver_id, zip_code, title, description, price, multiplePeople, truckTrailer]);
 
-    res.sendStatus(200);
+
+    res.status(200).send(dono_id);
   },
 
   savePictureURL: async (req, res) => {
     const db = req.app.get('db')
 
-    const { url, dono_id } = req.body
+    const { dono_id, url } = req.body
     await db.save_picture_url([dono_id, url])
 
     res.sendStatus(200)
@@ -85,7 +98,7 @@ module.exports = {
   acceptTest: async (req, res) => {
 
 
-    let transporter = nodemailer.createTransport({  
+    let transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: EMAIL_ACCOUNT,
@@ -97,8 +110,8 @@ module.exports = {
       from: EMAIL_ACCOUNT,
       to: 'nickamantia@gmail.com',
       subject: 'Someone has accepted your dono',
-      html: 
-      `<div style='font-family: Gill Sans, sans-serif; color: black; font-size: 18px;'>
+      html:
+        `<div style='font-family: Gill Sans, sans-serif; color: black; font-size: 18px;'>
         <h1 style ='font-size: 20px' >Hi, </h1>
         <div><p>Someone has accepted your dono:</p></div>
         <div><p>Please login to contact the carrier</p></div>
@@ -110,14 +123,14 @@ module.exports = {
     }
 
     transporter.sendMail(notification, (err, info) => {
-        console.log(notification)
-        if (err) {
-          console.log('notification error');
-        } else {
-          console.log('Notification sent');
-        }
-      })
-  
-      res.sendStatus(201);
+      console.log(notification)
+      if (err) {
+        console.log('notification error');
+      } else {
+        console.log('Notification sent');
+      }
+    })
+
+    res.sendStatus(201);
   }
 }

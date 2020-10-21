@@ -28,9 +28,6 @@ app.get(`/api/users/:user_id/favorites`, favoritesCtrl.getAllFavorites)
 app.delete(`/api/users/:user_id/favorites/:favorites_id`, favoritesCtrl.unfavoriteDono)
 app.post(`/api/users/:user_id/favorites/:dono_id`, favoritesCtrl.favoriteDono)
 
-
-
-
 //rating endpoints
 app.get('/api/users/:user_id/ratings/giverrating', ratingsCtrl.getUserAverageGiverRating)
 app.get('/api/users/:user_id/ratings/carrierrating', ratingsCtrl.getUserAverageCarrierRating)
@@ -45,6 +42,7 @@ app.delete(`/api/auth/logout`, authCtrl.logout)
 app.get(`/api/auth/user`, authCtrl.getUser)
 
 //donos endpoints
+
 app.get('/api/donos', donoCtrl.getAllDonos);
 app.get('/api/donos/:dono_id', donoCtrl.getDono);
 app.post('/api/donos/', donoCtrl.createDono);
