@@ -20,9 +20,9 @@ module.exports = {
   unfavoriteDono: async (req, res) => {
     const db = req.app.get('db')
 
-    const { favorites_id, user_id } = req.params
+    const { dono_id, user_id } = req.params
 
-    let result = await db.unfavorite_dono([user_id, favorites_id])
+    let result = await db.unfavorite_dono([user_id, dono_id])
 
     res.status(200).send(result)
   }
