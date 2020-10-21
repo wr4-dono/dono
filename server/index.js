@@ -10,6 +10,7 @@ const aws = require('aws-sdk');
 const ratingsCtrl = require('./ratingsController')
 const donoCtrl = require('../server/donoController')
 const authCtrl = require('./authController')
+const prflCtrl = require('./profileController')
 
 const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET, S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = process.env
 
@@ -53,6 +54,9 @@ app.put('/api/dono/:dono_id', donoCtrl.updateDonoStatus);
 app.delete('/api/donos/:dono_id', donoCtrl.deleteDono);
 
 app.post('/api/donos/acceptTest', donoCtrl.acceptTest)
+
+//profile enpoints
+app.put('/api/profile/edit', prflCtrl.editInfo)
 
 //AWS bucket endpoint
 app.get('/sign-s3', (req, res) => {
