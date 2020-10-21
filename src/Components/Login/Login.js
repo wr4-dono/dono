@@ -16,12 +16,11 @@ const Login = (props) => {
   }
 
   return (
-    <div className='login-container'>Login.js
-      <div>inputs for login.</div>
-      <input placeholder='Username' onChange={e => setUserName(e.target.value)}></input>
-      <input placeholder='Password' onChange={e => setPassword(e.target.value)}></input>
+    <div className='login-container'>
+      <input type='text' placeholder='Username' onChange={e => setUserName(e.target.value)}></input>
+      <input type='password' placeholder='Password' onChange={e => setPassword(e.target.value)}></input>
       <button onClick={() => login()}>Login</button>
-      <button>Register</button>
+      <button onClick={() => props.history.push('/Register')}>Register</button>
     </div>
   )
 }

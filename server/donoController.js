@@ -9,7 +9,8 @@ module.exports = {
 
     const db = req.app.get('db');
 
-    const { status, zip_code, radius = null } = req.query
+    const { status, zip_code, radius } = req.query
+    console.log(radius)
     if (!radius) {
       const allDonos = await db.getAllDonos(status)
       res.status(200).send(allDonos)
