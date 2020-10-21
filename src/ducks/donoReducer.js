@@ -13,8 +13,8 @@ const UNFAVORITE_DONO = 'UNFAVORITE_DONO'
 const ACCEPT_DONO = 'ACCEPT_DONO'
 const COMPLETE_DONO = 'COMPLETE_DONO'
 
-export function getDonos() {
-  const payload = axios.get('/api/donos')
+export function getDonos(status) {
+  const payload = axios.get(`/api/donos?status=${status}`)
 
   return {
     type: GET_DONOS,
@@ -23,7 +23,7 @@ export function getDonos() {
 }
 
 export function favoriteDono(user_id, dono_id) {
-  const payload = axios.post(`/api/users/${user_id}/donos/${dono_id}`)
+  const payload = axios.post(`/api/users/${user_id}/favorites/${dono_id}`)
 
   return {
     type: FAVORITE_DONO,
@@ -40,9 +40,9 @@ export function unfavoriteDono(user_id, favorite_id) {
   }
 }
 
-export function acceptDono(dono_id) {
+export function acceptDono(user_id, dono_id) {
   //right now we have user_id coming off of session
-  const payload = axios.put(`/api/donos/${dono_id}`)
+  const payload = axios.put(`/api/users/${user_id}/donos/${dono_id}`)
 
   return {
     type: ACCEPT_DONO,
@@ -52,7 +52,7 @@ export function acceptDono(dono_id) {
 
 export function completeDono(dono_id) {
   //user_id coming off of session right here as well. also the same endpoint? didn't have endpoint to reference here.
-  const payload = axios.put(`/api/donos/${dono_id}`)
+  const payload = axios.put(`/api/dono/${dono_id}`)
 
   return {
     type: COMPLETE_DONO,

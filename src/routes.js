@@ -1,5 +1,6 @@
-const { Switch, Redirect } = require("react-router-dom")
+// const { Switch, Redirect } = require("react-router-dom")
 
+import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import LandingPage from './Components/LandingPage/LandingPage'
 import Profile from './Components/Profile/Profile'
@@ -9,6 +10,7 @@ import Favorites from './Components/Favorites/Favorites'
 import RateUser from './Components/RateUser/RateUser'
 import NewDono from './Components/NewDono/NewDono'
 import PendingDonos from './Components/PendingDonos/PendingDonos'
+import Dono from './Components/Dono/Dono'
 
 
 
@@ -22,6 +24,7 @@ export default (
         <Route path="/Rate" component={RateUser} />
         <Route path="/New" component={NewDono} />
         <Route path="/Pending" component={PendingDonos} />
+        <Route path="/Dono" component={Dono} />
         <Route render={() => <Redirect to='/' />} />
     </Switch>
 )
