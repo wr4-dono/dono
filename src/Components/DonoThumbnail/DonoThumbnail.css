@@ -1,9 +1,11 @@
 .dono-thumbnail {
+  margin: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   height: 10vh;
   width: 90vw;
+  cursor: pointer;
   background-color: rgb(240, 168, 238);
   border-radius: 10px;
 
@@ -20,14 +22,17 @@
 
 .button-filled-in{
   background-color: palegreen;
+  cursor: pointer;
 }
 
 .button-empty{
   background-color: palevioletred;
+  cursor: pointer;
 }
 
 .thumbnail-picture{
   height: 50%;
   width: 40%;
   margin: auto;
+  cursor: pointer;
 }
