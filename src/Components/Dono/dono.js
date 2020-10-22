@@ -14,6 +14,13 @@ const Dono = (props) => {
   const acceptDono = () => {
     console.log('front')
     axios.put(`/api/users/${props.auth.user.user_id}/dono/${props.location.donoId}`)
+
+    acceptedEmail()
+  }
+
+  const acceptedEmail = () => {
+    const {giver_id} = donoInfo
+    axios.post(`/api/donos/acceptedemail`, {giver_id} )
   }
 
   return (

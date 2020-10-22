@@ -33,6 +33,7 @@ app.get(`/api/users/:user_id/favorites`, favoritesCtrl.getAllFavorites)
 app.delete(`/api/users/:user_id/favorites/:dono_id`, favoritesCtrl.unfavoriteDono)
 app.post(`/api/users/:user_id/favorites/:dono_id`, favoritesCtrl.favoriteDono)
 
+
 //rating endpoints
 app.get('/api/users/:user_id/ratings/giverrating', ratingsCtrl.getUserAverageGiverRating)
 app.get('/api/users/:user_id/ratings/carrierrating', ratingsCtrl.getUserAverageCarrierRating)
@@ -46,6 +47,7 @@ app.post(`/api/auth/register`, authCtrl.register)
 app.post(`/api/auth/login`, authCtrl.login)
 app.delete(`/api/auth/logout`, authCtrl.logout)
 app.get(`/api/auth/user`, authCtrl.getUser)
+app.post('/api/auth/register/registeremail', authCtrl.registerEmail)
 
 //donos endpoints
 
@@ -58,7 +60,7 @@ app.put('/api/donos/:dono_id', donoCtrl.editDono);
 app.put('/api/dono/:dono_id', donoCtrl.updateDonoStatus);
 app.delete('/api/donos/:dono_id', donoCtrl.deleteDono);
 
-app.post('/api/donos/acceptTest', donoCtrl.acceptTest)
+app.post('/api/donos/acceptedemail', donoCtrl.acceptedEmail)
 
 //profile enpoints
 app.put('/api/profile/edit', prflCtrl.editInfo)
