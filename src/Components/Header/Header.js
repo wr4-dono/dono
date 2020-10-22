@@ -48,6 +48,7 @@ class Header extends Component {
   handleHamburgerMenuClick() {
     this.headerRef.current.classList.toggle('change');
   }
+  
   render() {
     return(
       <div className="container">
@@ -58,22 +59,22 @@ class Header extends Component {
             <div className="line line-3"></div>
           </div>
           <ul className="header-list">
-            <li className="header-item">
-              <Link to="/Landing" className="header-link" >Home</Link>
+            <li onClick={this.handleHamburgerMenuClick} className="header-item">
+              <Link data-toggle="collapse" to="/Landing" className="header-link" >Home</Link>
             </li>
-            <li className="header-item">
+            <li onClick={this.handleHamburgerMenuClick} className="header-item">
               <Link to="/Favorites" className="header-link" >Favorites</Link>
             </li>
-            <li className="header-item">
+            <li onClick={this.handleHamburgerMenuClick} className="header-item">
               <Link to="/Profile" className="header-link" >Profile</Link>
             </li>
-            <li className="header-item">
+            <li onClick={this.handleHamburgerMenuClick} className="header-item">
               <Link to="/New" className="header-link" >New Dono</Link>
             </li>
-            <li className="header-item">
+            <li onClick={this.handleHamburgerMenuClick} className="header-item">
               <Link to="/Pending" className="header-link" >Pending Pickups</Link>
             </li>
-            <li className="header-item">
+            <li onClick={this.handleHamburgerMenuClick} className="header-item">
               <Link to="/" className="header-link" >Logout</Link>
             </li>
             
