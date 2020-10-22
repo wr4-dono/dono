@@ -9,8 +9,9 @@ body {
 
 .container {
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
 }
+
 
 .header { 
     width: 300px;
@@ -30,6 +31,7 @@ body {
     right: 0;
 }
 
+
 .hamburger-menu {
     width: 35px;
     height: 30px;
@@ -41,6 +43,8 @@ body {
     flex-direction: column;
     justify-content: space-around;
 }
+
+
 
 .line {
     width: 100%;
@@ -107,6 +111,8 @@ body {
 .header-link:hover::after{
     transform: scaleX(1);
 }
+
+
 
 
 
