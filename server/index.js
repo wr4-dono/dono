@@ -8,6 +8,7 @@ const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 const aws = require('aws-sdk');
 const ratingsCtrl = require('./ratingsController')
+const chatCtrl = require('./chatController')
 
 
 
@@ -51,7 +52,7 @@ app.get(`/api/auth/user`, authCtrl.getUser)
 app.get('/api/donos', donoCtrl.getAllDonos);
 app.get('/api/donos/:dono_id', donoCtrl.getDono);
 app.post('/api/donos/', donoCtrl.createDono);
-app.post('/api/donos/newdono/pictures', donoCtrl.savePictureURL)
+app.post('/api/donos/newdono/pictures', donoCtrl.savePictureURL);
 app.put('/api/users/:user_id/dono/:dono_id', donoCtrl.acceptDono);
 app.put('/api/donos/:dono_id', donoCtrl.editDono);
 app.put('/api/dono/:dono_id', donoCtrl.updateDonoStatus);
@@ -59,8 +60,14 @@ app.delete('/api/donos/:dono_id', donoCtrl.deleteDono);
 
 app.post('/api/donos/acceptTest', donoCtrl.acceptTest)
 
-//profile enpoints
+//profile endpoints
 app.put('/api/profile/edit', prflCtrl.editInfo)
+
+//chat Endpoints
+app.get('/api/chat/:chat_id', chatCtrl.getMessages);
+app.get('/api/dono/:dono_id/chat', chatCtrl.getChatId);
+app.post('/api/dono/:dono_id/chat', chatCtrl.initializeChat);
+app.post('/api/chat/:chat_id/users/:user_id', chatCtrl.sendMessage);
 
 //AWS bucket endpoint
 app.get('/sign-s3', (req, res) => {
