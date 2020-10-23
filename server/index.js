@@ -8,6 +8,7 @@ const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 const aws = require('aws-sdk');
 const ratingsCtrl = require('./ratingsController')
+const verifyGiver = require('./middlewares/verifyGiver')
 const chatCtrl = require('./chatController')
 
 
@@ -39,7 +40,7 @@ app.post(`/api/users/:user_id/favorites/:dono_id`, favoritesCtrl.favoriteDono)
 app.get('/api/users/:user_id/ratings/giverrating', ratingsCtrl.getUserAverageGiverRating)
 app.get('/api/users/:user_id/ratings/carrierrating', ratingsCtrl.getUserAverageCarrierRating)
 app.post('/api/users/:dono_id/ratings/giver', ratingsCtrl.carrierRatesGiver)
-app.post('/api/users/:dono_id/ratings/carrier', ratingsCtrl.giverRatesCarrier)
+app.post('/api/users/:dono_id/ratings/carrier', verifyGiver, ratingsCtrl.giverRatesCarrier)
 app.post('/api/users/giveremail', ratingsCtrl.giverEmail)
 app.post('/api/users/carrieremail', ratingsCtrl.carrierEmail)
 
@@ -57,9 +58,9 @@ app.get('/api/donos/:dono_id', donoCtrl.getDono);
 app.post('/api/donos/', donoCtrl.createDono);
 app.post('/api/donos/newdono/pictures', donoCtrl.savePictureURL);
 app.put('/api/users/:user_id/dono/:dono_id', donoCtrl.acceptDono);
-app.put('/api/donos/:dono_id', donoCtrl.editDono);
+app.put('/api/donos/:dono_id', verifyGiver, donoCtrl.editDono);
 app.put('/api/dono/:dono_id', donoCtrl.updateDonoStatus);
-app.delete('/api/donos/:dono_id', donoCtrl.deleteDono);
+app.delete('/api/donos/:dono_id', verifyGiver, donoCtrl.deleteDono);
 app.post('/api/donos/acceptedemail', donoCtrl.acceptedEmail)
 
 app.get('/api/donos/pending/:user_id', donoCtrl.getPendingDonos)
