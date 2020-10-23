@@ -27,7 +27,6 @@ const DonoThumbnail = (props) => {
         {props.dono.price}
         {props.dono.zip_code}
       </div>
-
       <button
         className={isFavorite ? 'button-filled-in' : 'button-empty'}
         onClick={isFavorite ? (e) => {
