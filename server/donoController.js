@@ -31,7 +31,7 @@ module.exports = {
     const db = req.app.get('db');
     const { dono_id } = req.params
 
-    const dono = await db.getDono(dono_id)
+    const [dono] = await db.getDono(dono_id)
 
     res.status(200).send(dono);
   },
@@ -40,9 +40,10 @@ module.exports = {
     const db = req.app.get('db');
     const { user_id, dono_id } = req.params
 
+    console.log(user_id, dono_id)
     const acceptedDono = await db.acceptDono(user_id, dono_id);
+    console.log(acceptedDono)
     res.status(200).send(acceptedDono);
-
 
   },
 
@@ -70,10 +71,10 @@ module.exports = {
     //! STILL NEED TO IMPLEMENT PICTURES
     const db = req.app.get('db');
     const { dono_id } = req.params;
-    const { zip_code, title, description, price, multiplePeople, truckTrailer } = req.body;
-
+    const { zip_code, title, description, price, multiplePeople, truckTrailer, url } = req.body;
+    console.log(req.body)
     const updatedDono = await db.editDono(dono_id, zip_code, title, description, price, multiplePeople, truckTrailer);
-
+    await db.edit_dono_picture(dono_id, url);
     res.status(200).send(updatedDono);
   },
 
@@ -95,8 +96,11 @@ module.exports = {
     res.sendStatus(200);
   },
 
-  acceptTest: async (req, res) => {
-
+  acceptedEmail: async (req, res) => {
+    const { EMAIL_ACCOUNT, EMAIL_PASS } = process.env
+    const db = req.app.get('db')
+    const { giver_id } = req.body
+    let [giverEmail] = await db.get_giver_rating_email([giver_id])
 
     let transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -108,7 +112,7 @@ module.exports = {
 
     let notification = {
       from: EMAIL_ACCOUNT,
-      to: 'nickamantia@gmail.com',
+      to: giverEmail.email,
       subject: 'Someone has accepted your dono',
       html:
         `<div style='font-family: Gill Sans, sans-serif; color: black; font-size: 18px;'>

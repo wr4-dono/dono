@@ -1,3 +1,4 @@
+const nodemailer = require('nodemailer')
 module.exports = {
   giverRatesCarrier: async (req, res) => {
     const db = req.app.get('db')
@@ -39,8 +40,12 @@ module.exports = {
     res.status(200).send(giverRating)
   },
 
-  ratingTest: async (req, res) => {
-    let transporter = nodemailer.createTransport({  
+  giverEmail: async (req, res) => {
+    const { EMAIL_ACCOUNT, EMAIL_PASS } = process.env
+    const db = req.app.get('db')
+    const { rating, comment, giver_id } = req.body
+    let [giverEmail] = await db.get_giver_rating_email([giver_id])
+    let transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: EMAIL_ACCOUNT,
@@ -50,13 +55,53 @@ module.exports = {
 
     let notification = {
       from: EMAIL_ACCOUNT,
-      to: 'nickamantia@gmail.com',
-      subject: 'Someone has accepted your dono',
-      html: 
-      `<div style='font-family: Gill Sans, sans-serif; color: black; font-size: 18px;'>
+      to: giverEmail.email,
+      subject: 'A dono user rated your recent interaction',
+      html:
+        `<div style='font-family: Gill Sans, sans-serif; color: black; font-size: 18px;'>
+      <h1 style ='font-size: 20px' >Hi, </h1>
+      <div><p>Someone has rated how their experience went with you.</p></div>
+      <div><p>Rating:${' '}${rating}/5</p></div>
+      <div><p>Comment:${' '}${comment}</p></div>
+      <div><p>The dono. Team</p></div>
+    </div>`
+    }
+
+    transporter.sendMail(notification, (err, info) => {
+      console.log(notification)
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('Notification sent');
+      }
+    })
+
+    res.sendStatus(201);
+  },
+
+  carrierEmail: async (req, res) => {
+    const { EMAIL_ACCOUNT, EMAIL_PASS } = process.env
+    const db = req.app.get('db')
+    const { rating, comment, carrier_id } = req.body
+    let [carrierEmail] = await db.get_carrier_rating_email([carrier_id])
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: EMAIL_ACCOUNT,
+        pass: EMAIL_PASS
+      }
+    })
+
+    let notification = {
+      from: EMAIL_ACCOUNT,
+      to: carrierEmail.email,
+      subject: 'A dono user rated your recent interaction',
+      html:
+        `<div style='font-family: Gill Sans, sans-serif; color: black; font-size: 18px;'>
         <h1 style ='font-size: 20px' >Hi, </h1>
-        <div><p>Someone has rated how thier experience went with you.</p></div>
-        <div><p>Thanks,</p></div>
+        <div><p>Someone has rated how their experience went with you.</p></div>
+        <div><p>Rating:${' '}${rating}/5</p></div>
+      <div><p>Comment:${' '}${comment}</p></div>
         <div><p>The dono. Team</p></div>
         
 
@@ -64,16 +109,16 @@ module.exports = {
     }
 
     transporter.sendMail(notification, (err, info) => {
-        console.log(notification)
-        if (err) {
-          console.log('notification error');
-        } else {
-          console.log('Notification sent');
-        }
-      })
-  
-      res.sendStatus(201);
-    }
+      console.log(notification)
+      if (err) {
+        console.log('notification error');
+      } else {
+        console.log('Notification sent');
+      }
+    })
+
+    res.sendStatus(201);
   }
+}
   // NOT MVP
   // getAllUserRatings: async (req, res) => {}

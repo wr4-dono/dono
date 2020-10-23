@@ -21,7 +21,7 @@ const DonoThumbnail = (props) => {
 
   return (
 
-    <div className='dono-thumbnail' onClick={() => props.history.push('/dono')}>
+    <div className='dono-thumbnail' onClick={() => props.history.push({ pathname: '/dono', donoId: `${props.dono.dono_id}` })}>
       <div className='thumbnail-info'>
         {props.dono.title}
         {props.dono.price}

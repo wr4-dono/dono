@@ -8,20 +8,24 @@ import { connect } from 'react-redux';
 class NewDono extends Component {
   constructor(props) {
     super()
+
     this.state = {
       isUploading: false,
-      url: 'http://via.placeholder.com/450x450',
-      title: '',
-      price: '',
-      description: '',
-      multiplePeople: false,
-      truckTrailer: false,
-      zip_code: props.auth.user.zip_code,
-      giver_id: props.auth.user.user_id,
+      donoId: (props.location.donoInfo) ? props.location.donoInfo.dono_id : null,
+      url: (props.location.donoInfo) ? props.location.donoInfo.picture_url : 'http://via.placeholder.com/450x450',
+      title: (props.location.donoInfo) ? props.location.donoInfo.title : '',
+      price: (props.location.donoInfo) ? props.location.donoInfo.price : '',
+      description: (props.location.donoInfo) ? props.location.donoInfo.description : '',
+      multiplePeople: (props.location.donoInfo) ? props.location.donoInfo.multiple_people : false,
+      truckTrailer: (props.location.donoInfo) ? props.location.donoInfo.truck_trailer : false,
+      zip_code: (props.location.donoInfo) ? props.location.donoInfo.zip_code : props.auth.user.zip_code,
+      giver_id: (props.location.donoInfo) ? props.location.donoInfo.title : props.auth.user.user_id,
+      isEditing: (props.location.donoInfo) ? true : false,
       // images: []
     }
 
   }
+
   getSignedRequest = ([file]) => {
     this.setState({ isUploading: true })
 
@@ -97,8 +101,18 @@ class NewDono extends Component {
 
       axios.post(`/api/donos/newdono/pictures`, { dono_id, url }).then(res => {
         console.log(res.data)
+        this.props.history.push('/landing')
       }).catch(err => alert(err.message))
     }).catch(err => alert(err.message))
+  }
+
+  saveEdits = (props) => {
+    const { donoId, zip_code, title, price, description, multiplePeople, truckTrailer, url } = this.state
+
+    axios.put(`/api/donos/${donoId}`, { zip_code, title, price, description, multiplePeople, truckTrailer, url }).then(res => {
+      console.log(props)
+      this.props.history.push({ pathname: '/dono', donoId: `${donoId}` })
+    })
   }
 
 
@@ -129,19 +143,41 @@ class NewDono extends Component {
               }}
               {...getRootProps()}>
               <input {...getInputProps()} />
-              {isUploading ? <GridLoader /> : <p>Drop files here, or click to select files</p>}
+              {isUploading ? <GridLoader /> : <p>Drop file here, or click to select files</p>}
             </div>
           )}
         </Dropzone>
 
-        <input name='title' type='text' placeholder='Dono Title' onChange={(e) => this.handleChanges(e)}></input>
-        <input name='price' type='number' placeholder='Price' onChange={(e) => this.handleChanges(e)}></input>
-        <input name='zip_code' type='number' placeholder='Pickup zip code' value={this.state.zip_code} onChange={(e) => this.handleChanges(e)}></input>
-        <textarea name='description' placeholder='Description' onChange={(e) => this.handleChanges(e)}></textarea>
-        <input type='checkbox' name='multiplePeople' onClick={() => this.alterMultiplePeople()}></input>
-        <input type='checkbox' name='truckTrailer' onClick={() => this.alterTruckTrailer()}></input>
+        {/* Below are the input fields for all of the values of the dono other than the picture */}
 
-        <button onClick={() => this.handleSubmitDono()}>Submit Dono</button>
+        <input name='title' value={this.state.title} type='text' placeholder='Dono Title' onChange={(e) => this.handleChanges(e)}></input>
+        <input name='price' type='number' value={this.state.price} placeholder='Price' onChange={(e) => this.handleChanges(e)}></input>
+        <input name='zip_code' type='number' value={this.state.zip_code} placeholder='Pickup zip code' value={this.state.zip_code} onChange={(e) => this.handleChanges(e)}></input>
+        <textarea name='description' value={this.state.description} placeholder='Description' onChange={(e) => this.handleChanges(e)}></textarea>
+
+        <div>
+          {/* These ternarys will display a checked checkbox if the condition is true. if false they will display an unchecked checkbox. Used for editing dono  */}
+          {this.state.multiplePeople ?
+            <input type='checkbox' name='multiplePeople' checked onClick={() => this.alterMultiplePeople()}></input>
+            :
+            <input type='checkbox' name='multiplePeople' onClick={() => this.alterMultiplePeople()}></input>}
+          {this.state.truckTrailer ?
+            <input type='checkbox' name='truckTrailer' checked onClick={() => this.alterTruckTrailer()}></input>
+            :
+            <input type='checkbox' name='truckTrailer' onClick={() => this.alterTruckTrailer()}></input>
+          }
+
+        </div>
+
+        {this.state.isEditing ?
+          <div>
+            <button onClick={() => this.saveEdits()}>Save Edits</button>
+            <button onClick={() => this.props.history.push('/landing')}>Cancel Edits</button>
+          </div>
+          :
+          <button onClick={() => this.handleSubmitDono()}>Submit Dono</button>
+        }
+
       </div>
     )
   }
