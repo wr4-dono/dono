@@ -62,7 +62,7 @@ body {
 }
 
 .dono{
-    /* background-color: black; */
+    display: flex;
     height: 115px;
     width: 115px;
 }
