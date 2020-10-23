@@ -136,5 +136,15 @@ module.exports = {
     })
 
     res.sendStatus(201);
+  },
+
+  getPendingDonos: async (req, res) => {
+    const db = req.app.get('db');
+    const { user_id } = req.params;
+    const pendingDonos = await db.get_pending_donos(user_id)
+    res.status(200).send(pendingDonos)
+
+
   }
+
 }
