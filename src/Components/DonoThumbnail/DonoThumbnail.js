@@ -21,7 +21,7 @@ const DonoThumbnail = (props) => {
 
   return (
 
-    <div className='dono-thumbnail' onClick={() => props.history.push({ pathname: '/dono', donoId: `${props.dono.dono_id}` })}>
+    <div className='dono-thumbnail' onClick={() => props.history.push(`/dono/${props.dono.dono_id}`)}>
       <div className='thumbnail-info'>
         {props.dono.title}
         {props.dono.price}
@@ -41,7 +41,7 @@ const DonoThumbnail = (props) => {
       >favorite</button>
 
       <div>
-        <img className='thumbnail-picture' src={props.dono.picture_url} />
+        <img className='thumbnail-picture' src={props.dono.picture_url} alt={props.dono.title} />
       </div>
 
     </div>
