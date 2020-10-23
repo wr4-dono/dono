@@ -59,8 +59,9 @@ app.put('/api/users/:user_id/dono/:dono_id', donoCtrl.acceptDono);
 app.put('/api/donos/:dono_id', donoCtrl.editDono);
 app.put('/api/dono/:dono_id', donoCtrl.updateDonoStatus);
 app.delete('/api/donos/:dono_id', donoCtrl.deleteDono);
-
 app.post('/api/donos/acceptedemail', donoCtrl.acceptedEmail)
+
+app.get('/api/donos/pending/:user_id', donoCtrl.getPendingDonos)
 
 //profile enpoints
 app.put('/api/profile/edit', prflCtrl.editInfo)
