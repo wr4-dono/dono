@@ -48,7 +48,6 @@ module.exports = {
   },
 
   createDono: async (req, res) => {
-    //! STILL NEED TO IMPLEMENT PICTURES
     const db = req.app.get('db');
 
     const { giver_id, zip_code, title, description, price, multiplePeople, truckTrailer } = req.body;
@@ -68,11 +67,10 @@ module.exports = {
   },
 
   editDono: async (req, res) => {
-    //! STILL NEED TO IMPLEMENT PICTURES
     const db = req.app.get('db');
     const { dono_id } = req.params;
     const { zip_code, title, description, price, multiplePeople, truckTrailer, url } = req.body;
-    console.log(req.body)
+
     const updatedDono = await db.editDono(dono_id, zip_code, title, description, price, multiplePeople, truckTrailer);
     await db.edit_dono_picture(dono_id, url);
     res.status(200).send(updatedDono);
@@ -136,5 +134,15 @@ module.exports = {
     })
 
     res.sendStatus(201);
+  },
+
+  getPendingDonos: async (req, res) => {
+    const db = req.app.get('db');
+    const { user_id } = req.params;
+    const pendingDonos = await db.get_pending_donos(user_id)
+    res.status(200).send(pendingDonos)
+
+
   }
+
 }

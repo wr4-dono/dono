@@ -9,6 +9,8 @@ const io = require('socket.io')(http)
 const aws = require('aws-sdk');
 const ratingsCtrl = require('./ratingsController')
 const verifyGiver = require('./middlewares/verifyGiver')
+const chatCtrl = require('./chatController')
+
 
 
 
@@ -54,16 +56,23 @@ app.post('/api/auth/register/registeremail', authCtrl.registerEmail)
 app.get('/api/donos', donoCtrl.getAllDonos);
 app.get('/api/donos/:dono_id', donoCtrl.getDono);
 app.post('/api/donos/', donoCtrl.createDono);
-app.post('/api/donos/newdono/pictures', donoCtrl.savePictureURL)
+app.post('/api/donos/newdono/pictures', donoCtrl.savePictureURL);
 app.put('/api/users/:user_id/dono/:dono_id', donoCtrl.acceptDono);
 app.put('/api/donos/:dono_id', verifyGiver, donoCtrl.editDono);
 app.put('/api/dono/:dono_id', donoCtrl.updateDonoStatus);
 app.delete('/api/donos/:dono_id', verifyGiver, donoCtrl.deleteDono);
-
 app.post('/api/donos/acceptedemail', donoCtrl.acceptedEmail)
 
-//profile enpoints
+app.get('/api/donos/pending/:user_id', donoCtrl.getPendingDonos)
+
+//profile endpoints
 app.put('/api/profile/edit', prflCtrl.editInfo)
+
+//chat Endpoints
+app.get('/api/chat/:chat_id', chatCtrl.getMessages);
+app.get('/api/dono/:dono_id/chat', chatCtrl.getChatId);
+app.post('/api/dono/:dono_id/chat', chatCtrl.initializeChat);
+app.post('/api/chat/:chat_id/users/:user_id', chatCtrl.sendMessage);
 
 //AWS bucket endpoint
 app.get('/sign-s3', (req, res) => {
@@ -111,9 +120,15 @@ massive({
   )
 })
 
+
+
 io.on('connection', socket => {
-  socket.on('message', ({ name, message }) => {
-    io.emit('message', { name, message })
+  socket.on('join', ({ chatId }) => {
+    console.log('User connected to chat', { chatId })
+    socket.join({ chatId })
+  })
+  socket.on('message', ({ username, message, chatId }) => {
+    io.in({ chatId }).emit('message', { username, message })//what gets sent back to front end depending on chatId
   })
 })
 
