@@ -26,11 +26,12 @@ const RateUser = (props) => {
   }
 
   const submitEverything = () => {
+    const { giver_id, carrier_id } = dono
     if (props.auth.user.user_id === dono.carrier_id) {
-      axios.post(`/api/users/${dono.dono_id}/ratings/giver`, { rating, comment })
+      axios.post(`/api/users/${dono.dono_id}/ratings/giver`, { rating, comment, giver_id })
       sendGiverEmail()
     } else {
-      axios.post(`/api/users/${dono.dono_id}/ratings/carrier`, { rating, comment })
+      axios.post(`/api/users/${dono.dono_id}/ratings/carrier`, { rating, comment, carrier_id })
       sendCarrierEmail()
     }
     props.history.push('/')

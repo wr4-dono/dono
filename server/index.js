@@ -9,6 +9,8 @@ const io = require('socket.io')(http)
 const aws = require('aws-sdk');
 const ratingsCtrl = require('./ratingsController')
 const verifyGiver = require('./middlewares/verifyGiver')
+const verifyCarrier = require('./middlewares/verifyCarrier')
+const verifyUser = require('./middlewares/verifyUser')
 const chatCtrl = require('./chatController')
 
 
@@ -39,7 +41,7 @@ app.post(`/api/users/:user_id/favorites/:dono_id`, favoritesCtrl.favoriteDono)
 //rating endpoints
 app.get('/api/users/:user_id/ratings/giverrating', ratingsCtrl.getUserAverageGiverRating)
 app.get('/api/users/:user_id/ratings/carrierrating', ratingsCtrl.getUserAverageCarrierRating)
-app.post('/api/users/:dono_id/ratings/giver', ratingsCtrl.carrierRatesGiver)
+app.post('/api/users/:dono_id/ratings/giver', verifyCarrier, ratingsCtrl.carrierRatesGiver)
 app.post('/api/users/:dono_id/ratings/carrier', verifyGiver, ratingsCtrl.giverRatesCarrier)
 app.post('/api/users/giveremail', ratingsCtrl.giverEmail)
 app.post('/api/users/carrieremail', ratingsCtrl.carrierEmail)
