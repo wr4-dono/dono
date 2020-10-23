@@ -34,18 +34,21 @@ app.get(`/api/users/:user_id/favorites`, favoritesCtrl.getAllFavorites)
 app.delete(`/api/users/:user_id/favorites/:dono_id`, favoritesCtrl.unfavoriteDono)
 app.post(`/api/users/:user_id/favorites/:dono_id`, favoritesCtrl.favoriteDono)
 
+
 //rating endpoints
 app.get('/api/users/:user_id/ratings/giverrating', ratingsCtrl.getUserAverageGiverRating)
 app.get('/api/users/:user_id/ratings/carrierrating', ratingsCtrl.getUserAverageCarrierRating)
 app.post('/api/users/:dono_id/ratings/giver', ratingsCtrl.carrierRatesGiver)
-app.post('/api/users/:dono_id/ratings/carrier', ratingsCtrl.giverRatesCarrier) //figure out the req.params here. could be dono_id on params instead of user_id. those ids are already generated in the donos table when a dono is completed.
+app.post('/api/users/:dono_id/ratings/carrier', ratingsCtrl.giverRatesCarrier)
+app.post('/api/users/giveremail', ratingsCtrl.giverEmail)
+app.post('/api/users/carrieremail', ratingsCtrl.carrierEmail)
 
-app.post('/api/users/ratingTest', donoCtrl.acceptTest)
 //auth endpoints
 app.post(`/api/auth/register`, authCtrl.register)
 app.post(`/api/auth/login`, authCtrl.login)
 app.delete(`/api/auth/logout`, authCtrl.logout)
 app.get(`/api/auth/user`, authCtrl.getUser)
+app.post('/api/auth/register/registeremail', authCtrl.registerEmail)
 
 //donos endpoints
 
@@ -57,8 +60,9 @@ app.put('/api/users/:user_id/dono/:dono_id', donoCtrl.acceptDono);
 app.put('/api/donos/:dono_id', donoCtrl.editDono);
 app.put('/api/dono/:dono_id', donoCtrl.updateDonoStatus);
 app.delete('/api/donos/:dono_id', donoCtrl.deleteDono);
+app.post('/api/donos/acceptedemail', donoCtrl.acceptedEmail)
 
-app.post('/api/donos/acceptTest', donoCtrl.acceptTest)
+app.get('/api/donos/pending/:user_id', donoCtrl.getPendingDonos)
 
 //profile endpoints
 app.put('/api/profile/edit', prflCtrl.editInfo)

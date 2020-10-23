@@ -1,4 +1,5 @@
-const bycryt = require('bcryptjs')
+const bcrypt = require('bcryptjs')
+const nodemailer = require('nodemailer')
 
 module.exports = {
   register: async (req, res) => {
@@ -12,8 +13,8 @@ module.exports = {
       return res.status(409).send('User already exists')
     }
 
-    const salt = bycryt.genSaltSync(10)
-    const hash = bycryt.hashSync(password, salt)
+    const salt = bcrypt.genSaltSync(10)
+    const hash = bcrypt.hashSync(password, salt)
 
     const [newUser] = await db.register_user([username, hash, zip_code, email])
 
@@ -37,7 +38,7 @@ module.exports = {
       return res.status(404).send('User not found')
     }
 
-    const isAuthenticated = bycryt.compareSync(password, existingUser.hash)
+    const isAuthenticated = bcrypt.compareSync(password, existingUser.hash)
 
     if (!isAuthenticated) {
       return res.status(403).send('Incorrect username or password')
@@ -64,5 +65,49 @@ module.exports = {
   logout: async (req, res) => {
     req.session.destroy()
     res.sendStatus(200)
+  },
+
+  registerEmail: async (req, res) => {
+    const { EMAIL_ACCOUNT, EMAIL_PASS } = process.env
+    const {username, email} = req.body
+
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: EMAIL_ACCOUNT,
+        pass: EMAIL_PASS
+      }
+    })
+
+    let notification = {
+      from: EMAIL_ACCOUNT,
+      to: email,
+      subject: 'Thank you for registering with dono.',
+      html:
+        `<div style='font-family: Gill Sans, sans-serif; color: black; font-size: 18px;'>
+        <h1 style ='font-size: 20px' >Hi ${username}, </h1>
+        <div><p>Thank you for registering with dono.</p></div>
+        <div><p>Items are ready for pickup right now!</p></div>
+        <div><p>Login to see what we've got or submit your own dono!</p></div>
+        <div><p>Thanks,</p></div>
+        <div><p>The dono. Team</p></div>
+         </div>`
+    }
+
+    transporter.sendMail(notification, (err, info) => {
+      console.log(notification)
+      if (err) {
+        console.log('notification error');
+      } else {
+        console.log('Notification sent');
+      }
+    })
+
+    res.sendStatus(201);
+
   }
+
+
+
+
 }

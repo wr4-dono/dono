@@ -16,6 +16,7 @@ const Dono = (props) => {
 
       axios.post(`/api/dono/${donoInfo.dono_id}/chat`, { giver_id: donoInfo.giver_id, carrier_id: props.auth.user.user_id }).then(res => {
         props.history.push(`/AcceptedDono/${donoInfo.dono_id}/${res.data.chat_id}`)
+        acceptedEmail()
       }).catch(err => alert(err.message))
     }).catch(err => alert(err.message))
   }
@@ -24,6 +25,13 @@ const Dono = (props) => {
     axios.get(`/api/dono/${donoInfo.dono_id}/chat`).then(res => {
       props.history.push(`/AcceptedDono/${donoInfo.dono_id}/${res.data.chat_id}`)
     }).catch(err => alert(err.message))
+    console.log('front')
+    axios.put(`/api/users/${props.auth.user.user_id}/dono/${props.location.donoId}`)
+  }
+
+  const acceptedEmail = () => {
+    const { giver_id } = donoInfo
+    axios.post(`/api/donos/acceptedemail`, { giver_id })
   }
 
   return (
