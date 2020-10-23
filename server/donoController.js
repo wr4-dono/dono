@@ -31,7 +31,7 @@ module.exports = {
     const db = req.app.get('db');
     const { dono_id } = req.params
 
-    const dono = await db.getDono(dono_id)
+    const [dono] = await db.getDono(dono_id)
 
     res.status(200).send(dono);
   },
@@ -40,9 +40,10 @@ module.exports = {
     const db = req.app.get('db');
     const { user_id, dono_id } = req.params
 
+    console.log(user_id, dono_id)
     const acceptedDono = await db.acceptDono(user_id, dono_id);
+    console.log(acceptedDono)
     res.status(200).send(acceptedDono);
-
 
   },
 
@@ -70,10 +71,10 @@ module.exports = {
     //! STILL NEED TO IMPLEMENT PICTURES
     const db = req.app.get('db');
     const { dono_id } = req.params;
-    const { zip_code, title, description, price, multiplePeople, truckTrailer } = req.body;
-
+    const { zip_code, title, description, price, multiplePeople, truckTrailer, url } = req.body;
+    console.log(req.body)
     const updatedDono = await db.editDono(dono_id, zip_code, title, description, price, multiplePeople, truckTrailer);
-
+    await db.edit_dono_picture(dono_id, url);
     res.status(200).send(updatedDono);
   },
 

@@ -51,9 +51,9 @@ const Profile = (props) => {
       <div>
         {(editMode) ? (
           <div>
-              <label for='username'>Username: <input name="username" onChange={handleChange} /></label>
-              <label for='zip_code'>Zip Code: <input name="zip_code" onChange={handleChange} /></label>
-              <label for='email'>Email: <input name="email" onChange={handleChange} /></label>
+              <label for='username' >Username: <input name="username" placeholder= {username} onChange={handleChange} /></label>
+              <label for='zip_code'>Zip Code: <input name="zip_code" placeholder= {zip_code} onChange={handleChange} /></label>
+              <label for='email'>Email: <input name="email" placeholder= {email} onChange={handleChange} /></label>
               
 
               <button onClick={() => {handleSubmit(username, zip_code, email)}}>Save</button>

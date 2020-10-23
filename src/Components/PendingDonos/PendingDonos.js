@@ -15,9 +15,13 @@ const PendingDonos = () => {
   return (
     <div> PendingDonos.js 
     {pendingDonos.map(dono => {
-      return < DonoThumbnail pendingDonos={dono} />
+      return(
+      < DonoThumbnail 
+        dono={dono} 
+        key={dono.id}
+      />
+      )
     })}
-
     </div>
   )
 }
