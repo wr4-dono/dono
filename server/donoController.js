@@ -96,8 +96,11 @@ module.exports = {
     res.sendStatus(200);
   },
 
-  acceptTest: async (req, res) => {
-
+  acceptedEmail: async (req, res) => {
+    const { EMAIL_ACCOUNT, EMAIL_PASS } = process.env
+    const db = req.app.get('db')
+    const { giver_id } = req.body
+    let [giverEmail] = await db.get_giver_rating_email([giver_id])
 
     let transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -109,7 +112,7 @@ module.exports = {
 
     let notification = {
       from: EMAIL_ACCOUNT,
-      to: 'nickamantia@gmail.com',
+      to: giverEmail.email,
       subject: 'Someone has accepted your dono',
       html:
         `<div style='font-family: Gill Sans, sans-serif; color: black; font-size: 18px;'>
@@ -133,5 +136,15 @@ module.exports = {
     })
 
     res.sendStatus(201);
+  },
+
+  getPendingDonos: async (req, res) => {
+    const db = req.app.get('db');
+    const { user_id } = req.params;
+    const pendingDonos = await db.get_pending_donos(user_id)
+    res.status(200).send(pendingDonos)
+
+
   }
+
 }

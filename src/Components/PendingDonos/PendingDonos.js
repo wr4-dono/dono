@@ -3,11 +3,11 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import DonoThumbnail from '../DonoThumbnail/DonoThumbnail'
 
-const PendingDonos = () => {
+const PendingDonos = (props) => {
   const [pendingDonos, setPendingDonos] = useState([])
 
     useEffect(() => {
-      axios.get(`/api/donos?status=2`)
+      axios.get(`/api/donos/pending/${props.auth.user.user_id}`)
       .then((res) => setPendingDonos(res.data)).catch(err => console.log(err.message))
 
     }, [])

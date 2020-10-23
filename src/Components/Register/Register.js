@@ -12,7 +12,14 @@ const Register = (props) => {
       .then(res => {
         props.history.push('/');
       }).catch(err => alert(err.message));
+
+      registerEmail()
   }
+
+    function registerEmail() {
+      axios.post('/api/auth/register/registeremail', {username, email})
+      
+    }
 
   return (
     <div>
