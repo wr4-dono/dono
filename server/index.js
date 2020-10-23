@@ -115,9 +115,15 @@ massive({
   )
 })
 
+
+
 io.on('connection', socket => {
-  socket.on('message', ({ name, message }) => {
-    io.emit('message', { name, message })
+  socket.on('join', ({ chatId }) => {
+    console.log('User connected to chat', { chatId })
+    socket.join({ chatId })
+  })
+  socket.on('message', ({ username, message, chatId }) => {
+    io.in({ chatId }).emit('message', { username, message })//what gets sent back to front end depending on chatId
   })
 })
 

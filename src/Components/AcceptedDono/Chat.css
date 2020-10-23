@@ -1,13 +1,11 @@
 .card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 30px;
-    min-height: 30rem;
-    font-family: 'Space Mono', monospace;
+    display: flex;  
+    justify-content: center;
+  
   }
-  form {
+
+  .chat-form {
     background-color: white;
-    max-width: 350px;
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0px 3px 24px -8px rgba(0, 0, 0, 0.75);
@@ -18,8 +16,12 @@
     margin-bottom: 40px;
     font-family: 'Space Mono', monospace;
   }
+
+  .text-field{
+    width: 400px;
+  }
   
-  button {
+  .send-message-btn{
     margin-top: 20px;
     padding: 10px;
     background: transparent;
@@ -29,21 +31,16 @@
   
   .render-chat {
     background-color: white;
-    max-width: 350px;
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0px 3px 24px -8px rgba(0, 0, 0, 0.75);
-    font-family: 'Space Mono', monospace;
-  }
-
-
-  .chat-log{
     font-family: 'Space Mono', monospace;
   }
   
   .chat-message {
     color: #2f6bda;
     font-family: 'Space Mono', monospace;
+    text-align: left;
   }
   
   .chat-span {

@@ -4,6 +4,8 @@ module.exports = {
     const { dono_id } = req.params
     const { giver_id, carrier_id } = req.body
 
+    console.log(req.body);
+
     const [chat_id] = await db.initialize_chat(dono_id, giver_id, carrier_id);
 
     res.status(200).send(chat_id)
@@ -13,8 +15,6 @@ module.exports = {
     const db = req.app.get('db');
     const { chat_id, user_id } = req.params
     const { message } = req.body
-
-    console.log(message, chat_id, user_id)
 
     await db.send_message(chat_id, user_id, message);
     res.sendStatus(200);

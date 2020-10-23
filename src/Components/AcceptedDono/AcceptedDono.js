@@ -9,17 +9,15 @@ const AcceptedDono = (props) => {
 
   useEffect(() => {
     console.log(props)
-    // axios.get(`/api/donos/${props.match.params.dono_id}`).then(res => setDonoInfo(res.data))
-    axios.get(`/api/donos/23`).then(res => setDonoInfo(res.data))
+    axios.get(`/api/donos/${props.match.params.dono_id}`).then(res => setDonoInfo(res.data))
   }, [])
 
   const pickupComplete = () => {
-    axios.put(`/api/dono/${donoInfo.dono_id}`).then(res => props.history.push('/pending'))
+    axios.put(`/api/dono/${donoInfo.dono_id}?status=3`).then(res => props.history.push('/pending'))
   }
 
   return (
     <div>
-      {console.log('chatId', chatId)}
       <div>
         <DonoThumbnail dono={donoInfo} />
       </div>

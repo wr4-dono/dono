@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 
 const Dono = (props) => {
   const [donoInfo, setDonoInfo] = useState({});
-  const [chatId, setChatId] = useState(null);
 
   useEffect(() => {
     axios.get(`/api/donos/${props.match.params.dono_id}`).then(res => setDonoInfo(res.data))
@@ -13,28 +12,22 @@ const Dono = (props) => {
 
 
   const acceptDono = () => {
-    console.log('front')
     axios.put(`/api/users/${props.auth.user.user_id}/dono/${donoInfo.dono_id}`).then(res => {
-      axios.post(`/api/dono/${donoInfo.dono_id}/chat`).then(res => {
-        setChatId(res.data)
-        console.log('chat Id', res.data)
-        props.history.push(`/AcceptedDono/${donoInfo.dono_id}/${chatId}`)
-      })
-    })
+
+      axios.post(`/api/dono/${donoInfo.dono_id}/chat`, { giver_id: donoInfo.giver_id, carrier_id: props.auth.user.user_id }).then(res => {
+        props.history.push(`/AcceptedDono/${donoInfo.dono_id}/${res.data.chat_id}`)
+      }).catch(err => alert(err.message))
+    }).catch(err => alert(err.message))
   }
 
   const continueChatting = () => {
-    console.log('hit chat')
-    console.log('donoId', donoInfo.dono_id)
     axios.get(`/api/dono/${donoInfo.dono_id}/chat`).then(res => {
-      setChatId(res.data)
-      props.history.push(`/AcceptedDono/${donoInfo.dono_id}/${chatId}`)
+      props.history.push(`/AcceptedDono/${donoInfo.dono_id}/${res.data.chat_id}`)
     }).catch(err => alert(err.message))
   }
 
   return (
     <div className='dono-container'>
-      {console.log(donoInfo)}
       <img src={donoInfo.picture_url} ></img>
       <div>
         <h2>{donoInfo.title}</h2>
