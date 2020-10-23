@@ -2,8 +2,8 @@ module.exports = {
   getAllFavorites: async (req, res) => {
     const db = req.app.get('db')
     const { user_id } = req.params
-    let [favorites] = await db.get_all_favorites([user_id])
-    console.log(favorites)
+    let favorites = await db.get_all_favorites(user_id)
+    // console.log(favorites)
     res.status(200).send(favorites)
   },
 
