@@ -18,13 +18,7 @@ const Favorites = (props) => {
       {favoritedDonos.map(dono => {
         return <DonoThumbnail dono ={dono} />
       })}
-    {/* {favoritedDonos.map(dono => {
-      return
-        < DonoThumbnail 
-          dono={dono}
-        />
-      
-    })} */}
+   
 
     
     </div>

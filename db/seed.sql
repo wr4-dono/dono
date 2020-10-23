@@ -59,3 +59,17 @@ givers_ratings_id SERIAL PRIMARY KEY,
 dono_id INT REFERENCES donos(dono_id) NOT NULL UNIQUE,
 rating INT,
 comment VARCHAR(1000));
+
+CREATE TABLE chat  (
+chat_id SERIAL PRIMARY KEY,
+dono_id INT REFERENCES donos(dono_id) NOT NULL UNIQUE,
+giver_id INT REFERENCES users(user_id) NOT NULL,
+carrier_id INT REFERENCES users(user_id) DEFAULT NULL
+);
+
+CREATE TABLE  chat_log (
+chat_log SERIAL PRIMARY KEY,
+chat_id INT REFERENCES chat(chat_id) NOT NULL,
+sender_id INT REFERENCES users (user_id) NOT NULL,
+message TEXT
+);

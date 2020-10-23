@@ -52,11 +52,9 @@ class Header extends Component {
   render() {
     return(
       <div className="container">
-        <div className="dono-button-cont">
-       <Link to="/Landing"> <button className="dono-picture"><img className="dono" src="https://i.imgur.com/tuFQHxN.png" /></button></Link>
-       </div>
-        <Link to="/New" className="dono-button" ><button className="dono-button" >New Dono</button></Link>
+       <Link className="dono" to="/Landing"> <img className="dono" src="https://i.imgur.com/tuFQHxN.png" /></Link>
         <nav className="header" ref={this.headerRef}>
+        <Link to="/New" className="dono-button" ><button className="dono-button" >New Dono</button></Link>
           <div onClick={this.handleHamburgerMenuClick} className="hamburger-menu">
             <div className="line line-1"></div>
             <div className="line line-2"></div>
