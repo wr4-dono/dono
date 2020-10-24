@@ -54,7 +54,6 @@ app.get(`/api/auth/user`, authCtrl.getUser)
 app.post('/api/auth/register/registeremail', authCtrl.registerEmail)
 
 //donos endpoints
-
 app.get('/api/donos', donoCtrl.getAllDonos);
 app.get('/api/donos/:dono_id', donoCtrl.getDono);
 app.post('/api/donos/', donoCtrl.createDono);

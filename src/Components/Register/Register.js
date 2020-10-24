@@ -13,21 +13,32 @@ const Register = (props) => {
         props.history.push('/');
       }).catch(err => alert(err.message));
 
-      registerEmail()
+    registerEmail()
   }
 
-    function registerEmail() {
-      axios.post('/api/auth/register/registeremail', {username, email})
-      
-    }
+  function registerEmail() {
+    axios.post('/api/auth/register/registeremail', { username, email })
+
+  }
 
   return (
     <div>
-      <input type='text' placeholder='Username' onChange={(e) => setUsername(e.target.value)}></input>
-      <input type='text' placeholder='Password' onChange={(e) => setPassword(e.target.value)}></input>
-      <input type='text' placeholder='E-mail' onChange={(e) => setEmail(e.target.value)}></input>
-      <input type='number' placeholder='Zip Code' onChange={(e) => setZipCode(e.target.value)}></input>
-      <button onClick={() => submitRegistration()}>Register</button>
+      <h1>Register</h1>
+      <div>
+        <label>Username:
+        <input type='text' placeholder='Username' onChange={(e) => setUsername(e.target.value)}></input>
+        </label>
+        <label>Password:
+        <input type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)}></input>
+        </label>
+        <label> E-mail:
+        <input type='text' placeholder='E-mail' onChange={(e) => setEmail(e.target.value)}></input>
+        </label>
+        <label> Your Zip code:
+        <input type='number' placeholder='Zip Code' onChange={(e) => setZipCode(e.target.value)}></input>
+        </label>
+        <button onClick={() => submitRegistration()}>Register</button>
+      </div>
     </div>
   )
 }
