@@ -12,7 +12,7 @@ class NewDono extends Component {
     this.state = {
       isUploading: false,
       donoId: (props.location.donoInfo) ? props.location.donoInfo.dono_id : null,
-      url: (props.location.donoInfo) ? props.location.donoInfo.picture_url : 'http://via.placeholder.com/450x450',
+      url: (props.location.donoInfo) ? props.location.donoInfo.picture_url : 'https://con-lorca.appspot.com/img/no-foto.png',
       title: (props.location.donoInfo) ? props.location.donoInfo.title : '',
       price: (props.location.donoInfo) ? props.location.donoInfo.price : '',
       description: (props.location.donoInfo) ? props.location.donoInfo.description : '',
@@ -21,7 +21,6 @@ class NewDono extends Component {
       zip_code: (props.location.donoInfo) ? props.location.donoInfo.zip_code : props.auth.user.zip_code,
       giver_id: (props.location.donoInfo) ? props.location.donoInfo.title : props.auth.user.user_id,
       isEditing: (props.location.donoInfo) ? true : false,
-      // images: []
     }
   }
 
