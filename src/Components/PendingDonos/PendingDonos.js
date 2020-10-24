@@ -13,7 +13,8 @@ const PendingDonos = (props) => {
     }, [])
 
   return (
-    <div> PendingDonos.js 
+    <div> 
+      <p>Pending Pickups</p>
     {pendingDonos.map(dono => {
       return(
       < DonoThumbnail 

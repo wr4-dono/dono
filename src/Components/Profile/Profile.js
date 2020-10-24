@@ -12,22 +12,28 @@ const Profile = (props) => {
     zip_code: props.auth.user.zip_code,
     email: props.auth.user.email
   })
-  const [editMode, setEditMode] = useState(false)
-  //  const [userRating, setUserRating] = useState({userGiverRating: ""})
+   const [editMode, setEditMode] = useState(false)
+   const [giverRating, setgiverRating] = useState({})
+   const [carrierRating, setCarrierRating] = useState({})
 
 
-  const { username, zip_code, email } = userInfo
-  // const {userGiverRating} = userRating
+  const {username, zip_code, email}  = userInfo
+  
 
-  // useEffect (() =>{getUserRating()},[])
+  useEffect (() =>{axios.get(`/api/users/${props.auth.user.user_id}/ratings/giverrating`).then(res =>
+    setgiverRating(res.data)).catch(err => console.log(err.message))},
+    axios.get(`/api/users/${props.auth.user.user_id}/ratings/carrierrating`).then(res =>
+      setCarrierRating(res.data)).catch(err => console.log(err.message))
+     ,[])
+
+      
+
+     
+
+     
 
 
-
-  // const getUserRating = () => {
-  //   axios.get(`/api/users/${props.auth.user.user_id}/ratings/giverrating`).then(res =>
-  //     setUserRating(res.data))
-
-  // }
+  
 
 
   function handleChange(e) {
@@ -48,10 +54,16 @@ const Profile = (props) => {
     setEditMode(false)
   }
 
+  
 
   return (
-    <div>
-      {/* <p>{userGiverRating}</p> */}
+
+    <div> 
+      Profile.js
+    
+      <div><p>Carrier Rating: {carrierRating.avg}</p></div>
+     <div><p>Giver Rating: {giverRating.avg}</p></div>
+      
       <div>
         {(editMode) ? (
           <div>
