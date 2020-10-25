@@ -13,12 +13,13 @@ const AcceptedDono = (props) => {
   }, [])
 
   const pickupComplete = () => {
-    axios.put(`/api/dono/${donoInfo.dono_id}?status=3`).then(res => props.history.push('/pending'))
+    axios.put(`/api/dono/${donoInfo.dono_id}?status=3`).then(res => props.history.push(`/rate/${donoInfo.dono_id}`))
   }
 
   return (
     <div>
       <div>
+        {console.log(donoInfo)}
         <DonoThumbnail dono={donoInfo} />
       </div>
       <div>

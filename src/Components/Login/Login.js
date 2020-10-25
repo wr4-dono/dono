@@ -17,8 +17,12 @@ const Login = (props) => {
 
   return (
     <div className='login-container'>
-      <input type='text' placeholder='Username' onChange={e => setUserName(e.target.value)}></input>
-      <input type='password' placeholder='Password' onChange={e => setPassword(e.target.value)}></input>
+      <label>Username:
+        <input type='text' placeholder='Username' onChange={e => setUserName(e.target.value)}></input>
+      </label>
+      <label>Password:
+        <input type='password' placeholder='Password' onChange={e => setPassword(e.target.value)}></input>
+      </label>
       <button onClick={() => login()}>Login</button>
       <p>Don't have an account?</p>
       <button onClick={() => props.history.push('/Register')}>Register</button>

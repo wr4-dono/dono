@@ -5,20 +5,29 @@ import DonoThumbnail from '../DonoThumbnail/DonoThumbnail'
 
 const LandingPage = (props) => {
   const [radius, setRadius] = useState('')
-  //set radius determined by input by user or potentially drop down selection.
   const [donos, setDonos] = useState([])
+  const [search, setSearch] = useState('')
+
 
   useEffect(() => {
     const { zip_code } = props.auth.user
-    axios.get(`/api/donos?status=1&zip_code=${zip_code}&radius=${radius}`)
+    axios.get(`/api/donos?status=1&zip_code=${zip_code}&radius=${radius}&search=${search}`)
       .then((res) => setDonos(res.data)).catch(err => console.log(err.message))
-  }, [props.auth.user.zip_code, radius])
+  }, [props.auth.user.zip_code])
 
+  const searchDonos = () => {
+    const { zip_code } = props.auth.user
+    axios.get(`/api/donos?status=1&zip_code=${zip_code}&radius=${radius}&search=${search}`).then(res => {
+      setDonos(res.data)
+    }).catch(err => alert('search dono function', err.message))
+  }
 
 
   return (
     <div>
+      <input type='text' placeholder='Search Title' onChange={(e) => setSearch(e.target.value)}></input>
       <input type='number' placeholder='Distance In Miles' onChange={(e) => setRadius(e.target.value)}></input>
+      <button onClick={() => searchDonos()}>Search Donos</button>
       {donos.map(dono => {
         return <DonoThumbnail dono={dono} />
       })}
