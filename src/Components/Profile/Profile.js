@@ -21,20 +21,14 @@ const Profile = (props) => {
   
 
   useEffect (() =>{axios.get(`/api/users/${props.auth.user.user_id}/ratings/giverrating`).then(res =>
-    setgiverRating(res.data)).catch(err => console.log(err.message))},
-    axios.get(`/api/users/${props.auth.user.user_id}/ratings/carrierrating`).then(res =>
-      setCarrierRating(res.data)).catch(err => console.log(err.message))
-     ,[])
+    setgiverRating(res.data)).catch(err => console.log(err.message))}
+     , [])
 
-      
+     useEffect(() => {axios.get(`/api/users/${props.auth.user.user_id}/ratings/carrierrating`).then(res =>
+      setCarrierRating(res.data)).catch(err => console.log(err.message))}
+      , [])
 
-     
-
-     
-
-
-  
-
+    
 
   function handleChange(e) {
     const { name, value } = e.target
