@@ -2,14 +2,13 @@ import React from 'react';
 import Header from './Components/Header/Header'
 import routes from './routes'
 import './App.css';
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 function App(props) {
   return (
     <div className="App">
-    {props.location.pathname === '/' || props.location.pathname === '/Register' ? null : <Header/>}
-    {routes}
-      
+      {props.location.pathname === '/' || props.location.pathname === '/Register' ? null : <Header />}
+      {routes}
     </div>
   );
 }
