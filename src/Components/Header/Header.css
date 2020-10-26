@@ -110,7 +110,7 @@ body {
     position: relative;
     padding: 3px 0;
 }
-.dono-button {
+.newdono-button {
     display: flex;
     justify-content: flex-end;
     right: 10vh;
@@ -156,8 +156,6 @@ body {
 .header-link:hover::after{
     transform: scaleX(1);
 }
-
-
 
 
 
