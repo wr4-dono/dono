@@ -110,7 +110,7 @@ body {
     position: relative;
     padding: 3px 0;
 }
-.dono-button {
+.newdono-button {
     display: flex;
     justify-content: flex-end;
     right: 10vh;
@@ -157,7 +157,20 @@ body {
     transform: scaleX(1);
 }
 
+@media screen and (max-width: 500px) {
+    .container {
+        min-width: 360px;
+    }
 
+    .newdono-button {
+        left: 41%;
+        width: 70px;
+        height: 50px;
+    }
 
-
+    .header {
+        width: 140px;
+    }
+    
+}
 
