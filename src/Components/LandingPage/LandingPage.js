@@ -11,17 +11,16 @@ const LandingPage = (props) => {
 
   useEffect(() => {
     const { zip_code } = props.auth.user
-    axios.get(`/api/donos?status=1&zip_code=${zip_code}&radius=${radius}&search=${search}`)
+    axios.get(`/api/donos?status=1&state=${props.auth.user.user_state}&zip_code=${zip_code}&radius=${radius}&search=${search}`)
       .then((res) => setDonos(res.data)).catch(err => console.log(err.message))
   }, [props.auth.user.zip_code])
 
   const searchDonos = () => {
     const { zip_code } = props.auth.user
-    axios.get(`/api/donos?status=1&zip_code=${zip_code}&radius=${radius}&search=${search}`).then(res => {
+    axios.get(`/api/donos?status=1&state=${props.auth.user.user_state}&zip_code=${zip_code}&radius=${radius}&search=${search}`).then(res => {
       setDonos(res.data)
     }).catch(err => alert('search dono function', err.message))
   }
-
 
   return (
     <div>
