@@ -8,6 +8,7 @@ const initialState = {
 const LOGIN_USER = 'LOGIN_USER'
 const LOGOUT_USER = 'LOGOUT_USER'
 const GET_USER = 'GET_USER'
+const UPDATE_PROFILE = 'UPDATE_PROFILE'
 
 export function loginUser(user) {
   return {
@@ -32,6 +33,13 @@ export function getUser() {
   }
 }
 
+export function updateProfile(user) {
+  return {
+    type: UPDATE_PROFILE,
+    payload: user
+  }
+}
+
 export default function (state = initialState, action) {
   // console.warn(state)
   switch (action.type) {
@@ -39,6 +47,8 @@ export default function (state = initialState, action) {
       return { ...state, user: action.payload, isLoggedIn: true }
     case LOGOUT_USER:
       return initialState
+    case UPDATE_PROFILE:
+      return { ...state, user: action.payload, isLoggedIn: true }
     case GET_USER + '_PENDING':
       return { ...state }
     case GET_USER + '_FULFILLED':

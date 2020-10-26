@@ -3,27 +3,73 @@ const nodemailer = require('nodemailer')
 const { EMAIL_ACCOUNT, EMAIL_PASS, ZIPCODE_API_KEY } = process.env
 
 
-
 module.exports = {
   getAllDonos: async (req, res) => {
-
     const db = req.app.get('db');
+    const { status, zip_code, radius, search } = req.query
 
-    const { status, zip_code, radius } = req.query
-    console.log(radius)
-    if (!radius) {
-      const allDonos = await db.getAllDonos(status)
+    console.log(status, zip_code, "radius", radius, search)
+
+    if (!radius && !search) {
+      console.log('hit 1')
+      const allDonos = await db.get_all_donos(status)
       res.status(200).send(allDonos)
-    } else {
-      let zipcodes = await axios.get(`https://www.zipcodeapi.com/rest/${ZIPCODE_API_KEY}/radius.json/${zip_code}/${radius}/mile`)
+    } else if (radius && !search) {
+      console.log('hit 2')
+      let zipcodes = await axios.get(`https://www.zipcodeapi.com/rest/${ZIPCODE_API_KEY}/radius.json/${zip_code}/${radius}/miles`)
 
       let newZipcodes = zipcodes.data.zip_codes.map(el => {
         return +el.zip_code
       })
 
-      let filteredDonos = await db.donos.find({ dono_status: status, zip_code: newZipcodes })
+      // let filteredDonos = await db.donos.find({ dono_status: status, zip_code: newZipcodes })
 
+      const params = []
+      for (let i = 1; i <= newZipcodes.length; i++) {
+        params.push('$' + i)
+      }
+      var queryText = 'SELECT * FROM donos d LEFT JOIN pictures p ON p.dono_id = d.dono_id WHERE dono_status = 1 AND zip_code IN (' + params.join(',') + ')';
+      let filteredDonos = await db.query(queryText, newZipcodes);
+
+      // newZipcodes = newZipcodes.map(zip => zip.toString())
+      console.log('newZipscodes', newZipcodes)
+
+      // let filteredDonos = await db.get_donos_by_zips({ status, newZipcodes })
+
+      console.log('filtered', filteredDonos)
       res.status(200).send(filteredDonos)
+    } else if (!radius && search) {
+      console.log('hit 3')
+      const searchedDonos = await db.search_donos(status, search)
+      console.log(searchedDonos)
+      res.status(200).send(searchedDonos);
+    } else {
+      console.log('hit 4')
+      let zipcodes = await axios.get(`https://www.zipcodeapi.com/rest/${ZIPCODE_API_KEY}/radius.json/${zip_code}/${radius}/miles`)
+
+      let newZipcodes = zipcodes.data.zip_codes.map(el => {
+        return +el.zip_code
+      })
+
+      // let filteredDonos = await db.donos.find({ dono_status: status, zip_code: newZipcodes })
+
+      const params = []
+      for (let i = 1; i <= newZipcodes.length; i++) {
+        params.push('$' + i)
+      }
+      var queryText = 'SELECT * FROM donos d LEFT JOIN pictures p ON p.dono_id = d.dono_id WHERE dono_status = 1 AND zip_code IN (' + params.join(',') + ')';
+      let filteredDonos = await db.query(queryText, newZipcodes);
+
+      let arrayOfDonosWithTitle = []
+      console.log(filteredDonos)
+      for (let i = 0; i < filteredDonos.length; i++) {
+        if (filteredDonos[i].title === search) {
+          arrayOfDonosWithTitle.push(filteredDonos[i])
+        }
+      }
+
+      console.log('arrayOfDonosWithTitle', arrayOfDonosWithTitle)
+      res.status(200).send(arrayOfDonosWithTitle)
     }
   },
 
@@ -31,7 +77,7 @@ module.exports = {
     const db = req.app.get('db');
     const { dono_id } = req.params
 
-    const [dono] = await db.getDono(dono_id)
+    const [dono] = await db.get_dono(dono_id)
 
     res.status(200).send(dono);
   },
@@ -41,7 +87,7 @@ module.exports = {
     const { user_id, dono_id } = req.params
 
     console.log(user_id, dono_id)
-    const acceptedDono = await db.acceptDono(user_id, dono_id);
+    const acceptedDono = await db.accept_dono(user_id, dono_id);
     console.log(acceptedDono)
     res.status(200).send(acceptedDono);
 
@@ -51,7 +97,7 @@ module.exports = {
     const db = req.app.get('db');
 
     const { giver_id, zip_code, title, description, price, multiplePeople, truckTrailer } = req.body;
-    const [dono_id] = await db.createDono([giver_id, zip_code, title, description, price, multiplePeople, truckTrailer]);
+    const [dono_id] = await db.create_dono([giver_id, zip_code, title, description, price, multiplePeople, truckTrailer]);
 
 
     res.status(200).send(dono_id);
@@ -71,7 +117,7 @@ module.exports = {
     const { dono_id } = req.params;
     const { zip_code, title, description, price, multiplePeople, truckTrailer, url } = req.body;
 
-    const updatedDono = await db.editDono(dono_id, zip_code, title, description, price, multiplePeople, truckTrailer);
+    const updatedDono = await db.edit_dono(dono_id, zip_code, title, description, price, multiplePeople, truckTrailer);
     await db.edit_dono_picture(dono_id, url);
     res.status(200).send(updatedDono);
   },
@@ -82,7 +128,7 @@ module.exports = {
     const { dono_id } = req.params;
     const { status } = req.query;
 
-    await db.updateDonoStatus(dono_id, status);
+    await db.update_dono_status(dono_id, status);
 
     res.sendStatus(200);
   },
@@ -90,7 +136,7 @@ module.exports = {
   deleteDono: async (req, res) => {
     const db = req.app.get('db');
     const { dono_id } = req.params;
-    await db.deleteDono(dono_id);
+    await db.delete_dono(dono_id);
     res.sendStatus(200);
   },
 
@@ -141,8 +187,5 @@ module.exports = {
     const { user_id } = req.params;
     const pendingDonos = await db.get_pending_donos(user_id)
     res.status(200).send(pendingDonos)
-
-
   }
-
 }
