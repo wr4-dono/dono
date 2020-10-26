@@ -157,7 +157,22 @@ body {
     transform: scaleX(1);
 }
 
+@media screen and (max-width: 500px) {
+    .container {
+        min-width: 360px;
+    }
 
+    .newdono-button {
+        left: 41%;
+        width: 70px;
+        height: 50px;
+    }
+
+    .header {
+        width: 140px;
+    }
+    
+}
 
 
 
