@@ -12,7 +12,7 @@ class NewDono extends Component {
     this.state = {
       isUploading: false,
       donoId: (props.location.donoInfo) ? props.location.donoInfo.dono_id : null,
-      url: (props.location.donoInfo) ? props.location.donoInfo.picture_url : 'http://via.placeholder.com/450x450',
+      url: (props.location.donoInfo) ? props.location.donoInfo.picture_url : 'https://con-lorca.appspot.com/img/no-foto.png',
       title: (props.location.donoInfo) ? props.location.donoInfo.title : '',
       price: (props.location.donoInfo) ? props.location.donoInfo.price : '',
       description: (props.location.donoInfo) ? props.location.donoInfo.description : '',
@@ -21,9 +21,7 @@ class NewDono extends Component {
       zip_code: (props.location.donoInfo) ? props.location.donoInfo.zip_code : props.auth.user.zip_code,
       giver_id: (props.location.donoInfo) ? props.location.donoInfo.title : props.auth.user.user_id,
       isEditing: (props.location.donoInfo) ? true : false,
-      // images: []
     }
-
   }
 
   getSignedRequest = ([file]) => {
@@ -108,16 +106,27 @@ class NewDono extends Component {
 
   saveEdits = (props) => {
     const { donoId, zip_code, title, price, description, multiplePeople, truckTrailer, url } = this.state
+    const { giver_id } = this.props.location.donoInfo
 
-    axios.put(`/api/donos/${donoId}`, { zip_code, title, price, description, multiplePeople, truckTrailer, url }).then(res => {
-      console.log(props)
+    axios.put(`/api/donos/${donoId}`, { zip_code, title, price, description, multiplePeople, truckTrailer, url, giver_id }).then(res => {
       this.props.history.push({ pathname: '/dono', donoId: `${donoId}` })
     })
+  }
+
+  deleteDono = () => {
+    const { donoId } = this.state
+    const { giver_id } = this.props.location.donoInfo
+
+    axios.delete(`/api/donos/${donoId}`, { giver_id })
+      .then(setTimeout(() => {
+        this.props.history.push('/')
+      }, 1000))
   }
 
 
   render() {
     const { url, isUploading } = this.state
+
     return (
       <div>
         <h1>Upload</h1>
@@ -172,7 +181,8 @@ class NewDono extends Component {
         {this.state.isEditing ?
           <div>
             <button onClick={() => this.saveEdits()}>Save Edits</button>
-            <button onClick={() => this.props.history.push('/landing')}>Cancel Edits</button>
+            <button onClick={() => this.deleteDono()}>Delete Dono</button>
+            <button onClick={() => this.props.history.push('/landing')}>Cancel</button>
           </div>
           :
           <button onClick={() => this.handleSubmitDono()}>Submit Dono</button>

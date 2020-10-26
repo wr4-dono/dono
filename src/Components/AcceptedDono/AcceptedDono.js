@@ -1,12 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import DonoThumbnail from '../DonoThumbnail/DonoThumbnail'
+import ChatBox from './ChatBox'
 
-const AcceptedDono = () => {
+const AcceptedDono = (props) => {
+  const [donoInfo, setDonoInfo] = useState({})
+  const [chatId, setChatId] = useState(props.match.params.chat_id)
+
+  useEffect(() => {
+    console.log(props)
+    axios.get(`/api/donos/${props.match.params.dono_id}`).then(res => setDonoInfo(res.data))
+  }, [])
+
+  const pickupComplete = () => {
+    axios.put(`/api/dono/${donoInfo.dono_id}?status=3`).then(res => props.history.push(`/rate/${donoInfo.dono_id}`))
+  }
 
   return (
-    <div>AcceptedDono.js
-    Dono thumbnail goes above chatbox for reference.
-    chatbox goes here.
-    "complete dono button"
+    <div>
+      <div>
+        {console.log(donoInfo)}
+        <DonoThumbnail dono={donoInfo} />
+      </div>
+      <div>
+        <ChatBox chatId={chatId} />
+      </div>
+
+      <div>
+        <button onClick={() => pickupComplete()}>Pickup Complete</button>
+      </div>
     </div>
   )
 }

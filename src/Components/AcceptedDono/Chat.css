@@ -1,0 +1,48 @@
+.card {
+    display: flex;  
+    justify-content: center;
+  
+  }
+
+  .chat-form {
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0px 3px 24px -8px rgba(0, 0, 0, 0.75);
+    font-family: 'Space Mono', monospace;
+  }
+  
+  .name-field {
+    margin-bottom: 40px;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .text-field{
+    width: 400px;
+  }
+  
+  .send-message-btn{
+    margin-top: 20px;
+    padding: 10px;
+    background: transparent;
+    border-radius: 5px;
+    font-family: 'Space Mono', monospace;
+  }
+  
+  .render-chat {
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0px 3px 24px -8px rgba(0, 0, 0, 0.75);
+    font-family: 'Space Mono', monospace;
+  }
+  
+  .chat-message {
+    color: #2f6bda;
+    font-family: 'Space Mono', monospace;
+    text-align: left;
+  }
+  
+  .chat-span {
+    color: black;
+  }

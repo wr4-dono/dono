@@ -10,7 +10,7 @@ const RateUser = (props) => {
 
   useEffect(() => {
     axios.get(`/api/donos/${props.match.params.dono_id}`).then
-      (res => { setDono(res.data[0]) })
+      (res => { setDono(res.data) })
     // axios.get(`/api/donos/29`).then(res => { setDono(res.data[0]) })
   }, [])
 
@@ -26,14 +26,15 @@ const RateUser = (props) => {
   }
 
   const submitEverything = () => {
+    const { giver_id, carrier_id } = dono
     if (props.auth.user.user_id === dono.carrier_id) {
-      axios.post(`/api/users/${dono.dono_id}/ratings/giver`, { rating, comment })
+      axios.post(`/api/users/${dono.dono_id}/ratings/giver`, { rating, comment, giver_id })
       sendGiverEmail()
     } else {
-      axios.post(`/api/users/${dono.dono_id}/ratings/carrier`, { rating, comment })
+      axios.post(`/api/users/${dono.dono_id}/ratings/carrier`, { rating, comment, carrier_id })
       sendCarrierEmail()
     }
-    props.history.push('/')
+    props.history.push('/landing')
   }
 
   const sendGiverEmail = () => {
@@ -62,7 +63,6 @@ const RateUser = (props) => {
         onChange={ratingChanged} />
 
       <input type='text' value={comment} onChange={handleChange} />
-
 
       <button onClick={() => submitEverything()}>Submit Rating</button>
 
