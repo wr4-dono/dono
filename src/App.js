@@ -7,8 +7,7 @@ import {withRouter} from 'react-router-dom'
 function App(props) {
   return (
     <div className="App">
-    {props.location.pathname === '/', '/Register' ? null : <Header/>}
-    
+    {props.location.pathname === '/' || props.location.pathname === '/Register' ? null : <Header/>}
     {routes}
       
     </div>

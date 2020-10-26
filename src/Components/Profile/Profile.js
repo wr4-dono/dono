@@ -9,23 +9,24 @@ const Profile = (props) => {
   const [userInfo, setUserInfo] = useState({
     user_id: props.auth.user.user_id,
     username: props.auth.user.username,
+    user_state: props.auth.user.user_state,
     zip_code: props.auth.user.zip_code,
     email: props.auth.user.email
   })
    const [editMode, setEditMode] = useState(false)
-   const [giverRating, setgiverRating] = useState({})
-   const [carrierRating, setCarrierRating] = useState({})
+   const [giverRating, setGiverRating] = useState(null)
+   const [carrierRating, setCarrierRating] = useState(null)
 
 
-  const {username, zip_code, email}  = userInfo
+  const {username, user_state, zip_code, email}  = userInfo
   
 
   useEffect (() =>{axios.get(`/api/users/${props.auth.user.user_id}/ratings/giverrating`).then(res =>
-    setgiverRating(res.data)).catch(err => console.log(err.message))}
+    setGiverRating(res.data.avg)).catch(err => console.log(err.message))}
      , [])
 
      useEffect(() => {axios.get(`/api/users/${props.auth.user.user_id}/ratings/carrierrating`).then(res =>
-      setCarrierRating(res.data)).catch(err => console.log(err.message))}
+      setCarrierRating(res.data.avg)).catch(err => console.log(err.message))}
       , [])
 
     
@@ -55,13 +56,14 @@ const Profile = (props) => {
     <div> 
       Profile.js
     
-      <div><p>Carrier Rating: {carrierRating.avg}</p></div>
-     <div><p>Giver Rating: {giverRating.avg}</p></div>
+      <div><p>Carrier Rating: {carrierRating ? carrierRating : 'You have not received any ratings'} </p></div>
+     <div><p>Giver Rating: {giverRating}</p></div>
       
       <div>
         {(editMode) ? (
           <div>
             <label>Username: <input name="username" placeholder={username} value={userInfo.username} onChange={handleChange} /></label>
+            <label>State: <input name="user_state" placeholder={user_state} value={userInfo.user_state} onChange={handleChange} /></label>
             <label>Zip Code: <input name="zip_code" placeholder={zip_code} value={userInfo.zip_code} onChange={handleChange} /></label>
             <label>Email: <input name="email" placeholder={email} value={userInfo.email} onChange={handleChange} /></label>
 
@@ -71,6 +73,7 @@ const Profile = (props) => {
         ) : (
             <div>
               <label >Username: <p>{username}</p> </label>
+              <label >State: <p>{user_state}</p> </label>
               <label >Zip Code: <p>{zip_code}</p> </label>
               <label >E-mail: <p>{email}</p> </label>
             </div>

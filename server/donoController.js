@@ -6,14 +6,14 @@ const { EMAIL_ACCOUNT, EMAIL_PASS, ZIPCODE_API_KEY } = process.env
 module.exports = {
   getAllDonos: async (req, res) => {
     const db = req.app.get('db');
-    const { status, zip_code, radius, search } = req.query
-
-    console.log(status, zip_code, "radius", radius, search)
+    const { status, state, zip_code, radius, search } = req.query
+    console.log(state)
 
     if (!radius && !search) {
       console.log('hit 1')
-      const allDonos = await db.get_all_donos(status)
-      res.status(200).send(allDonos)
+      console.log(state)
+      const allDonos = await db.get_all_donos([status, state])
+      return res.status(200).send(allDonos)
     } else if (radius && !search) {
       console.log('hit 2')
       let zipcodes = await axios.get(`https://www.zipcodeapi.com/rest/${ZIPCODE_API_KEY}/radius.json/${zip_code}/${radius}/miles`)
@@ -37,12 +37,13 @@ module.exports = {
       // let filteredDonos = await db.get_donos_by_zips({ status, newZipcodes })
 
       console.log('filtered', filteredDonos)
-      res.status(200).send(filteredDonos)
+      return res.status(200).send(filteredDonos)
     } else if (!radius && search) {
       console.log('hit 3')
-      const searchedDonos = await db.search_donos(status, search)
+      console.log(state)
+      const searchedDonos = await db.search_donos([status, search, state])
       console.log(searchedDonos)
-      res.status(200).send(searchedDonos);
+      return res.status(200).send(searchedDonos);
     } else {
       console.log('hit 4')
       let zipcodes = await axios.get(`https://www.zipcodeapi.com/rest/${ZIPCODE_API_KEY}/radius.json/${zip_code}/${radius}/miles`)
@@ -69,7 +70,7 @@ module.exports = {
       }
 
       console.log('arrayOfDonosWithTitle', arrayOfDonosWithTitle)
-      res.status(200).send(arrayOfDonosWithTitle)
+      return res.status(200).send(arrayOfDonosWithTitle)
     }
   },
 
@@ -96,8 +97,8 @@ module.exports = {
   createDono: async (req, res) => {
     const db = req.app.get('db');
 
-    const { giver_id, zip_code, title, description, price, multiplePeople, truckTrailer } = req.body;
-    const [dono_id] = await db.create_dono([giver_id, zip_code, title, description, price, multiplePeople, truckTrailer]);
+    const { giver_id, zip_code, dono_state, title, description, price, multiplePeople, truckTrailer } = req.body;
+    const [dono_id] = await db.create_dono([giver_id, zip_code, dono_state, title, description, price, multiplePeople, truckTrailer]);
 
 
     res.status(200).send(dono_id);
@@ -115,9 +116,9 @@ module.exports = {
   editDono: async (req, res) => {
     const db = req.app.get('db');
     const { dono_id } = req.params;
-    const { zip_code, title, description, price, multiplePeople, truckTrailer, url } = req.body;
+    const { zip_code, dono_state, title, description, price, multiplePeople, truckTrailer, url } = req.body;
 
-    const updatedDono = await db.edit_dono(dono_id, zip_code, title, description, price, multiplePeople, truckTrailer);
+    const updatedDono = await db.edit_dono(dono_id, zip_code, dono_state, title, description, price, multiplePeople, truckTrailer);
     await db.edit_dono_picture(dono_id, url);
     res.status(200).send(updatedDono);
   },

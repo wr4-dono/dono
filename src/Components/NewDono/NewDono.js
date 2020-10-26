@@ -18,6 +18,7 @@ class NewDono extends Component {
       description: (props.location.donoInfo) ? props.location.donoInfo.description : '',
       multiplePeople: (props.location.donoInfo) ? props.location.donoInfo.multiple_people : false,
       truckTrailer: (props.location.donoInfo) ? props.location.donoInfo.truck_trailer : false,
+      dono_state: (props.location.donoInfo) ? props.location.donoInfo.dono_state : props.auth.user.user_state,
       zip_code: (props.location.donoInfo) ? props.location.donoInfo.zip_code : props.auth.user.zip_code,
       giver_id: (props.location.donoInfo) ? props.location.donoInfo.title : props.auth.user.user_id,
       isEditing: (props.location.donoInfo) ? true : false,
@@ -92,9 +93,9 @@ class NewDono extends Component {
   }
 
   handleSubmitDono = () => {
-    const { giver_id, zip_code, title, price, description, multiplePeople, truckTrailer, url } = this.state
+    const { giver_id, zip_code, dono_state, title, price, description, multiplePeople, truckTrailer, url } = this.state
 
-    axios.post('/api/donos/', { giver_id, zip_code, title, description, price, multiplePeople, truckTrailer }).then(res => {
+    axios.post('/api/donos/', { giver_id, zip_code, dono_state, title, description, price, multiplePeople, truckTrailer }).then(res => {
       let dono_id = res.data.dono_id
 
       axios.post(`/api/donos/newdono/pictures`, { dono_id, url }).then(res => {
@@ -105,10 +106,10 @@ class NewDono extends Component {
   }
 
   saveEdits = (props) => {
-    const { donoId, zip_code, title, price, description, multiplePeople, truckTrailer, url } = this.state
+    const { donoId, zip_code, dono_state, title, price, description, multiplePeople, truckTrailer, url } = this.state
     const { giver_id } = this.props.location.donoInfo
 
-    axios.put(`/api/donos/${donoId}`, { zip_code, title, price, description, multiplePeople, truckTrailer, url, giver_id }).then(res => {
+    axios.put(`/api/donos/${donoId}`, { zip_code, dono_state, title, price, description, multiplePeople, truckTrailer, url, giver_id }).then(res => {
       this.props.history.push({ pathname: '/dono', donoId: `${donoId}` })
     })
   }
@@ -161,6 +162,62 @@ class NewDono extends Component {
 
         <input name='title' value={this.state.title} type='text' placeholder='Dono Title' onChange={(e) => this.handleChanges(e)}></input>
         <input name='price' type='number' value={this.state.price} placeholder='Price' onChange={(e) => this.handleChanges(e)}></input>
+
+        <label for='state-select'>Select Dono State:</label>
+        <select name='dono_state' value={this.state.dono_state} onChange={(e) => this.handleChanges(e)}>
+          <option value="">-- Please choose an option --</option>
+          <option value="Alabama">Alabama</option>
+          <option value="Alaska">Alaska</option>
+          <option value="Arizona">Arizona</option>
+          <option value="Arkansas">Arkansas</option>
+          <option value="California">California</option>
+          <option value="Colorado">Colorado</option>
+          <option value="Connecticut">Connecticut</option>
+          <option value="Delaware">Delaware</option>
+          <option value="Florida">Florida</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Hawaii">Hawaii</option>
+          <option value="Idaho">Idaho</option>
+          <option value="Illinois">Illinois</option>
+          <option value="Indiana">Indiana</option>
+          <option value="Iowa">Iowa</option>
+          <option value="Kansas">Kansas</option>
+          <option value="Kentucky">Kentucky</option>
+          <option value="Louisiana">Louisiana</option>
+          <option value="Maine">Maine</option>
+          <option value="Maryland">Maryland</option>
+          <option value="Massachusetts">Massachusetts</option>
+          <option value="Michigan">Michigan</option>
+          <option value="Minnesota">Minnesota</option>
+          <option value="Mississippi">Mississippi</option>
+          <option value="Missouri">Missouri</option>
+          <option value="Montana">Montana</option>
+          <option value="Nebraska">Nebraska</option>
+          <option value="Nevada">Nevada</option>
+          <option value="New Hampshire">New Hampshire</option>
+          <option value="New Jersey">New Jersey</option>
+          <option value="New Mexico">New Mexico</option>
+          <option value="New York">New York</option>
+          <option value="North Carolina">North Carolina</option>
+          <option value="North Dakota">North Dakota</option>
+          <option value="Ohio">Ohio</option>
+          <option value="Oklahoma">Oklahoma</option>
+          <option value="Oregon">Oregon</option>
+          <option value="Pennsylvania">Pennsylvania</option>
+          <option value="Rhode Island">Rhode Island</option>
+          <option value="South Carolina">South Carolina</option>
+          <option value="South Dakota">South Dakota</option>
+          <option value="Tennessee">Tennessee</option>
+          <option value="Texas">Texas</option>
+          <option value="Utah">Utah</option>
+          <option value="Vermont">Vermont</option>
+          <option value="Virginia">Virginia</option>
+          <option value="Washington">Washington</option>
+          <option value="West Virginia">West Virginia</option>
+          <option value="Wisconsin">Wisconsin</option>
+          <option value="Wyoming">Wyoming</option>
+        </select>
+
         <input name='zip_code' type='number' value={this.state.zip_code} placeholder='Pickup zip code' value={this.state.zip_code} onChange={(e) => this.handleChanges(e)}></input>
         <textarea name='description' value={this.state.description} placeholder='Description' onChange={(e) => this.handleChanges(e)}></textarea>
 

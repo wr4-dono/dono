@@ -1,3 +1,5 @@
+DROP TABLE chat_log;
+DROP TABLE chat;
 DROP TABLE pictures;
 DROP TABLE favorites;
 DROP TABLE carriers_ratings;
@@ -12,6 +14,7 @@ CREATE TABLE users (
 user_id SERIAL PRIMARY KEY,
 username VARCHAR(60) NOT NULL UNIQUE,
 zip_code INT NOT NULL,
+user_state VARCHAR(100) NOT NULL,
 email VARCHAR(100) NOT NULL UNIQUE,
 hash VARCHAR(100) NOT NULL );
 
@@ -27,7 +30,9 @@ VALUES
 CREATE TABLE donos (
 dono_id SERIAL PRIMARY KEY,
 giver_id INT REFERENCES users(user_id) NOT NULL,
+created_at TIMESTAMP DEFAULT now(),
 zip_code INT NOT NULL,
+dono_state VARCHAR(100) NOT NULL,
 carrier_id INT REFERENCES users(user_id) DEFAULT NULL,
 title VARCHAR(100) NOT NULL,
 description VARCHAR(1000),
@@ -44,7 +49,8 @@ picture_url TEXT );
 CREATE TABLE favorites (
 favorites_id SERIAL PRIMARY KEY,
 user_id INT REFERENCES users(user_id) NOT NULL,
-dono_id INT REFERENCES donos(dono_id) NOT NULL UNIQUE );
+dono_id INT REFERENCES donos(dono_id) NOT NULL UNIQUE )
+
 
 -- Ratings carriers received from givers
 CREATE TABLE carriers_ratings (
@@ -60,16 +66,16 @@ dono_id INT REFERENCES donos(dono_id) NOT NULL UNIQUE,
 rating INT,
 comment VARCHAR(1000));
 
-CREATE TABLE chat  (
+CREATE TABLE chat (
 chat_id SERIAL PRIMARY KEY,
 dono_id INT REFERENCES donos(dono_id) NOT NULL UNIQUE,
 giver_id INT REFERENCES users(user_id) NOT NULL,
-carrier_id INT REFERENCES users(user_id) DEFAULT NULL
+carrier_id INT REFERENCES users(user_id) NOT NULL
 );
 
 CREATE TABLE  chat_log (
 chat_log SERIAL PRIMARY KEY,
-chat_id INT REFERENCES chat(chat_id) NOT NULL,
+chat_id INT REFERENCES chat(chat_id) NOT NULL UNIQUE,
 sender_id INT REFERENCES users (user_id) NOT NULL,
 message TEXT
 );

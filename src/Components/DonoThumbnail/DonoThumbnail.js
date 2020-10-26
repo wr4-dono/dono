@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './DonoThumbnail.css'
 import axios from 'axios'
 import { connect } from 'react-redux'
@@ -19,6 +19,7 @@ const DonoThumbnail = (props) => {
     console.log(isFavorite)
   }
 
+ 
   return (
 
     <div className='dono-thumbnail' onClick={() => props.history.push(`/dono/${props.dono.dono_id}`)}>

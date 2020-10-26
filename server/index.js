@@ -38,6 +38,7 @@ app.delete(`/api/users/:user_id/favorites/:dono_id`, favoritesCtrl.unfavoriteDon
 app.post(`/api/users/:user_id/favorites/:dono_id`, favoritesCtrl.favoriteDono)
 
 
+
 //rating endpoints
 app.get('/api/users/:user_id/ratings/giverrating', ratingsCtrl.getUserAverageGiverRating)
 app.get('/api/users/:user_id/ratings/carrierrating', ratingsCtrl.getUserAverageCarrierRating)
