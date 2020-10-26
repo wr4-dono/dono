@@ -1,6 +1,6 @@
 INSERT INTO users
-(username, hash, zip_code, email)
+(username, hash, user_state, zip_code, email)
 VALUES
-($1, $2, $3, $4)
+($1, $2, $3, $4, $5)
 
-returning user_id, username, zip_code, email;
+returning user_id, username, user_state, zip_code, email;

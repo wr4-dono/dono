@@ -6,7 +6,7 @@ module.exports = {
 
     const db = req.app.get('db')
 
-    const { username, password, zip_code, email } = req.body
+    const { username, password, userState, zip_code, email } = req.body
     const [user] = await db.check_user([username])
 
     if (user) {
@@ -16,7 +16,7 @@ module.exports = {
     const salt = bcrypt.genSaltSync(10)
     const hash = bcrypt.hashSync(password, salt)
 
-    const [newUser] = await db.register_user([username, hash, zip_code, email])
+    const [newUser] = await db.register_user([username, hash, userState, zip_code, email])
 
     // req.session.user = newUser
 
@@ -69,7 +69,7 @@ module.exports = {
 
   registerEmail: async (req, res) => {
     const { EMAIL_ACCOUNT, EMAIL_PASS } = process.env
-    const {username, email} = req.body
+    const { username, email } = req.body
 
     let transporter = nodemailer.createTransport({
       service: 'gmail',
