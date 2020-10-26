@@ -19,7 +19,13 @@ const LandingPage = (props) => {
     const { zip_code } = props.auth.user
     axios.get(`/api/donos?status=1&state=${props.auth.user.user_state}&zip_code=${zip_code}&radius=${radius}&search=${search}`).then(res => {
       setDonos(res.data)
-    }).catch(err => alert('search dono function', err.message))
+    }).catch(err => {
+      if (err.message === 'Request failed with status code 416') {
+        alert("Search radius must be greater than 0")
+      } else {
+        alert(err.message)
+      }
+    })
   }
 
   return (

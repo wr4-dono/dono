@@ -104,7 +104,15 @@ module.exports = {
     })
 
     res.sendStatus(201);
+  },
 
+  getUsername: async (req, res) => {
+    const db = req.app.get('db')
+    const { user_id } = req.params
+    console.log('useid', user_id)
+    const [username] = await db.get_username(user_id);
+    console.log(username.username)
+    res.status(200).send(username.username);
   }
 
 

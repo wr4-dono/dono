@@ -25,8 +25,7 @@ const Dono = (props) => {
     axios.get(`/api/dono/${donoInfo.dono_id}/chat`).then(res => {
       props.history.push(`/AcceptedDono/${donoInfo.dono_id}/${res.data.chat_id}`)
     }).catch(err => alert(err.message))
-    console.log('front')
-    axios.put(`/api/users/${props.auth.user.user_id}/dono/${props.location.donoId}`)
+    // axios.put(`/api/users/${props.auth.user.user_id}/dono/${props.location.donoId}`)
   }
 
   const acceptedEmail = () => {

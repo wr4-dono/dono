@@ -1,6 +1,7 @@
 module.exports = async (req, res, next) => {
   const db = req.app.get('db')
-  const { giver_id } = req.body
+  const { giver_id } = req.params
+  console.log('giverId', giver_id)
 
   let [giverEmail] = await db.get_giver_rating_email([giver_id])
 

@@ -36,9 +36,9 @@ const Register = (props) => {
         <label> E-mail:
         <input type='text' placeholder='E-mail' onChange={(e) => setEmail(e.target.value)}></input>
         </label>
-        <label for='state-select'>Select Dono State:</label>
+        <label for='state-select'>Select User State:</label>
         <select name='dono_state' onChange={(e) => setUserState(e.target.value)}>
-          <option value="">-- Please choose an option --</option>
+          <option value="">-- Select State --</option>
           <option value="Alabama">Alabama</option>
           <option value="Alaska">Alaska</option>
           <option value="Arizona">Arizona</option>
