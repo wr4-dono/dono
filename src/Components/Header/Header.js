@@ -54,7 +54,7 @@ class Header extends Component {
       <div className="container">
        <Link className="dono" to="/Landing"> <img className="dono" src="https://i.imgur.com/tuFQHxN.png" /></Link>
         <nav className="header" ref={this.headerRef}>
-        <Link to="/New" className="dono-button" ><button className="dono-button" >New Dono</button></Link>
+        <Link to="/New" className="dono-button" ><button className="newdono-button" >New Dono</button></Link>
           <div onClick={this.handleHamburgerMenuClick} className="hamburger-menu">
             <div className="line line-1"></div>
             <div className="line line-2"></div>
@@ -77,7 +77,7 @@ class Header extends Component {
               <Link to="/Pending" className="header-link" >Pending Pickups</Link>
             </li>
             <li onClick={this.handleHamburgerMenuClick} className="header-item">
-              <Link to="/" className="header-link" >Logout</Link>
+              <Link to="/logout" className="header-link" >Logout</Link>
             </li>
             
           </ul>
