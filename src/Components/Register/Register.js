@@ -127,14 +127,11 @@ const Register = (props) => {
           <FaPlayCircle className="back-icon"/>
           <Link to="/"><button>Back</button></Link>
         </div>
-      <div>
       
         
-        
-        <button onClick={() => submitRegistration()}>Register</button>
       </div>
     </div>
-    </div>
+    
   
   )
 }
