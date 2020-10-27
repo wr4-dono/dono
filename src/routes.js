@@ -10,7 +10,7 @@ import Favorites from './Components/Favorites/Favorites'
 import RateUser from './Components/RateUser/RateUser'
 import NewDono from './Components/NewDono/NewDono'
 import PendingDonos from './Components/PendingDonos/PendingDonos'
-import Dono from './Components/Dono/dono'
+import Dono from './Components/Dono/dono.js'
 import AcceptedDono from './Components/AcceptedDono/AcceptedDono'
 
 
