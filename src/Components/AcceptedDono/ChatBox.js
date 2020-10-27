@@ -56,9 +56,7 @@ function ChatBox(props) {
   return (
     <div className="card">
       <div>
-        <h1>{props.auth.user.username}</h1>
         <div className="render-chat">
-          <h1 className='chat-log'>Chat Log:</h1>
           {renderChat()}
         </div>
         <form className='chat-form' onSubmit={onMessageSubmit}>

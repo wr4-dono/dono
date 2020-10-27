@@ -34,8 +34,9 @@ app.use(
 
 
 app.get(`/api/users/:user_id/favorites`, favoritesCtrl.getAllFavorites)
-app.delete(`/api/users/:user_id/favorites/:dono_id`, favoritesCtrl.unfavoriteDono)
 app.post(`/api/users/:user_id/favorites/:dono_id`, favoritesCtrl.favoriteDono)
+app.delete(`/api/users/:user_id/favorites/:dono_id`, favoritesCtrl.unfavoriteDono)
+
 
 
 //rating endpoints
@@ -47,10 +48,11 @@ app.post('/api/users/giveremail', ratingsCtrl.giverEmail)
 app.post('/api/users/carrieremail', ratingsCtrl.carrierEmail)
 
 //auth endpoints
+app.get(`/api/auth/user`, authCtrl.getUser)
+app.get('/api/auth/users/:user_id', authCtrl.getUsername)
 app.post(`/api/auth/register`, authCtrl.register)
 app.post(`/api/auth/login`, authCtrl.login)
 app.delete(`/api/auth/logout`, authCtrl.logout)
-app.get(`/api/auth/user`, authCtrl.getUser)
 app.post('/api/auth/register/registeremail', authCtrl.registerEmail)
 
 //donos endpoints
@@ -61,7 +63,7 @@ app.post('/api/donos/newdono/pictures', donoCtrl.savePictureURL);
 app.put('/api/users/:user_id/dono/:dono_id', donoCtrl.acceptDono);
 app.put('/api/donos/:dono_id', verifyGiver, donoCtrl.editDono);
 app.put('/api/dono/:dono_id', donoCtrl.updateDonoStatus);
-app.delete('/api/donos/:dono_id', verifyGiver, donoCtrl.deleteDono);
+app.delete('/api/donos/:dono_id/users/:giver_id', verifyGiver, donoCtrl.deleteDono);
 app.post('/api/donos/acceptedemail', donoCtrl.acceptedEmail)
 
 app.get('/api/donos/pending/:user_id', donoCtrl.getPendingDonos)

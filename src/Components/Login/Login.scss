@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+$font-stack: 'Open Sans', sans-serif;
+
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+
+}
+
+.login-container{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    font-family: $font-stack;
+    background-image: url("https://svgur.com/i/Qwb.svg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom;
+    
+    
+
+    h1{
+        margin-top: 17px;
+        font-size: 22px;
+        color: #3F4652;
+        font-family: $font-stack;
+    }
+
+    .logo{
+        width: 150x;
+        height: 150px;
+        margin-top: 40px;
+    }
+
+    .input-container{
+        margin-top:  5px;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        
+
+        input{
+            font-size: 20px;
+            border: none;
+            outline: 0;
+            border-bottom: 1px solid #CDDEEE;
+            background: transparent;
+            height: 35px;
+            width: 215px;
+            padding-left: 5px;
+            margin-top: 7px;
+            font-family: $font-stack;
+            
+        }
+
+        input:hover {
+            opacity: .5;
+        }
+    }
+}
+    .username-container{
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
+
+    }
+    .username-icon{
+        padding-top: 6px;
+        padding-right: 10px;
+        color: #CDDEEE;
+        font-size: 30px;
+    }
+
+    .password-container{
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .password-icon{
+        padding-top: 6px;
+        padding-right: 10px;
+        color: #CDDEEE;
+        font-size: 30px;
+    }
+
+    .login-button-container{
+        display: flex;
+        align-items: center;
+        margin-top: 25px;
+        margin-right: 30px;
+
+        button{
+            display: flex;
+            background: transparent;
+            border: none;
+            outline: 0;
+            font-size: 28px;
+            color: #88B0D7;
+            font-family: $font-stack;
+        }
+
+        button:hover{
+            opacity: .6;
+        }
+        
+    }
+
+    .login-icon{
+        padding-top: 6px;
+        padding-right: 10px;
+        color: #CDDEEE;
+        font-size: 30px;
+    }
+
+    .account-p{
+        display: flex;
+        margin-top: 25px;
+        color: #3F4652;
+        
+    }
+
+    .register-button-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 15px;
+        margin-right: 30px;
+
+        .register-icon{
+
+            padding-top: 6px;
+            padding-right: 10px;
+            color: #CDDEEE;
+            font-size: 30px;  
+        }
+
+        button{
+            background: transparent;
+            border: none;
+            outline: 0;
+            font-size: 28px;
+            color: #88B0D7;
+            font-family: $font-stack;
+        }
+
+        button:hover{
+            opacity: .6;
+        }
+
+        
+        
+        
+        
+    }
+
+    
+
+    
+    
+
