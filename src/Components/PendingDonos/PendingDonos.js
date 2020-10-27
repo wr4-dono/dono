@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import './PendingDonos.scss'
 import { connect } from 'react-redux'
 import DonoThumbnail from '../DonoThumbnail/DonoThumbnail'
 
@@ -14,7 +15,7 @@ const PendingDonos = (props) => {
 
   return (
     <div> 
-      <p>Pending Pickups</p>
+      <p className="pending-p">Pending Pickups</p>
     {pendingDonos.map(dono => {
       return(
       < DonoThumbnail 

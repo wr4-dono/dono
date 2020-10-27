@@ -17,6 +17,12 @@ $font-stack: 'Open Sans', sans-serif;
   align-items: center;
   margin: auto;
 
+  .rating-title{
+    margin-top: 136px;
+    height: 50px;
+    font-size: 32px;
+  }
+
   input{
     margin: auto;
     height: 75px;
@@ -40,7 +46,5 @@ $font-stack: 'Open Sans', sans-serif;
 
 }
 
-.rating-title{
-  font-size: 32px;
-}
+
 

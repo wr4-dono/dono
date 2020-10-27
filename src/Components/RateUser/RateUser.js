@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import './RateUser.scss'
 import { connect } from 'react-redux'
 import ReactStars from 'react-rating-stars-component'
 import './RateUser.scss'

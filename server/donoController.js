@@ -16,13 +16,14 @@ module.exports = {
     if (!radius && !search) {
       console.log('hit 1')
       const allDonos = await db.get_all_donos([status, state])
+      console.log(allDonos)
       return res.status(200).send(allDonos)
     } else if (radius && !search) {
       console.log('hit 2')
       let zipcodes = await axios.get(`https://www.zipcodeapi.com/rest/${ZIPCODE_API_KEY}/radius.json/${zip_code}/${radius}/miles`)
 
       let newZipcodes = zipcodes.data.zip_codes.map(el => {
-        return +el.zip_code
+        return el.zip_code
       })
 
       // let filteredDonos = await db.donos.find({ dono_status: status, zip_code: newZipcodes })
@@ -31,7 +32,7 @@ module.exports = {
       for (let i = 1; i <= newZipcodes.length; i++) {
         params.push('$' + i)
       }
-      var queryText = 'SELECT * FROM donos d LEFT JOIN pictures p ON p.dono_id = d.dono_id WHERE dono_status = 1 AND zip_code IN (' + params.join(',') + ')';
+      var queryText = 'SELECT * FROM donos d LEFT JOIN pictures p ON p.dono_id = d.dono_id WHERE d.dono_status = 1 AND d.zip_code IN (' + params.join(',') + ') ORDER BY d.created_at ASC;';
       let filteredDonos = await db.query(queryText, newZipcodes);
 
       return res.status(200).send(filteredDonos)
@@ -46,18 +47,18 @@ module.exports = {
       let zipcodes = await axios.get(`https://www.zipcodeapi.com/rest/${ZIPCODE_API_KEY}/radius.json/${zip_code}/${radius}/miles`)
 
       let newZipcodes = zipcodes.data.zip_codes.map(el => {
-        return +el.zip_code
+        return el.zip_code
       })
 
       const params = []
       for (let i = 1; i <= newZipcodes.length; i++) {
         params.push('$' + i)
       }
-      var queryText = 'SELECT * FROM donos d LEFT JOIN pictures p ON p.dono_id = d.dono_id WHERE dono_status = 1 AND zip_code IN (' + params.join(',') + ')';
+      var queryText = 'SELECT * FROM donos d LEFT JOIN pictures p ON p.dono_id = d.dono_id WHERE d.dono_status = 1 AND d.zip_code IN (' + params.join(',') + ') ORDER BY d.created_at ASC;';
       let filteredDonos = await db.query(queryText, newZipcodes);
 
       let arrayOfDonosWithTitle = []
-      console.log(filteredDonos)
+      // console.log(filteredDonos)
       for (let i = 0; i < filteredDonos.length; i++) {
         if (filteredDonos[i].title === search) {
           arrayOfDonosWithTitle.push(filteredDonos[i])
@@ -93,7 +94,6 @@ module.exports = {
 
     const { giver_id, zip_code, dono_state, title, description, price, multiplePeople, truckTrailer } = req.body;
     const [dono_id] = await db.create_dono([giver_id, zip_code, dono_state, title, description, price, multiplePeople, truckTrailer]);
-
 
     res.status(200).send(dono_id);
   },
