@@ -1,17 +1,20 @@
 const axios = require('axios')
 const nodemailer = require('nodemailer')
-const { EMAIL_ACCOUNT, EMAIL_PASS, ZIPCODE_API_KEY } = process.env
+const { ZIPCODE_API_KEY } = process.env
 
 
 module.exports = {
   getAllDonos: async (req, res) => {
     const db = req.app.get('db');
     const { status, state, zip_code, radius, search } = req.query
-    console.log(state)
+
+    //Checks to see if radius is above 0
+    if (radius < 0) {
+      return res.sendStatus(416);
+    }
 
     if (!radius && !search) {
       console.log('hit 1')
-      console.log(state)
       const allDonos = await db.get_all_donos([status, state])
       return res.status(200).send(allDonos)
     } else if (radius && !search) {
@@ -31,18 +34,12 @@ module.exports = {
       var queryText = 'SELECT * FROM donos d LEFT JOIN pictures p ON p.dono_id = d.dono_id WHERE dono_status = 1 AND zip_code IN (' + params.join(',') + ')';
       let filteredDonos = await db.query(queryText, newZipcodes);
 
-      // newZipcodes = newZipcodes.map(zip => zip.toString())
-      console.log('newZipscodes', newZipcodes)
-
-      // let filteredDonos = await db.get_donos_by_zips({ status, newZipcodes })
-
-      console.log('filtered', filteredDonos)
       return res.status(200).send(filteredDonos)
     } else if (!radius && search) {
       console.log('hit 3')
-      console.log(state)
+
       const searchedDonos = await db.search_donos([status, search, state])
-      console.log(searchedDonos)
+
       return res.status(200).send(searchedDonos);
     } else {
       console.log('hit 4')
@@ -51,8 +48,6 @@ module.exports = {
       let newZipcodes = zipcodes.data.zip_codes.map(el => {
         return +el.zip_code
       })
-
-      // let filteredDonos = await db.donos.find({ dono_status: status, zip_code: newZipcodes })
 
       const params = []
       for (let i = 1; i <= newZipcodes.length; i++) {
@@ -69,7 +64,6 @@ module.exports = {
         }
       }
 
-      console.log('arrayOfDonosWithTitle', arrayOfDonosWithTitle)
       return res.status(200).send(arrayOfDonosWithTitle)
     }
   },

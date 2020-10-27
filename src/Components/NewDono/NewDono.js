@@ -20,7 +20,7 @@ class NewDono extends Component {
       truckTrailer: (props.location.donoInfo) ? props.location.donoInfo.truck_trailer : false,
       dono_state: (props.location.donoInfo) ? props.location.donoInfo.dono_state : props.auth.user.user_state,
       zip_code: (props.location.donoInfo) ? props.location.donoInfo.zip_code : props.auth.user.zip_code,
-      giver_id: (props.location.donoInfo) ? props.location.donoInfo.title : props.auth.user.user_id,
+      giver_id: (props.location.donoInfo) ? props.location.donoInfo.giver_id : props.auth.user.user_id,
       isEditing: (props.location.donoInfo) ? true : false,
     }
   }
@@ -116,22 +116,23 @@ class NewDono extends Component {
 
   deleteDono = () => {
     const { donoId } = this.state
-    const { giver_id } = this.props.location.donoInfo
+    const { giver_id } = this.state
+    console.log(giver_id)
 
-    axios.delete(`/api/donos/${donoId}`, { giver_id })
+    axios.delete(`/api/donos/${donoId}/users/${giver_id}`)
       .then(setTimeout(() => {
-        this.props.history.push('/')
+        this.props.history.push('/landing')
       }, 1000))
   }
 
 
   render() {
     const { url, isUploading } = this.state
-
+    console.log(this.state)
     return (
       <div>
-        <h1>Upload</h1>
-        <img src={url} alt="" width="450px" />
+        {(this.state.isEditing) ? <h1>Edit Dono</h1> : <h1>New Dono</h1>}
+        <img src={url} alt="Nothing uploaded" width="450px" />
 
         <Dropzone
           onDropAccepted={this.getSignedRequest}
@@ -159,13 +160,14 @@ class NewDono extends Component {
         </Dropzone>
 
         {/* Below are the input fields for all of the values of the dono other than the picture */}
-
+        <label for='title'>Title:</label>
         <input name='title' value={this.state.title} type='text' placeholder='Dono Title' onChange={(e) => this.handleChanges(e)}></input>
+        <label for='price'>Price:</label>
         <input name='price' type='number' value={this.state.price} placeholder='Price' onChange={(e) => this.handleChanges(e)}></input>
 
         <label for='state-select'>Select Dono State:</label>
         <select name='dono_state' value={this.state.dono_state} onChange={(e) => this.handleChanges(e)}>
-          <option value="">-- Please choose an option --</option>
+          <option value="">-- Select State --</option>
           <option value="Alabama">Alabama</option>
           <option value="Alaska">Alaska</option>
           <option value="Arizona">Arizona</option>
@@ -218,19 +220,34 @@ class NewDono extends Component {
           <option value="Wyoming">Wyoming</option>
         </select>
 
+        <label for='zip_code'>Zip Code:</label>
         <input name='zip_code' type='number' value={this.state.zip_code} placeholder='Pickup zip code' value={this.state.zip_code} onChange={(e) => this.handleChanges(e)}></input>
+        <label for='description'>Description:</label>
         <textarea name='description' value={this.state.description} placeholder='Description' onChange={(e) => this.handleChanges(e)}></textarea>
 
         <div>
           {/* These ternarys will display a checked checkbox if the condition is true. if false they will display an unchecked checkbox. Used for editing dono  */}
           {this.state.multiplePeople ?
-            <input type='checkbox' name='multiplePeople' checked onClick={() => this.alterMultiplePeople()}></input>
+            <div>
+              <label for='multiplePeople'>Requires multiple people?</label>
+              <input type='checkbox' name='multiplePeople' checked onClick={() => this.alterMultiplePeople()}></input>
+            </div>
             :
-            <input type='checkbox' name='multiplePeople' onClick={() => this.alterMultiplePeople()}></input>}
+            <div>
+              <label for='multiplePeople'>Requires multiple people?</label>
+              <input type='checkbox' name='multiplePeople' onClick={() => this.alterMultiplePeople()}></input>
+            </div>
+          }
           {this.state.truckTrailer ?
-            <input type='checkbox' name='truckTrailer' checked onClick={() => this.alterTruckTrailer()}></input>
+            <div>
+              <label for='truckTrailer'>Requires truck or trailer?</label>
+              <input type='checkbox' name='truckTrailer' checked onClick={() => this.alterTruckTrailer()}></input>
+            </div>
             :
-            <input type='checkbox' name='truckTrailer' onClick={() => this.alterTruckTrailer()}></input>
+            <div>
+              <label for='truckTrailer'>Requires truck or trailer?</label>
+              <input type='checkbox' name='truckTrailer' onClick={() => this.alterTruckTrailer()}></input>
+            </div>
           }
 
         </div>
@@ -238,8 +255,8 @@ class NewDono extends Component {
         {this.state.isEditing ?
           <div>
             <button onClick={() => this.saveEdits()}>Save Edits</button>
+            <button onClick={() => this.props.history.push(`/dono/${this.state.donoId}`)}>Cancel Edits</button>
             <button onClick={() => this.deleteDono()}>Delete Dono</button>
-            <button onClick={() => this.props.history.push('/landing')}>Cancel</button>
           </div>
           :
           <button onClick={() => this.handleSubmitDono()}>Submit Dono</button>
