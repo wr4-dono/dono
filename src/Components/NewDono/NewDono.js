@@ -133,7 +133,7 @@ class NewDono extends Component {
     axios.delete(`/api/donos/${donoId}/users/${giver_id}`)
       .then(setTimeout(() => {
         this.props.history.push('/landing')
-      }, 1000))
+      }, 1000)).catch(err => alert(err.message))
   }
 
 

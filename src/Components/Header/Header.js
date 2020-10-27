@@ -4,8 +4,9 @@
 //logo 
 
 import React, { Component, createRef } from 'react'
-import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { logoutUser } from '../../ducks/authReducer'
 import './Header.css';
 
 // const menuIcon = document.querySelector('.hamburger-menu')
@@ -33,33 +34,30 @@ import './Header.css';
 
 
 class Header extends Component {
-  constructor(){
+  constructor() {
     super()
     // this.menuIconRef = createRef()
     this.headerRef = createRef()
     this.handleHamburgerMenuClick = this.handleHamburgerMenuClick.bind(this)
   }
-  componentDidMount(){
-    // this.menuIconRef.addEventListener('click', () => {
-    //   this.headerRef.classList.toggle('change');
-    // })
-    console.log(this.headerRef)
-  }
+  // componentDidMount() {
+  // this.menuIconRef.addEventListener('click', () => {
+  //   this.headerRef.classList.toggle('change');
+  // })
+  // console.log(this.headerRef)
+  // }
   handleHamburgerMenuClick() {
+
     this.headerRef.current.classList.toggle('change');
   }
-  
-  render() {
-    return(
+
+  render(props) {
+    return (
       <div className="container">
-       <Link className="dono" to="/Landing"> <img className="dono" src="https://i.imgur.com/tuFQHxN.png" /></Link>
-       <div className = "dono-button-div">
-         <Link to="/New" className="dono-button" ><button className="newdono-button" >New Dono</button></Link>
-       </div>
-        
+        {console.log(this.props)}
+        <Link className="dono" to="/Landing"> <img className="dono" src="https://i.imgur.com/tuFQHxN.png" /></Link>
         <nav className="header" ref={this.headerRef}>
-        
-        
+          <Link to="/New" className="dono-button" ><button className="newdono-button" >New Dono</button></Link>
           <div onClick={this.handleHamburgerMenuClick} className="hamburger-menu">
             <div className="line line-1"></div>
             <div className="line line-2"></div>
@@ -70,21 +68,20 @@ class Header extends Component {
               <Link data-toggle="collapse" to="/Landing" className="header-link" >Home</Link>
             </li>
             <li onClick={this.handleHamburgerMenuClick} className="header-item">
-              <Link to="/Favorites" className="header-link" >Favorites</Link>
+              <Link to="/Pending" className="header-link" >Pending Pickups</Link>
             </li>
             <li onClick={this.handleHamburgerMenuClick} className="header-item">
-              <Link to="/Profile" className="header-link" >Profile</Link>
+              <Link to="/Favorites" className="header-link" >Favorites</Link>
             </li>
             {/* <li onClick={this.handleHamburgerMenuClick} className="header-item">
               <Link to="/New" className="header-link" >New Dono</Link>
             </li> */}
             <li onClick={this.handleHamburgerMenuClick} className="header-item">
-              <Link to="/Pending" className="header-link" >Pending Pickups</Link>
+              <Link to="/Profile" className="header-link" >Profile</Link>
             </li>
             <li onClick={this.handleHamburgerMenuClick} className="header-item">
-              <Link to="/logout" className="header-link" >Logout</Link>
+              <Link to="/logout" className="header-link" onClick={() => this.props.logoutUser()} >Logout</Link>
             </li>
-            
           </ul>
 
         </nav>
@@ -93,4 +90,6 @@ class Header extends Component {
   }
 }
 
-export default Header
+const mapStateToProps = reduxState => reduxState;
+
+export default connect(mapStateToProps, { logoutUser })(Header)

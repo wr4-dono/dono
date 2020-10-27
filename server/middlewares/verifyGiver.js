@@ -5,6 +5,10 @@ module.exports = async (req, res, next) => {
 
   let [giverEmail] = await db.get_giver_rating_email([giver_id])
 
+  // console.log('her', giverEmail)
+  // console.log('req', req.session.user.email)
+  // console.log('giv', giverEmail.email)
+
   if (req.session.user.email === giverEmail.email) {
     next()
   } else {
