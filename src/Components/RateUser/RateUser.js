@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import './RateUser.scss'
 import { connect } from 'react-redux'
 import ReactStars from 'react-rating-stars-component'
 
@@ -65,7 +66,7 @@ const RateUser = (props) => {
 
   return (
     <div>
-      <div>You are rating {otherUsername} </div>
+      <div className="rating-user">You are rating {otherUsername} </div>
       <ReactStars
         count={5}
         value={1}

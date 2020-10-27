@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import './Profile.scss'
 import { connect } from 'react-redux'
 import { updateProfile } from '../../ducks/authReducer'
 import ReactStars from 'react-rating-stars-component'
@@ -66,7 +67,7 @@ const Profile = (props) => {
     <div>
 
 
-      <div><p>Carrier Rating: {carrierRating ? (<>
+      <div className="user-ratings"><p>Carrier Rating: {carrierRating ? (<>
         <ReactStars
           count={5}
           value={carrierRating}
