@@ -27,6 +27,7 @@ const DonoThumbnail = (props) => {
     // console.log(isFavorite, 'unfavorite hit')
   }
 
+ 
   return (
 
     <div className='dono-thumbnail' onClick={() => props.history.push(`/dono/${props.dono.dono_id}`)}>
