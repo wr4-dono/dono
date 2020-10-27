@@ -45,10 +45,11 @@ const Profile = (props) => {
     setUserInfo(state => ({ ...state, [name]: value }))
   }
 
-  const handleSubmit = (username, zip_code, email) => {
-    axios.put('/api/profile/edit', { username, zip_code, email })
+  const handleSubmit = (username, user_state, zip_code, email) => {
+    axios.put('/api/profile/edit', { username, user_state, zip_code, email })
       .then(res => setUserInfo({
         user_id: props.auth.user.user_id,
+        user_state: user_state,
         username: username,
         zip_code: zip_code,
         email: email
@@ -154,7 +155,7 @@ const Profile = (props) => {
             <label>Email: <input name="email" placeholder={email} value={userInfo.email} onChange={handleChange} /></label>
 
 
-            <button onClick={() => { handleSubmit(username, zip_code, email) }}>Save</button>
+            <button onClick={() => { handleSubmit(username, user_state, zip_code, email) }}>Save</button>
           </div>
         ) : (
             <div>
