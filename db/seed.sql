@@ -49,7 +49,8 @@ picture_url TEXT );
 CREATE TABLE favorites (
 favorites_id SERIAL PRIMARY KEY,
 user_id INT REFERENCES users(user_id) NOT NULL,
-dono_id INT REFERENCES donos(dono_id) NOT NULL UNIQUE );
+dono_id INT REFERENCES donos(dono_id) NOT NULL UNIQUE )
+
 
 -- Ratings carriers received from givers
 CREATE TABLE carriers_ratings (

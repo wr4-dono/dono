@@ -9,3 +9,6 @@ INSERT INTO favorites
 (user_id, dono_id)
 VALUES 
 ($1, $2);
+
+
+
