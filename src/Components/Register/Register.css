@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.register-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  font-family: "Open Sans", sans-serif;
+  background-image: url("https://svgur.com/i/Qwb.svg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+}
+
+.register-container h1 {
+  margin-top: 20px;
+  font-size: 22px;
+  color: #3F4652;
+}
+
+.register-container .logo {
+  width: 150x;
+  height: 150px;
+  margin-top: 40px;
+}
+
+.register-container .input-container {
+  margin-top: 1px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.register-container .input-container .icon {
+  padding-top: 6px;
+  padding-right: 10px;
+  color: #CDDEEE;
+  font-size: 30px;
+}
+
+.register-container .input-container input {
+  font-size: 20px;
+  border: none;
+  outline: 0;
+  border-bottom: 1px solid #CDDEEE;
+  background: transparent;
+  height: 35px;
+  width: 215px;
+  padding-left: 5px;
+  margin-top: 15px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.register-container .input-container input:hover {
+  opacity: .5;
+}
+
+.register-container .button-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 15px;
+  margin-right: 30px;
+}
+
+.register-container .button-container .register-icon {
+  padding-top: 6px;
+  padding-right: 10px;
+  color: #CDDEEE;
+  font-size: 30px;
+}
+
+.register-container .button-container .back-icon {
+  padding-left: 10px;
+  color: #CDDEEE;
+  font-size: 30px;
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+}
+
+.register-container .button-container button {
+  font-family: "Open Sans", sans-serif;
+  background: transparent;
+  border: none;
+  outline: 0;
+  font-size: 28px;
+  color: #88B0D7;
+}
+
+.register-container .button-container button:hover {
+  opacity: .6;
+}
+
+.register-container .selector-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 15px;
+}
+
+.register-container .selector-container .state-select {
+  border: none;
+  border-bottom: 1px solid #CDDEEE;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  color: #3F4652;
+  background: transparent;
+}
+/*# sourceMappingURL=Register.css.map */

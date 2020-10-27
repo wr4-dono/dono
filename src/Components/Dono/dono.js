@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
+import './dono.css'
 
 
 const Dono = (props) => {
@@ -35,25 +36,31 @@ const Dono = (props) => {
 
   return (
     <div className='dono-container'>
-      <img src={donoInfo.picture_url} ></img>
-      <div>
-        <h2>{donoInfo.title}</h2>
-        <div>${donoInfo.price}</div>
+      <div className='imagebackground'>
+        <img className='backgroundimage' src={donoInfo.picture_url}></img>
+        <img className='backgroundimage2' src={donoInfo.picture_url}></img>
+        <div>
+      <img className='image' src={donoInfo.picture_url} ></img>
       </div>
-      <div>{donoInfo.description}</div>
+      </div>
+      <div className='price-title'>
+        <h2 className='title'>{donoInfo.title}</h2>
+        <div className='price'>${donoInfo.price}</div>
+      </div>
+      <div className='description'>{donoInfo.description}</div>
       <div>
         <div>{donoInfo.multiple_people}</div>
         <div>{donoInfo.truck_trailer}</div>
       </div>
 
-      <div>zip code: {donoInfo.zip_code}</div>
+      <div className='zipcode'>zip code: {donoInfo.zip_code}</div>
 
       {/* The Ternary below will display the edit button if they are the owner of the dono. If they are not they will see the accept button. If it has already been accepted and they are not the owner no buttons will display at the moment.   */}
       {(donoInfo.giver_id === props.auth.user.user_id) ?
         (donoInfo.carrier_id) ?
           <button onClick={() => continueChatting()}>Continue Chatting</button>
           :
-          <button onClick={() => props.history.push({ pathname: '/new', donoInfo: donoInfo })}>Edit Dono</button>
+          <button className='edit' onClick={() => props.history.push({ pathname: '/new', donoInfo: donoInfo })}>Edit Dono</button>
         :
         (donoInfo.carrier_id) ?
           (donoInfo.carrier_id === props.auth.user.user_id) ?
@@ -61,8 +68,7 @@ const Dono = (props) => {
             :
             null
           :
-          <button type="submit" onClick={() => acceptDono()}>Accept Dono</button>}
-
+          <button className='accept-button' type="submit" onClick={() => acceptDono()}>Accept Dono</button>}
     </div>
   )
 }
