@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import ReactStars from 'react-rating-stars-component'
+import './RateUser.scss'
 
 const RateUser = (props) => {
   const [comment, setComment] = useState('')
@@ -64,21 +65,22 @@ const RateUser = (props) => {
 
 
   return (
-    <div>
-      <div>You are rating {otherUsername} </div>
+    <div className='rating-container'>
+      <div className='rating-title'>You are rating: {otherUsername} </div>
       <ReactStars
         count={5}
         value={1}
         char={'★'}
         color={'gray'}
         activeColor={'#ffd700'}
-        size={'20px'}
+        size={50}
         edit={true}
         isHalf={true}
         a11y={true}
         onChange={ratingChanged} />
 
-      <input type='text' value={comment} onChange={handleChange} />
+      <label for=""><input type='text' placeholder='Comments regarding your experience' value={comment} onChange={handleChange} /></label>
+      <p>*Note: {otherUsername} will see this rating/comment *</p>
       <button onClick={() => submitEverything()}>Submit Rating</button>
 
     </div>
