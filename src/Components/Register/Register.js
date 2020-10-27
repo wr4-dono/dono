@@ -11,6 +11,11 @@ import { FaPlayCircle } from "react-icons/fa";
 import { FaGlobeAmericas } from "react-icons/fa";
 
 
+
+
+
+
+
 const Register = (props) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')

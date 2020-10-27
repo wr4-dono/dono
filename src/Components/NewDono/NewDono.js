@@ -4,6 +4,17 @@ import { v4 as randomString } from 'uuid'
 import Dropzone from 'react-dropzone'
 import { GridLoader } from 'react-spinners'
 import { connect } from 'react-redux';
+import './NewDono.scss'
+import { FaGlobe } from "react-icons/fa";
+import { FaMailBulk } from "react-icons/fa";
+import { FaPencilAlt } from "react-icons/fa";
+import { FaPlayCircle } from "react-icons/fa";
+import { FaGlobeAmericas } from "react-icons/fa";
+import { FaRegNewspaper } from "react-icons/fa";
+import { FaRegListAlt } from "react-icons/fa";
+import { FaDonate } from "react-icons/fa";
+
+
 
 class NewDono extends Component {
   constructor(props) {
@@ -130,27 +141,35 @@ class NewDono extends Component {
     const { url, isUploading } = this.state
     console.log(this.state)
     return (
-      <div>
+      <div className="new-dono-container">
         {(this.state.isEditing) ? <h1>Edit Dono</h1> : <h1>New Dono</h1>}
         <img src={url} alt="Nothing uploaded" width="450px" />
 
-        <Dropzone
+        <Dropzone className="dropzone"
           onDropAccepted={this.getSignedRequest}
           accept="image/*"
           multiple={false}>
           {({ getRootProps, getInputProps }) => (
             <div
               style={{
-                position: 'relative',
-                width: 160,
-                height: 80,
+
+                width: 120,
+                height: 75,
                 borderWidth: 5,
-                marginTop: 25,
+                marginTop: 10,
                 borderColor: 'gray',
                 borderStyle: 'dashed',
                 borderRadius: 5,
-                display: 'inline-block',
-                fontSize: 17,
+              //   position: 'relative',
+              //   width: 160,
+              //   height: 80,
+              //   borderWidth: 5,
+              //   marginTop: 25,
+              //   borderColor: 'gray',
+              //   borderStyle: 'dashed',
+              //   borderRadius: 5,
+              //   display: 'inline-block',
+              //   fontSize: 17,
               }}
               {...getRootProps()}>
               <input {...getInputProps()} />
@@ -160,93 +179,104 @@ class NewDono extends Component {
         </Dropzone>
 
         {/* Below are the input fields for all of the values of the dono other than the picture */}
-        <label for='title'>Title:</label>
-        <input name='title' value={this.state.title} type='text' placeholder='Dono Title' onChange={(e) => this.handleChanges(e)}></input>
-        <label for='price'>Price:</label>
-        <input name='price' type='number' value={this.state.price} placeholder='Price' onChange={(e) => this.handleChanges(e)}></input>
-
-        <label for='state-select'>Select Dono State:</label>
-        <select name='dono_state' value={this.state.dono_state} onChange={(e) => this.handleChanges(e)}>
-          <option value="">-- Select State --</option>
-          <option value="Alabama">Alabama</option>
-          <option value="Alaska">Alaska</option>
-          <option value="Arizona">Arizona</option>
-          <option value="Arkansas">Arkansas</option>
-          <option value="California">California</option>
-          <option value="Colorado">Colorado</option>
-          <option value="Connecticut">Connecticut</option>
-          <option value="Delaware">Delaware</option>
-          <option value="Florida">Florida</option>
-          <option value="Georgia">Georgia</option>
-          <option value="Hawaii">Hawaii</option>
-          <option value="Idaho">Idaho</option>
-          <option value="Illinois">Illinois</option>
-          <option value="Indiana">Indiana</option>
-          <option value="Iowa">Iowa</option>
-          <option value="Kansas">Kansas</option>
-          <option value="Kentucky">Kentucky</option>
-          <option value="Louisiana">Louisiana</option>
-          <option value="Maine">Maine</option>
-          <option value="Maryland">Maryland</option>
-          <option value="Massachusetts">Massachusetts</option>
-          <option value="Michigan">Michigan</option>
-          <option value="Minnesota">Minnesota</option>
-          <option value="Mississippi">Mississippi</option>
-          <option value="Missouri">Missouri</option>
-          <option value="Montana">Montana</option>
-          <option value="Nebraska">Nebraska</option>
-          <option value="Nevada">Nevada</option>
-          <option value="New Hampshire">New Hampshire</option>
-          <option value="New Jersey">New Jersey</option>
-          <option value="New Mexico">New Mexico</option>
-          <option value="New York">New York</option>
-          <option value="North Carolina">North Carolina</option>
-          <option value="North Dakota">North Dakota</option>
-          <option value="Ohio">Ohio</option>
-          <option value="Oklahoma">Oklahoma</option>
-          <option value="Oregon">Oregon</option>
-          <option value="Pennsylvania">Pennsylvania</option>
-          <option value="Rhode Island">Rhode Island</option>
-          <option value="South Carolina">South Carolina</option>
-          <option value="South Dakota">South Dakota</option>
-          <option value="Tennessee">Tennessee</option>
-          <option value="Texas">Texas</option>
-          <option value="Utah">Utah</option>
-          <option value="Vermont">Vermont</option>
-          <option value="Virginia">Virginia</option>
-          <option value="Washington">Washington</option>
-          <option value="West Virginia">West Virginia</option>
-          <option value="Wisconsin">Wisconsin</option>
-          <option value="Wyoming">Wyoming</option>
-        </select>
-
-        <label for='zip_code'>Zip Code:</label>
-        <input name='zip_code' type='number' value={this.state.zip_code} placeholder='Pickup zip code' value={this.state.zip_code} onChange={(e) => this.handleChanges(e)}></input>
-        <label for='description'>Description:</label>
-        <textarea name='description' value={this.state.description} placeholder='Description' onChange={(e) => this.handleChanges(e)}></textarea>
-
         <div>
+          <FaRegNewspaper className="icon" />
+          <input name='title' value={this.state.title} type='text' placeholder='Dono Title' onChange={(e) => this.handleChanges(e)}></input>
+        </div>
+        <div>
+          <FaDonate className="icon" />
+          <input name='price' type='number' value={this.state.price} placeholder='Price' onChange={(e) => this.handleChanges(e)}></input>
+        </div>
+        <div>
+          <FaGlobe className="icon" />
+          <input name='zip_code' type='number' value={this.state.zip_code} placeholder='Pickup zip code' value={this.state.zip_code} onChange={(e) => this.handleChanges(e)}></input>
+        </div>
+
+        <div className="selector-container">
+          <FaGlobeAmericas className="icon" />
+          <select className="state-select" name='dono_state' value={this.state.dono_state} onChange={(e) => this.handleChanges(e)}>
+            <option value="">-- Select State --</option>
+            <option value="Alabama">Alabama</option>
+            <option value="Alaska">Alaska</option>
+            <option value="Arizona">Arizona</option>
+            <option value="Arkansas">Arkansas</option>
+            <option value="California">California</option>
+            <option value="Colorado">Colorado</option>
+            <option value="Connecticut">Connecticut</option>
+            <option value="Delaware">Delaware</option>
+            <option value="Florida">Florida</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Hawaii">Hawaii</option>
+            <option value="Idaho">Idaho</option>
+            <option value="Illinois">Illinois</option>
+            <option value="Indiana">Indiana</option>
+            <option value="Iowa">Iowa</option>
+            <option value="Kansas">Kansas</option>
+            <option value="Kentucky">Kentucky</option>
+            <option value="Louisiana">Louisiana</option>
+            <option value="Maine">Maine</option>
+            <option value="Maryland">Maryland</option>
+            <option value="Massachusetts">Massachusetts</option>
+            <option value="Michigan">Michigan</option>
+            <option value="Minnesota">Minnesota</option>
+            <option value="Mississippi">Mississippi</option>
+            <option value="Missouri">Missouri</option>
+            <option value="Montana">Montana</option>
+            <option value="Nebraska">Nebraska</option>
+            <option value="Nevada">Nevada</option>
+            <option value="New Hampshire">New Hampshire</option>
+            <option value="New Jersey">New Jersey</option>
+            <option value="New Mexico">New Mexico</option>
+            <option value="New York">New York</option>
+            <option value="North Carolina">North Carolina</option>
+            <option value="North Dakota">North Dakota</option>
+            <option value="Ohio">Ohio</option>
+            <option value="Oklahoma">Oklahoma</option>
+            <option value="Oregon">Oregon</option>
+            <option value="Pennsylvania">Pennsylvania</option>
+            <option value="Rhode Island">Rhode Island</option>
+            <option value="South Carolina">South Carolina</option>
+            <option value="South Dakota">South Dakota</option>
+            <option value="Tennessee">Tennessee</option>
+            <option value="Texas">Texas</option>
+            <option value="Utah">Utah</option>
+            <option value="Vermont">Vermont</option>
+            <option value="Virginia">Virginia</option>
+            <option value="Washington">Washington</option>
+            <option value="West Virginia">West Virginia</option>
+            <option value="Wisconsin">Wisconsin</option>
+            <option value="Wyoming">Wyoming</option>
+          </select>
+        </div>
+
+        
+        <div className="text-div">
+          <FaRegListAlt className="icon" />
+          <textarea name='description' rows="3" cols="30" value={this.state.description} placeholder='Description' onChange={(e) => this.handleChanges(e)}></textarea>
+        </div>
+
+        <div className="question-div">
           {/* These ternarys will display a checked checkbox if the condition is true. if false they will display an unchecked checkbox. Used for editing dono  */}
           {this.state.multiplePeople ?
-            <div>
-              <label for='multiplePeople'>Requires multiple people?</label>
-              <input type='checkbox' name='multiplePeople' checked onClick={() => this.alterMultiplePeople()}></input>
+            <div className="q-div">
+              <label for='multiplePeople'><p className="p">Requires multiple people?</p></label>
+              <input className="question" type='checkbox' name='multiplePeople' checked onClick={() => this.alterMultiplePeople()}></input>
             </div>
             :
-            <div>
-              <label for='multiplePeople'>Requires multiple people?</label>
-              <input type='checkbox' name='multiplePeople' onClick={() => this.alterMultiplePeople()}></input>
+            <div className="q-div" >
+              <label for='multiplePeople'><p className="p">Requires multiple people?</p></label>
+              <input className="question" type='checkbox' name='multiplePeople' onClick={() => this.alterMultiplePeople()}></input>
             </div>
           }
           {this.state.truckTrailer ?
-            <div>
-              <label for='truckTrailer'>Requires truck or trailer?</label>
-              <input type='checkbox' name='truckTrailer' checked onClick={() => this.alterTruckTrailer()}></input>
+            <div className="q-div">
+              <label for='truckTrailer'><p className="p">Requires truck or trailer?</p></label>
+              <input className="question" type='checkbox' name='truckTrailer' checked onClick={() => this.alterTruckTrailer()}></input>
             </div>
             :
-            <div>
-              <label for='truckTrailer'>Requires truck or trailer?</label>
-              <input type='checkbox' name='truckTrailer' onClick={() => this.alterTruckTrailer()}></input>
+            <div className="q-div">
+              <label for='truckTrailer'><p className="p">Requires truck or trailer?</p></label>
+              <input className="question" type='checkbox' name='truckTrailer' onClick={() => this.alterTruckTrailer()}></input>
             </div>
           }
 
@@ -254,12 +284,21 @@ class NewDono extends Component {
 
         {this.state.isEditing ?
           <div>
-            <button onClick={() => this.saveEdits()}>Save Edits</button>
-            <button onClick={() => this.props.history.push(`/dono/${this.state.donoId}`)}>Cancel Edits</button>
-            <button onClick={() => this.deleteDono()}>Delete Dono</button>
+            <div>
+              <button onClick={() => this.saveEdits()}>Save Edits</button>
+            </div>
+            <div>
+              <button onClick={() => this.props.history.push(`/dono/${this.state.donoId}`)}>Cancel Edits</button>
+            </div>
+            <div>
+              <button onClick={() => this.deleteDono()}>Delete Dono</button>
+            </div>
           </div>
           :
-          <button onClick={() => this.handleSubmitDono()}>Submit Dono</button>
+          <div>
+            <FaPencilAlt className="icon" />
+            <button onClick={() => this.handleSubmitDono()}>Submit Dono</button>
+          </div>
         }
 
       </div>
