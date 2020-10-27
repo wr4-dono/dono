@@ -252,7 +252,7 @@ class NewDono extends Component {
         
         <div className="text-div">
           <FaRegListAlt className="icon" />
-          <textarea name='description' rows="3" cols="30" value={this.state.description} placeholder='Description' onChange={(e) => this.handleChanges(e)}></textarea>
+          <textarea name='description' rows="3" cols="25" value={this.state.description} placeholder='Description' onChange={(e) => this.handleChanges(e)}></textarea>
         </div>
 
         <div className="question-div">

@@ -18,7 +18,10 @@ $font-stack: 'Open Sans', sans-serif;
     
 
     h1{
-        font-size: 20px;
+        font-size: 18px;
+        font-family: $font-stack;
+        padding-bottom: 5px;
+        color: #808080
         
     }
 
