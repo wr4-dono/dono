@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import './Favorites.scss'
 import { connect } from 'react-redux'
 import DonoThumbnail from '../DonoThumbnail/DonoThumbnail'
 
@@ -18,7 +19,7 @@ const Favorites = (props) => {
 
   return (
     <div>
-      <p>Favorites</p>
+      <p className="favorites-p">Favorites</p>
 
       {favoritedDonos.map(dono => {
         return <DonoThumbnail

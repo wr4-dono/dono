@@ -30,7 +30,7 @@ VALUES
 CREATE TABLE donos (
 dono_id SERIAL PRIMARY KEY,
 giver_id INT REFERENCES users(user_id) NOT NULL,
-created_at TIMESTAMP DEFAULT now(),
+created_at TIMESTAMPTZ DEFAULT now(),
 zip_code INT NOT NULL,
 dono_state VARCHAR(100) NOT NULL,
 carrier_id INT REFERENCES users(user_id) DEFAULT NULL,
