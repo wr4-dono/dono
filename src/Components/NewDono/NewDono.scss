@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+
+}
+
+$font-stack: 'Open Sans', sans-serif;
+
+.new-dono-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: $font-stack;
+    margin-top:  5px;
+    
+
+    h1{
+        font-size: 18px;
+        font-family: $font-stack;
+        padding-bottom: 5px;
+        color: #808080
+        
+    }
+
+    img{
+        width: 200px;
+        border-radius: 10px;
+    }
+
+    input{
+        font-size: 20px;
+        border: none;
+        outline: 0;
+        border-bottom: 1px solid #CDDEEE;
+        background: transparent;
+        height: 35px;
+        width: 215px;
+        padding-left: 5px;
+        margin-top: 7px;
+        font-family: $font-stack;
+        
+    }
+
+    input:hover {
+        opacity: .5;
+    }
+    
+    .icon{
+        
+        padding-top: 8px;
+        padding-right: 10px;
+        color: #CDDEEE;
+        font-size: 30px;
+    }
+
+   
+
+    .selector-container{
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+        
+
+        .state-select{
+            border: none;
+            border-bottom: 1px solid #CDDEEE;
+            font-family: $font-stack;
+            font-size: 18px;
+            color: #3F4652;
+            background: transparent;
+            width: 215px;
+            
+        }
+    }
+
+    .text-div{
+        display: flex;
+        align-items: center;
+        
+    }
+
+    textarea{
+        
+        font-family: $font-stack;
+        font-size: 16px;
+        color: #3F4652;
+        margin-top: 20px;
+        border-radius: 7px;
+            
+            
+    }
+
+    .question-div{
+        
+        font-family: $font-stack;
+        font-size: 18px;
+        color: #3F4652;
+    }
+
+    button{
+        cursor: pointer;
+        font-family: $font-stack;
+        background: transparent;
+        border: none;
+        outline: 0;
+        font-size: 24px;
+        color: #88B0D7;
+        padding-bottom: 5px;
+        margin-top: 5px;
+    }
+
+    .q-div{
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        
+    }
+
+    .p{
+        margin-left: 50px;
+    }
+
+    .question{
+        display: flex;
+        
+        width: 20px;
+        margin-left: 7px;
+    }
+
+    
+
+}
+
+
+
+
+
+
+
