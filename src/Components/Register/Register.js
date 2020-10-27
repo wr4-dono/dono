@@ -16,10 +16,13 @@ const Register = (props) => {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
   const [userState, setUserState] = useState('')
-  const [zip_code, setZipCode] = useState(null)
+  const [zipCode, setZipCode] = useState('')
 
 
   const submitRegistration = () => {
+    //This will need 
+    const zip_code = zipCode.toString()
+    console.log(typeof zip_code)
     axios.post('/api/auth/register', { username, password, userState, zip_code, email })
       .then(res => {
         props.history.push('/');
@@ -66,7 +69,7 @@ const Register = (props) => {
           <FaGlobeAmericas className="icon" />
           <select className="state-select" name='dono_state' onChange={(e) => setUserState(e.target.value)}>
 
-            <option value="">-- Select your state --</option>
+            <option value=""> Select your state </option>
             <option value="Alabama">Alabama</option>
             <option value="Alaska">Alaska</option>
             <option value="Arizona">Arizona</option>
