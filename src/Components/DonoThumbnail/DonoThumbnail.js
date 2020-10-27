@@ -4,7 +4,7 @@ import './DonoThumbnail.css'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import moment from 'moment'
+import moment from 'moment-timezone'
 
 const DonoThumbnail = (props) => {
   const [isFavorite, setIsFavorite] = useState(false)
@@ -27,7 +27,7 @@ const DonoThumbnail = (props) => {
     // console.log(isFavorite, 'unfavorite hit')
   }
 
- 
+
   return (
 
     <div className='dono-thumbnail' onClick={() => props.history.push(`/dono/${props.dono.dono_id}`)}>
@@ -40,7 +40,7 @@ const DonoThumbnail = (props) => {
         <p>{props.dono.title}</p>
         <p>{props.dono.price}</p>
         <p>{props.dono.zip_code}</p>
-        <p>{moment(props.dono.created_at).startOf('day').fromNow()}</p>
+        <p>{moment.utc(props.dono.created_at).fromNow()}</p>
       </div>
 
       <div>

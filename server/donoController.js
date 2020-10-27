@@ -16,6 +16,7 @@ module.exports = {
     if (!radius && !search) {
       console.log('hit 1')
       const allDonos = await db.get_all_donos([status, state])
+      console.log(allDonos)
       return res.status(200).send(allDonos)
     } else if (radius && !search) {
       console.log('hit 2')
@@ -93,7 +94,6 @@ module.exports = {
 
     const { giver_id, zip_code, dono_state, title, description, price, multiplePeople, truckTrailer } = req.body;
     const [dono_id] = await db.create_dono([giver_id, zip_code, dono_state, title, description, price, multiplePeople, truckTrailer]);
-
 
     res.status(200).send(dono_id);
   },
