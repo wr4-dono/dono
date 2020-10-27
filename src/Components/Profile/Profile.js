@@ -60,7 +60,7 @@ const Profile = (props) => {
     setEditMode(false)
   }
 
-
+ 
 
   return (
 
