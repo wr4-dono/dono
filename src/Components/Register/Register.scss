@@ -14,7 +14,14 @@ $font-stack: 'Open Sans', sans-serif;
     align-items: center;
     flex-direction: column;
     width: 100vw;
+    height: 100vh;
     font-family: $font-stack;
+    background-image: url("https://svgur.com/i/Qwb.svg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom;
+    
+   
     
 
     h1{
@@ -67,6 +74,8 @@ $font-stack: 'Open Sans', sans-serif;
         input:hover {
             opacity: .5;
         }
+
+        
     }
 
     .button-container{
@@ -105,10 +114,30 @@ $font-stack: 'Open Sans', sans-serif;
         button:hover{
             opacity: .6;
         }
+    }
 
-        
+    
+    
+    .selector-container{
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+        .state-select{
+            border: none;
+            border-bottom: 1px solid #CDDEEE;
+            font-family: $font-stack;
+            font-size: 18px;
+            color: #3F4652;
+            background: transparent;
+            
+        }
         
     }
 
     
 }
+
+
+
+
+

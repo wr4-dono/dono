@@ -8,6 +8,7 @@ import { FaGlobe } from "react-icons/fa";
 import { FaMailBulk } from "react-icons/fa";
 import { FaPencilAlt } from "react-icons/fa";
 import { FaPlayCircle } from "react-icons/fa";
+import { FaGlobeAmericas } from "react-icons/fa";
 
 
 const Register = (props) => {
@@ -61,9 +62,11 @@ const Register = (props) => {
         
         
 
-        <label for='state-select'>Select Dono State:</label>
-        <select name='dono_state' onChange={(e) => setUserState(e.target.value)}>
-          <option value="">-- Please choose an option --</option>
+        <div className="selector-container">
+          <FaGlobeAmericas className="icon"/>
+        <select className="state-select" name='dono_state' onChange={(e) => setUserState(e.target.value)}>
+        
+          <option value="">-- Select your state --</option>
           <option value="Alabama">Alabama</option>
           <option value="Alaska">Alaska</option>
           <option value="Arizona">Arizona</option>
@@ -115,6 +118,7 @@ const Register = (props) => {
           <option value="Wisconsin">Wisconsin</option>
           <option value="Wyoming">Wyoming</option>
         </select>
+        </div>
 
 
 

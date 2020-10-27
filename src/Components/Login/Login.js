@@ -53,6 +53,7 @@ const Login = (props) => {
         <FaPencilAlt className="register-icon"/>
        <div className="button-div"><button onClick={() => props.history.push('/Register')}>Register</button></div> 
       </div>
+
     </div>
   )
 }

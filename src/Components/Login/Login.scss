@@ -14,7 +14,13 @@ $font-stack: 'Open Sans', sans-serif;
     align-items: center;
     flex-direction: column;
     width: 100vw;
+    height: 100vh;
     font-family: $font-stack;
+    background-image: url("https://svgur.com/i/Qwb.svg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom;
+    
     
 
     h1{
@@ -150,6 +156,12 @@ $font-stack: 'Open Sans', sans-serif;
 
         
         
+        
+        
     }
 
     
+
+    
+    
+
