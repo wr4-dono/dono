@@ -25,7 +25,7 @@ module.exports = {
     const db = req.app.get('db')
     const { user_id } = req.params
 
-    let carrierRating = await db.get_average_carrier_rating([user_id])
+    let [carrierRating] = await db.get_average_carrier_rating([user_id])
 
     res.status(200).send(carrierRating)
 

@@ -7,10 +7,25 @@ const RateUser = (props) => {
   const [comment, setComment] = useState('')
   const [rating, setRating] = useState(0)
   const [dono, setDono] = useState({})
+  const [otherUsername, setOtherUsername] = useState('')
 
   useEffect(() => {
     axios.get(`/api/donos/${props.match.params.dono_id}`).then
-      (res => { setDono(res.data) })
+      (res => {
+        setDono(res.data)
+        if (res.data.giver_id === props.auth.user.user_id) {
+          console.log('carrier', res.data.carrier_id)
+          axios.get(`/api/auth/users/${res.data.carrier_id}`).then(res2 => {
+            setOtherUsername(res2.data)
+          })
+        } else {
+          console.log(res.data)
+          console.log('giver', res.data.giver_id)
+          axios.get(`/api/auth/users/${res.data.giver_id}`).then(res3 => {
+            setOtherUsername(res3.data)
+          })
+        }
+      })
     // axios.get(`/api/donos/29`).then(res => { setDono(res.data[0]) })
   }, [])
 
@@ -50,6 +65,7 @@ const RateUser = (props) => {
 
   return (
     <div>
+      <div>You are rating {otherUsername} </div>
       <ReactStars
         count={5}
         value={1}
@@ -63,7 +79,6 @@ const RateUser = (props) => {
         onChange={ratingChanged} />
 
       <input type='text' value={comment} onChange={handleChange} />
-
       <button onClick={() => submitEverything()}>Submit Rating</button>
 
     </div>
