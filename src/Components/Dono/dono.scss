@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+$font-stack: 'Open Sans', sans-serif;
+$font-size: 20px;
+
+
+.dono-container {
+    // min-width: 100%;
+    // min-height: 100%;
+    // margin: 0;
+    // padding: 0;
+    // border: 1px solid red;
+    height: 88.1vh;
+}
+
+.price-title {
+    padding: 20px;
+}
+
+.title {
+    letter-spacing: 1px;
+    color: #6699cc;
+    font-size: 40px;
+    font-family: $font-stack;
+    padding: 20px;
+}
+
+.price {
+    color: #6699cc;
+    width: 100px;
+    // border: 1px solid red;
+    font-size: 40px;
+    position: relative;
+    left: 70vh;
+    bottom: 97px;
+    font-family: $font-stack;
+    padding: 20px;
+}
+
+.description {
+    text-align: left;
+    width: 600px;
+    height: 200px;
+    border: 1px solid #6699cc;
+    border-radius: 1.5rem;
+    position: relative;
+    bottom: 60px;
+    left: 74vh;
+    font-family: $font-stack;
+    padding: 20px;
+}
+
+.zipcode {
+    position: relative;
+    bottom: 20px;
+    font-family: $font-stack;
+    
+}
+
+.image {
+    width: 500px;
+    height: 350px;
+    position: relative;
+}
+
+.backgroundimage {
+    position: absolute;
+    filter: blur(15%);
+    -webkit-filter: blur(8px);
+    // width: 10%;
+    height: 350px;
+    background-repeat: no-repeat;
+    z-index: -500;
+}
+
+.backgroundimage2 {
+    position: absolute;
+    left: 0;
+    filter: blur(0%);
+    -webkit-filter: blur(5px);
+    width: 100%;
+    height: 350px;
+    background-repeat: no-repeat;
+    z-index: -500;
+}
+
+.imagebackground {
+    background-repeat: no-repeat;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.accept-button {
+    border: none;
+    border-radius: .5rem;
+    padding: 13px;
+    background-color: #6699cc;
+    color: #fff;
+    // background-color: transparent;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 18px;
+    bottom: 398px;
+    right: 550px;
+    display: flex;
+    position: fixed;
+}
+
+.edit {
+    border-radius: .5rem;
+    padding: 13px;
+    background-color: #6699cc;
+    color: #fff;
+    border: none;
+}
+
+
+
+
+
+
+@media screen and (max-width: 360px) {
+    .dono-container {
+        min-width: 100px;
+    }
+
+    .image {
+        max-width: 360px;
+    }
+
+    .backgroundimage {
+        max-width: 50%;
+    }
+
+}

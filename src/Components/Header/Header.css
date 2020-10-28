@@ -18,6 +18,8 @@ body {
     min-width: 1000px;
     height: 95px;
     background-color: #6699cc;
+    margin-top: -1px;
+    position: fixed;
     z-index: 100;
 }
 
@@ -34,7 +36,6 @@ body {
     align-items: center;
     /* border-radius: 20% 0 0 60%; */
     transition: right 0.8s cubic-bezier(1, 0, 0, 1);
-    z-index: 100;
 }
 
 .change {
@@ -59,7 +60,6 @@ body {
 
 .dono-picture{
     display: flex;
-    top: 0px;
     border-radius: 1rem;
     background: none;
     border: none;
@@ -67,9 +67,12 @@ body {
 }
 
 .dono{
-    display: flex;
-    height: 115px;
-    width: 115px;
+    
+    position: absolute;
+    left: -12px;
+    top: -5px;
+    height: 135px;
+    width: 135px;
 }
 
 
@@ -118,9 +121,8 @@ body {
 .newdono-button {
     display: flex;
     justify-content: flex-end;
-    align-self: center;
-    right: 100px;
-    top: 30px;
+    right: 10vh;
+    top: 25px;
     border-radius: .5rem;
     text-decoration: none;
     font-size: 22px;
@@ -134,6 +136,7 @@ body {
     position: fixed;
     padding: 7px;
     cursor: pointer;
+    box-shadow: 0 2px 5px #4B7197;
 }
 
 .header-link::before,

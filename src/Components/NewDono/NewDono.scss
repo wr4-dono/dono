@@ -14,20 +14,21 @@ $font-stack: 'Open Sans', sans-serif;
     align-items: center;
     flex-direction: column;
     font-family: $font-stack;
-    margin-top:  5px;
+    
     
 
     h1{
         font-size: 18px;
         font-family: $font-stack;
         padding-bottom: 5px;
-        color: #808080
-        
+        color: #808080;
+        margin-top: 140px;
     }
 
     img{
         width: 200px;
         border-radius: 10px;
+        padding-bottom:7px;
     }
 
     input{
