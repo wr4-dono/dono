@@ -118,7 +118,16 @@ module.exports = {
     })
 
     res.sendStatus(201);
-  }
+  },
+
+  // getPendingRatingDonos: async (req, res) => {
+
+
+
+  // }
+
+
+
 }
   // NOT MVP
   // getAllUserRatings: async (req, res) => {}

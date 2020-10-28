@@ -60,13 +60,11 @@ const Profile = (props) => {
     setEditMode(false)
   }
 
- 
+
 
   return (
 
     <div>
-
-
       <div className="user-ratings"><p>Carrier Rating: {carrierRating ? (<>
         <ReactStars
           count={5}
