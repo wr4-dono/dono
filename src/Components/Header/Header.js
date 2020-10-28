@@ -10,43 +10,25 @@ import { logoutUser } from '../../ducks/authReducer'
 import './Header.css';
 import axios from 'axios';
 
-// const menuIcon = document.querySelector('.hamburger-menu')
-// const header = document.querySelector('.header')
-
-// class Header extends Component {
-//   constructor(){
-//     super()
-//     this.menuIconRef = createRef()
-//     this.headerRef = createRef()
-//   }
-//   componentDidMount(){
-//     this.menuIconRef.addEventListener('click', () => {
-//       this.headerRef.classList.toggle('change');
-//     })
-//   }
-//   render() {
-//     return(
-//       <div className="container">
-//         <nav className="header" ref={this.headerRef}>
-//           <div className="hamburger-menu" ref={this.menuIconRef}>
-//             <div className="line line-1"></div>
-//             <div className="line line-2"></div>
-//             <div className="line line-3"></div>
-
 
 class Header extends Component {
-  constructor() {
+  constructor(props) {
     super()
     // this.menuIconRef = createRef()
+    this.state = {
+      pendingRatings: null
+    }
+
     this.headerRef = createRef()
     this.handleHamburgerMenuClick = this.handleHamburgerMenuClick.bind(this)
   }
-  // componentDidMount() {
-  // this.menuIconRef.addEventListener('click', () => {
-  //   this.headerRef.classList.toggle('change');
-  // })
-  // console.log(this.headerRef)
-  // }
+  componentDidMount(props) {
+    axios.get(`/api/users/${this.props.auth.user.user_id}/ratings`).then(res => {
+      this.setState({
+        pendingRatings: res.data.length
+      })
+    }).catch(err => alert(err.message))
+  }
   handleHamburgerMenuClick() {
 
     this.headerRef.current.classList.toggle('change');
@@ -62,8 +44,10 @@ class Header extends Component {
   render(props) {
     return (
       <div className="container">
-        {console.log(this.props)}
+
         <Link className="dono" to="/Landing"> <img className="dono" src="https://i.imgur.com/tuFQHxN.png" /></Link>
+        {(this.state.pendingRatings) ?
+          <Link to='/PendingRatings'> {this.state.pendingRatings} </Link> : null}
         <nav className="header" ref={this.headerRef}>
           <Link to="/New" className="dono-button" ><button className="newdono-button" >New Dono</button></Link>
           <div onClick={this.handleHamburgerMenuClick} className="hamburger-menu">

@@ -62,6 +62,7 @@ app.post('/api/chat/:chat_id/users/:user_id', chatCtrl.sendMessage);
 //rating endpoints
 app.get('/api/users/:user_id/ratings/giverrating', ratingsCtrl.getUserAverageGiverRating)
 app.get('/api/users/:user_id/ratings/carrierrating', ratingsCtrl.getUserAverageCarrierRating)
+app.get('/api/users/:user_id/ratings', ratingsCtrl.getPendingRatingDonos)
 app.post('/api/users/:dono_id/ratings/giver', ratingsCtrl.carrierRatesGiver)
 app.post('/api/users/:dono_id/ratings/carrier', ratingsCtrl.giverRatesCarrier)
 app.post('/api/users/giveremail', ratingsCtrl.giverEmail)
