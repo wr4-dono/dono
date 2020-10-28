@@ -30,7 +30,10 @@ const DonoThumbnail = (props) => {
 
   return (
 
-    <div className='dono-thumbnail' onClick={() => props.history.push(`/dono/${props.dono.dono_id}`)}>
+
+    <div className='dono-thumbnail' onClick={(!props.pendingRating) ? () => props.history.push(`/dono/${props.dono.dono_id}`) : () => props.history.push(`/rate/${props.dono.dono_id}`)}>
+
+      {console.log('pending', props.pendingRating)}
 
 
       <img className='thumbnail-picture' src={props.dono.picture_url} alt={props.dono.title} />
