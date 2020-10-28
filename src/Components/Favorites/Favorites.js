@@ -17,7 +17,7 @@ const Favorites = (props) => {
   }
 
   return (
-    <div>
+    <div style={{ paddingTop: 120 + 'px' }}>
       <p>Favorites</p>
 
       {favoritedDonos.map(dono => {

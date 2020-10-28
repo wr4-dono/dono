@@ -64,7 +64,7 @@ const RateUser = (props) => {
 
 
   return (
-    <div>
+    <div style={{ paddingTop: 120 + 'px' }}>
       <div>You are rating {otherUsername} </div>
       <ReactStars
         count={5}

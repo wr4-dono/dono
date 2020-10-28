@@ -63,9 +63,7 @@ const Profile = (props) => {
 
   return (
 
-    <div>
-
-
+    <div style={{ paddingTop: 120 + 'px' }}>
       <div><p>Carrier Rating: {carrierRating ? (<>
         <ReactStars
           count={5}

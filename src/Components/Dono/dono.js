@@ -34,7 +34,7 @@ const Dono = (props) => {
   }
 
   return (
-    <div className='dono-container'>
+    <div className='dono-container' style={{ paddingTop: 120 + 'px' }}>
       <img src={donoInfo.picture_url} ></img>
       <div>
         <h2>{donoInfo.title}</h2>

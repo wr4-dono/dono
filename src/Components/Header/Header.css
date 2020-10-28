@@ -11,10 +11,12 @@ body {
     margin: 0 auto;
     margin-right: auto;    
     margin-left: auto;
+    position: fixed;
+    top:0;
     width: 100%;    
     max-width: 100%;    
     min-width: 1000px;
-    height: 115px;
+    height: 95px;
     background-color: #6699cc;
     z-index: 100;
 }
@@ -116,7 +118,8 @@ body {
 .newdono-button {
     display: flex;
     justify-content: flex-end;
-    right: 10vh;
+    align-self: center;
+    right: 100px;
     top: 30px;
     border-radius: .5rem;
     text-decoration: none;
@@ -169,6 +172,7 @@ body {
         left: 41%;
         width: 70px;
         height: 50px;
+        top: 25px;
     }
 
     .header {
