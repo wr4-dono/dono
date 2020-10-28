@@ -173,7 +173,7 @@ class NewDono extends Component {
               }}
               {...getRootProps()}>
               <input {...getInputProps()} />
-              {isUploading ? <GridLoader /> : <p>Drop file here, or click to select files</p>}
+              {isUploading ? <GridLoader /> : <p>Drop file here, or click to select file</p>}
             </div>
           )}
         </Dropzone>
