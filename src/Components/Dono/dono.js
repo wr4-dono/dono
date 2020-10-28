@@ -44,7 +44,7 @@ const Dono = (props) => {
       </div>
       </div>
       <div className='price-title'>
-        <h2 className='title'>{donoInfo.title}</h2>
+        <h2 className='Title'>{donoInfo.title}</h2>
         <div className='price'>${donoInfo.price}</div>
       </div>
       <div className='description'>{donoInfo.description}</div>
