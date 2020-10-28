@@ -29,17 +29,18 @@ const DonoThumbnail = (props) => {
 
 
   return (
-
+    <div className="thumbnail-container">
     <div className='dono-thumbnail' onClick={() => props.history.push(`/dono/${props.dono.dono_id}`)}>
 
-
-      <img className='thumbnail-picture' src={props.dono.picture_url} alt={props.dono.title} />
+      <div className="img-container">
+        <img className='thumbnail-picture' src={props.dono.picture_url} alt={props.dono.title} />
+      </div>
 
 
       <div className='thumbnail-info'>
-        <p>{props.dono.title}</p>
-        <p>{props.dono.price}</p>
-        <p>{props.dono.zip_code}</p>
+        <p className='title'>{props.dono.title}</p>
+        <p>Earn: <span className="bold">${props.dono.price}</span></p>
+        <p>Zip code: <span className="bold">{props.dono.zip_code}</span></p>
         <p>{moment.utc(props.dono.created_at).fromNow()}</p>
       </div>
 
@@ -74,6 +75,7 @@ const DonoThumbnail = (props) => {
 
 
 
+    </div>
     </div>
   )
 }
