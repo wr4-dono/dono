@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.rating-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 80vh;
+  width: 80vw;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: auto;
+}
+
+.rating-container .rating-title {
+  margin-top: 136px;
+  height: 50px;
+  font-size: 32px;
+}
+
+.rating-container input {
+  margin: auto;
+  height: 75px;
+  width: 250px;
+}
+
+.rating-container button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: transparent;
+  padding: 3px;
+  border: solid 1px;
+  outline: 0;
+  font-size: 28px;
+  color: #88B0D7;
+  font-family: "Open Sans", sans-serif;
+}
+
+.rating-container button:hover {
+  opacity: .6;
+}
+/*# sourceMappingURL=RateUser.css.map */
