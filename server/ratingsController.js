@@ -120,13 +120,60 @@ module.exports = {
     res.sendStatus(201);
   },
 
-  // getPendingRatingDonos: async (req, res) => {
+  getPendingRatingDonos: async (req, res) => {
+    const db = req.app.get('db')
+
+    const { user_id } = req.params
+
+    const donosAsGiver = await db.get_donos_as_giver(user_id)
+
+    const donosAsCarrier = await db.get_donos_as_carrier(user_id)
+
+    let pendingRatingDonosArray = [];
+
+    for (let i = 0; i < donosAsGiver.length; i++) {
+
+      let [pendingDonoRating] = await db.check_dono_carriers_ratings(donosAsGiver[i].dono_id)
+      if (!pendingDonoRating) {
+        pendingRatingDonosArray.push(donosAsGiver[i])
+      }
+    }
+
+    for (let i = 0; i < donosAsCarrier.length; i++) {
+
+      let [pendingDonoRating] = await db.check_dono_givers_ratings(donosAsCarrier[i].dono_id)
+      if (!pendingDonoRating) {
+        pendingRatingDonosArray.push(donosAsCarrier[i])
+      }
+    }
+    res.status(200).send(pendingRatingDonosArray)
+  }
+
+  /*
+
+  submit 
+  put in rating
+
+  --carriers rating the givers
+  CREATE TABLE givers_ratings (
+  givers_ratings_id 1,
+  dono_id 1,
+  rating INT,
+  comment VARCHAR(1000));
+
+   CREATE TABLE givers_ratings (
+  givers_ratings_id 1,
+  dono_id 2
+  rating INT,
+  comment VARCHAR(1000));
 
 
 
-  // }
-
-
+  SELECT * 
+  FROM donos d
+  JOIN carriers_ratings cr ON d.dono_id = cr.dono_id
+  WHERE cr.dono_id = $2 
+  */
 
 }
   // NOT MVP
