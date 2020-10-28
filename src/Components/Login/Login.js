@@ -28,7 +28,7 @@ const Login = (props) => {
 
       <div><img className ="logo" src ="https://i.imgur.com/WGq3YbT.png"/></div>
       <div className="input-container">
-      <h1>Login</h1>
+      
         
         <label>
           <div className="username-container">

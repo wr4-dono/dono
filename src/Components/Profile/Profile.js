@@ -6,6 +6,8 @@ import { updateProfile } from '../../ducks/authReducer'
 import ReactStars from 'react-rating-stars-component'
 
 
+
+
 const Profile = (props) => {
 
   const [userInfo, setUserInfo] = useState({
@@ -64,7 +66,7 @@ const Profile = (props) => {
 
   return (
 
-    <div>
+    <div className = "profile-container">
       <div className="user-ratings"><p>Carrier Rating: {carrierRating ? (<>
         <ReactStars
           count={5}
@@ -76,9 +78,9 @@ const Profile = (props) => {
           edit={false} />
         <p> {carrierRating} out of 5</p>
       </>) : (<>
-        You have not received any ratings </>)} </p></div>
+        None </>)} </p></div>
 
-      <div><p>Giver Rating: {giverRating ? (<>
+      <div className="user-ratings"><p>Giver Rating: {giverRating ? (<>
         <ReactStars
           count={5}
           value={giverRating}
@@ -89,15 +91,19 @@ const Profile = (props) => {
           edit={false} />
         <p>{giverRating} out of 5</p>
       </>) : (<>
-        You have not received any ratings </>)}</p></div>
+        None </>)}</p></div>
 
       <div>
         {(editMode) ? (
-          <div>
-            <label>Username: <input name="username" placeholder={username} value={userInfo.username} onChange={handleChange} /></label>
+          <div className="label-info">
+            <div>
+              <label>Username: <input name="username" placeholder={username} value={userInfo.username} onChange={handleChange} /></label>
+            </div>
 
-            <label for='state-select'>User State:</label>
-            <select name='user_state' value={userInfo.user_state} onChange={handleChange}>
+            <div className="selector-container">
+              <label for='state-select' >State:</label>
+            
+            <select name='user_state' className="state-select" value={userInfo.user_state} onChange={handleChange}>
               <option value="">-- Select State --</option>
               <option value="Alabama">Alabama</option>
               <option value="Alaska">Alaska</option>
@@ -150,29 +156,44 @@ const Profile = (props) => {
               <option value="Wisconsin">Wisconsin</option>
               <option value="Wyoming">Wyoming</option>
             </select>
-            <label>Zip Code: <input name="zip_code" placeholder={zip_code} value={userInfo.zip_code} onChange={handleChange} /></label>
-            <label>Email: <input name="email" placeholder={email} value={userInfo.email} onChange={handleChange} /></label>
+            </div>
+            <div>
+              <label>Zip Code: <input name="zip_code" placeholder={zip_code} value={userInfo.zip_code} onChange={handleChange} /></label>
+            </div>
+            <div>
+              <label>Email: <input name="email" placeholder={email} value={userInfo.email} onChange={handleChange} /></label>
+            </div>
 
 
-            <button onClick={() => { handleSubmit(username, user_state, zip_code, email) }}>Save</button>
+            <div className="button-div">
+              <button onClick={() => { handleSubmit(username, user_state, zip_code, email) }}>Save</button>
+            </div>
           </div>
         ) : (
-            <div>
-              <label >Username: <p>{username}</p> </label>
-              <label >State: <p>{user_state}</p> </label>
-              <label >Zip Code: <p>{zip_code}</p> </label>
-              <label >E-mail: <p>{email}</p> </label>
+            <div className="label-info">
+              <div className="info-div">
+                <label >Username: {username}</label>
+              </div>
+              <div className="info-div">
+                <label >State: {user_state}</label>
+              </div>
+              <div className="info-div">
+                <label >Zip Code: {zip_code} </label>
+              </div>
+              <div className="info-div">
+                <label >Email: {email} </label>
+              </div>
             </div>
           )}
       </div>
 
       <div>
         {(editMode) ? (
-          <div>
+          <div className="button-div">
             <button onClick={() => setEditMode(!editMode)}>Cancel</button>
           </div>
         ) : (
-            <div>
+            <div className="button-div">
               <button onClick={() => setEditMode(!editMode)}>Edit</button>
             </div>
           )}
