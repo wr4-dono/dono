@@ -1,13 +1,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+$font-stack: 'Open Sans', sans-serif;
+
 *{
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+    font-family: $font-stack;
+}
+
+.rating-container{
+  display: flex;
+  height: 80vh;
+  width: 80vw;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: auto;
+
+  .rating-title{
+    margin-top: 136px;
+    height: 50px;
+    font-size: 32px;
+  }
+
+  input{
+    margin: auto;
+    height: 75px;
+    width: 250px;
+  }
+
+  button{
+    display: flex;
+    background: transparent;
+    padding: 3px;
+    border: solid 1px;
+    outline: 0;
+    font-size: 28px;
+    color: #88B0D7;
+    font-family: $font-stack;
+}
+
+  button:hover{
+    opacity: .6;
+}
 
 }
 
-$font-stack: 'Open Sans', sans-serif;
 
-.rating-user{
-    padding-top: 140px;
-}
+

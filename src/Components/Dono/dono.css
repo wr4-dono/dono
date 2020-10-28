@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+.dono-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* .price-title {
+  
+} */
+
+
+
+.price {
+  color: #6699cc;
+  width: 100px;
+  font-size: 40px;
+  font-family: "Open Sans", sans-serif;
+  padding: 20px;
+}
+
+.description {
+  width: 160px;
+  height: 100px;
+  border: 1px solid #6699cc;
+  border-radius: 1.5rem;
+  left: 74vh;
+  font-family: "Open Sans", sans-serif;
+  padding: 20px;
+}
+
+.zipcode {
+  position: relative;
+  bottom: 20px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.image {
+  padding-top: 140px;
+  width: 200px;
+  height: auto;
+  
+}
+
+/* .backgroundimage {
+  position: absolute;
+  filter: blur(15%);
+  -webkit-filter: blur(8px);
+  height: 350px;
+  background-repeat: no-repeat;
+  z-index: -500;
+} */
+
+/* .backgroundimage2 {
+  position: absolute;
+  left: 0;
+  filter: blur(0%);
+  -webkit-filter: blur(5px);
+  width: 100%;
+  height: 350px;
+  background-repeat: no-repeat;
+  z-index: -500;
+} */
+
+/* .imagebackground {
+  background-repeat: no-repeat;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+} */
+
+.accept-button {
+  border: none;
+  border-radius: .5rem;
+  padding: 13px;
+  background-color: #6699cc;
+  color: #fff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 18px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  
+}
+
+.edit {
+  border-radius: .5rem;
+  padding: 13px;
+  background-color: #6699cc;
+  color: #fff;
+  border: none;
+}
+
+@media screen and (max-width: 360px) {
+  .dono-container {
+    min-width: 100px;
+  }
+  .image {
+    max-width: 360px;
+  }
+  .backgroundimage {
+    max-width: 50%;
+  } }
+/* # sourceMappingURL=dono.css.map */
