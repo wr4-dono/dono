@@ -30,39 +30,39 @@ const DonoThumbnail = (props) => {
 
   return (
 
+    <div className="thumbnail-container">
 
-    <div className='dono-thumbnail' onClick={(!props.pendingRating) ? () => props.history.push(`/dono/${props.dono.dono_id}`) : () => props.history.push(`/rate/${props.dono.dono_id}`)}>
+      <div className='dono-thumbnail' onClick={(!props.pendingRating) ? () => props.history.push(`/dono/${props.dono.dono_id}`) : () => props.history.push(`/rate/${props.dono.dono_id}`)}>
 
-      {console.log('pending', props.pendingRating)}
+        <div className="img-container">
+          <img className='thumbnail-picture' src={props.dono.picture_url} alt={props.dono.title} />
+        </div>
 
 
-      <img className='thumbnail-picture' src={props.dono.picture_url} alt={props.dono.title} />
+        <div className='thumbnail-info'>
+          <p className='title'>{props.dono.title}</p>
+          <p>Earn: <span className="bold">${props.dono.price}</span></p>
+          <p>Zip code: <span className="bold">{props.dono.zip_code}</span></p>
+          <p>{moment.utc(props.dono.created_at).fromNow()}</p>
+        </div>
 
+        <div>
+          {(isFavorite) ?
+            <BsHeartFill className='button-filled-in'
+              onClick={(e) => {
+                e.stopPropagation()
+                unfavoriteDono()
+              }} />
+            :
+            <BsHeart className='button-empty'
+              onClick={(e) => {
+                e.stopPropagation()
+                favoriteDono()
+              }} />
+          }
+        </div>
 
-      <div className='thumbnail-info'>
-        <p>{props.dono.title}</p>
-        <p>{props.dono.price}</p>
-        <p>{props.dono.zip_code}</p>
-        <p>{moment.utc(props.dono.created_at).fromNow()}</p>
-      </div>
-
-      <div>
-        {(isFavorite) ?
-          <BsHeartFill className='button-filled-in'
-            onClick={(e) => {
-              e.stopPropagation()
-              unfavoriteDono()
-            }} />
-          :
-          <BsHeart className='button-empty'
-            onClick={(e) => {
-              e.stopPropagation()
-              favoriteDono()
-            }} />
-        }
-      </div>
-
-      {/* <p
+        {/* <p
         className={isFavorite ? 'button-filled-in' : 'button-empty'}
         onClick={isFavorite ? (e) => {
           e.stopPropagation()
@@ -77,6 +77,7 @@ const DonoThumbnail = (props) => {
 
 
 
+      </div>
     </div>
   )
 }

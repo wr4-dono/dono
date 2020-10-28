@@ -7,7 +7,9 @@
   padding: 20px;
 }
 
-.title {
+.Title {
+  position: relative;
+  top: 15px;
   letter-spacing: 1px;
   color: #6699cc;
   font-size: 40px;
@@ -16,12 +18,12 @@
 }
 
 .price {
-  color: #6699cc;
+  color: #fff;
   width: 100px;
-  font-size: 40px;
+  font-size: 20px;
   position: relative;
   left: 70vh;
-  bottom: 97px;
+  bottom: 80px;
   font-family: "Open Sans", sans-serif;
   padding: 20px;
 }
@@ -88,7 +90,7 @@
   text-transform: uppercase;
   cursor: pointer;
   font-size: 18px;
-  bottom: 398px;
+  bottom: 509px;
   right: 550px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -104,15 +106,89 @@
   border: none;
 }
 
+.under-line {
+  height: 1px;
+  width: 200px;
+  position: fixed;
+  left: 680px;
+  bottom: 510px;
+}
+
+.pricetag {
+  white-space: nowrap;
+  position: relative;
+  top: 18px;
+  margin: 0 5px 0 10px;
+  displaY: inline-block;
+  height: 25px;
+  border-radius: 0 5px 5px 0;
+  padding: 0 25px 0 15px;
+  background: #00AB80;
+  border: 0 solid #C7D2D4;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  color: #ffff;
+  line-height: 23px;
+}
+
+.pricetag:after {
+  position: absolute;
+  right: 0;
+  margin: 1px 7px;
+  font-weight: bold;
+  font-size: 19px;
+  content: "\00D7";
+}
+
+.pricetag:before {
+  position: absolute;
+  content: "\25CF";
+  color: white;
+  text-shadow: 0 0 1px #333;
+  font-size: 11px;
+  line-height: 0px;
+  text-indent: 12px;
+  left: -15px;
+  width: 1px;
+  height: 0px;
+  border-right: 14px solid #00AB80;
+  border-top: 11px solid transparent;
+  border-bottom: 13px solid transparent;
+}
+
 @media screen and (max-width: 360px) {
   .dono-container {
+    max-height: 360px;
     min-width: 100px;
+  }
+  .accept-button {
+    position: fixed;
+    bottom: 470px;
+    left: 120px;
   }
   .image {
     max-width: 360px;
   }
   .backgroundimage {
     max-width: 50%;
+  }
+  .zipcode {
+    position: fixed;
+    bottom: 400px;
+    left: 10px;
+  }
+  .description {
+    width: 300px;
+    position: fixed;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    left: 15px;
+    top: 540px;
+  }
+  .pricetag {
+    position: relative;
+    right: 540px;
   }
 }
 /*# sourceMappingURL=dono.css.map */

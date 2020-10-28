@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.new-dono-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: "Open Sans", sans-serif;
+}
+
+.new-dono-container h1 {
+  font-size: 18px;
+  font-family: "Open Sans", sans-serif;
+  padding-bottom: 5px;
+  color: #808080;
+  margin-top: 140px;
+}
+
+.new-dono-container img {
+  width: 200px;
+  border-radius: 10px;
+  padding-bottom: 7px;
+}
+
+.new-dono-container input {
+  font-size: 20px;
+  border: none;
+  outline: 0;
+  border-bottom: 1px solid #CDDEEE;
+  background: transparent;
+  height: 35px;
+  width: 215px;
+  padding-left: 5px;
+  margin-top: 7px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.new-dono-container input:hover {
+  opacity: .5;
+}
+
+.new-dono-container .icon {
+  padding-top: 8px;
+  padding-right: 10px;
+  color: #CDDEEE;
+  font-size: 30px;
+}
+
+.new-dono-container .selector-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 15px;
+}
+
+.new-dono-container .selector-container .state-select {
+  border: none;
+  border-bottom: 1px solid #CDDEEE;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  color: #3F4652;
+  background: transparent;
+  width: 215px;
+}
+
+.new-dono-container .text-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.new-dono-container textarea {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: #3F4652;
+  margin-top: 20px;
+  border-radius: 7px;
+}
+
+.new-dono-container .question-div {
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  color: #3F4652;
+}
+
+.new-dono-container button {
+  cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+  background: transparent;
+  border: none;
+  outline: 0;
+  font-size: 24px;
+  color: #88B0D7;
+  padding-bottom: 5px;
+  margin-top: 5px;
+}
+
+.new-dono-container .q-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.new-dono-container .p {
+  margin-left: 50px;
+}
+
+.new-dono-container .question {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 20px;
+  margin-left: 7px;
+}
+/*# sourceMappingURL=NewDono.css.map */
