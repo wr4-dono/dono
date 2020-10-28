@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,OAAO,CAAC,+EAAI;AACZ,AAAA,CAAC,CAAA;EACG,UAAU,EAAE,UAAU;EACtB,MAAM,EAAE,GAAG;EACX,OAAO,EAAE,GAAG;CAEf;;AAID,AAAA,UAAU,CAAA;EACN,WAAW,EAAE,KAAK;CACrB",
+    "sources": [
+        "PendingDonos.scss"
+    ],
+    "names": [],
+    "file": "PendingDonos.css"
+}

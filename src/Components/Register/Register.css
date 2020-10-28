@@ -110,6 +110,7 @@
 }
 
 .register-container .button-container button {
+  cursor: pointer;
   font-family: "Open Sans", sans-serif;
   background: transparent;
   border: none;
