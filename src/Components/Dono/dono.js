@@ -35,13 +35,6 @@ const Dono = (props) => {
   }
 
   return (
-<<<<<<< HEAD
-    <div className='dono-container' style={{ paddingTop: 120 + 'px' }}>
-      <img src={donoInfo.picture_url} ></img>
-      <div>
-        <h2>{donoInfo.title}</h2>
-        <div>${donoInfo.price}</div>
-=======
     <div className='dono-container'>
       <div className='imagebackground'>
         <img className='backgroundimage' src={donoInfo.picture_url}></img>
@@ -49,7 +42,6 @@ const Dono = (props) => {
         <div>
       <img className='image' src={donoInfo.picture_url} ></img>
       </div>
->>>>>>> main
       </div>
       <div className='price-title'>
         <h2 className='title'>{donoInfo.title}</h2>
