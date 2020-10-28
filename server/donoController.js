@@ -32,7 +32,7 @@ module.exports = {
       for (let i = 1; i <= newZipcodes.length; i++) {
         params.push('$' + i)
       }
-      var queryText = 'SELECT * FROM donos d LEFT JOIN pictures p ON p.dono_id = d.dono_id WHERE d.dono_status = 1 AND d.zip_code IN (' + params.join(',') + ') ORDER BY d.created_at ASC;';
+      var queryText = 'SELECT * FROM donos d LEFT JOIN pictures p ON p.dono_id = d.dono_id WHERE d.dono_status = 1 AND d.zip_code IN (' + params.join(',') + ') ORDER BY d.created_at DESC;';
       let filteredDonos = await db.query(queryText, newZipcodes);
 
       return res.status(200).send(filteredDonos)
@@ -54,7 +54,7 @@ module.exports = {
       for (let i = 1; i <= newZipcodes.length; i++) {
         params.push('$' + i)
       }
-      var queryText = 'SELECT * FROM donos d LEFT JOIN pictures p ON p.dono_id = d.dono_id WHERE d.dono_status = 1 AND d.zip_code IN (' + params.join(',') + ') ORDER BY d.created_at ASC;';
+      var queryText = 'SELECT * FROM donos d LEFT JOIN pictures p ON p.dono_id = d.dono_id WHERE d.dono_status = 1 AND d.zip_code IN (' + params.join(',') + ') ORDER BY d.created_at DESC;';
       let filteredDonos = await db.query(queryText, newZipcodes);
 
       let arrayOfDonosWithTitle = []

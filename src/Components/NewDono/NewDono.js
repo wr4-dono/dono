@@ -141,7 +141,7 @@ class NewDono extends Component {
     const { url, isUploading } = this.state
     console.log(this.state)
     return (
-      <div className="new-dono-container">
+      <div className="new-dono-container" style={{ paddingTop: 120 + 'px' }}>
         {(this.state.isEditing) ? <h1>Edit Dono</h1> : <h1>New Dono</h1>}
         <img src={url} alt="Nothing uploaded" width="450px" />
 
@@ -160,16 +160,16 @@ class NewDono extends Component {
                 borderColor: 'gray',
                 borderStyle: 'dashed',
                 borderRadius: 5,
-              //   position: 'relative',
-              //   width: 160,
-              //   height: 80,
-              //   borderWidth: 5,
-              //   marginTop: 25,
-              //   borderColor: 'gray',
-              //   borderStyle: 'dashed',
-              //   borderRadius: 5,
-              //   display: 'inline-block',
-              //   fontSize: 17,
+                //   position: 'relative',
+                //   width: 160,
+                //   height: 80,
+                //   borderWidth: 5,
+                //   marginTop: 25,
+                //   borderColor: 'gray',
+                //   borderStyle: 'dashed',
+                //   borderRadius: 5,
+                //   display: 'inline-block',
+                //   fontSize: 17,
               }}
               {...getRootProps()}>
               <input {...getInputProps()} />
@@ -195,7 +195,7 @@ class NewDono extends Component {
         <div className="selector-container">
           <FaGlobeAmericas className="icon" />
           <select className="state-select" name='dono_state' value={this.state.dono_state} onChange={(e) => this.handleChanges(e)}>
-            <option value="">-- Select State --</option>
+            <option value=""> Select State </option>
             <option value="Alabama">Alabama</option>
             <option value="Alaska">Alaska</option>
             <option value="Arizona">Arizona</option>
@@ -249,7 +249,7 @@ class NewDono extends Component {
           </select>
         </div>
 
-        
+
         <div className="text-div">
           <FaRegListAlt className="icon" />
           <textarea name='description' rows="3" cols="25" value={this.state.description} placeholder='Description' onChange={(e) => this.handleChanges(e)}></textarea>

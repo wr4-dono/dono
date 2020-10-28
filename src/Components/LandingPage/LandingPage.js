@@ -29,6 +29,7 @@ const LandingPage = (props) => {
     })
   }
 
+
   return (
     <div className="landing-container">
       <div className="input-container">

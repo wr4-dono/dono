@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logoutUser } from '../../ducks/authReducer'
 import './Header.css';
+import axios from 'axios';
 
 // const menuIcon = document.querySelector('.hamburger-menu')
 // const header = document.querySelector('.header')
@@ -51,6 +52,13 @@ class Header extends Component {
     this.headerRef.current.classList.toggle('change');
   }
 
+  logoutUser() {
+    axios.delete('/api/auth/logout').then(res => {
+      console.log(this.props)
+      this.props.logoutUser()
+    })
+  }
+
   render(props) {
     return (
       <div className="container">
@@ -80,7 +88,7 @@ class Header extends Component {
               <Link to="/Profile" className="header-link" >Profile</Link>
             </li>
             <li onClick={this.handleHamburgerMenuClick} className="header-item">
-              <Link to="/logout" className="header-link" onClick={() => this.props.logoutUser()} >Logout</Link>
+              <Link to="/logout" className="header-link" onClick={() => this.logoutUser()} >Logout</Link>
             </li>
           </ul>
 
