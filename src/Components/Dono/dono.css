@@ -1,4 +1,93 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+.dono-container {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Open Sans", sans-serif;
+  color: #3F4652;
+
+}
+  .dono-button {
+        cursor: pointer;
+        font-family: "Open Sans", sans-serif;
+        background: #4582C2;
+        border: none;
+        outline: 0;
+        font-size: 16px;
+        color: white;
+        padding: 5px;
+        margin-top: 10px;
+        border-radius: 7px;
+  
+  
+}
+
+.dono-button:hover{
+  opacity: .8;
+}
+
+.image {
+      width: 275px;
+      height: auto;
+      border-radius: 10px;
+      
+      
+}
+.pricetag{
+  font-size: 18px;
+}
+
+.zipcode{
+  font-size: 18px;
+}
+
+.edit{
+        cursor: pointer;
+        font-family: "Open Sans", sans-serif;
+        background: #4582C2;
+        border: none;
+        outline: 0;
+        font-size: 16px;
+        color: white;
+        padding: 5px;
+        margin-top: 10px;
+        border-radius: 7px;
+}
+
+span{
+  font-weight: bold;
+}
+
+.edit:hover{
+  opacity: 8;
+}
+
+
+.Title{
+        font-size: 28px;
+        padding: 5px;
+        
+}
+
+
+.description {
+  width: 300px;
+  border: 1px solid #6699cc;
+  border-radius: 1.5rem;
+  font-family: "Open Sans", sans-serif;
+  padding: 20px;
+  margin: 10px;
+  font-size: 18px;
+
+}
+
+
+
+
+@media only screen and (min-width: 1300px){
+
 .dono-container {
   height: 88.1vh;
 }
@@ -16,6 +105,8 @@
   font-family: "Open Sans", sans-serif;
   padding: 20px;
 }
+
+
 
 .price {
   color: #fff;
@@ -154,41 +245,9 @@
   border-right: 14px solid #00AB80;
   border-top: 11px solid transparent;
   border-bottom: 13px solid transparent;
+
+}
 }
 
-@media screen and (max-width: 360px) {
-  .dono-container {
-    max-height: 360px;
-    min-width: 100px;
-  }
-  .accept-button {
-    position: fixed;
-    bottom: 470px;
-    left: 120px;
-  }
-  .image {
-    max-width: 360px;
-  }
-  .backgroundimage {
-    max-width: 50%;
-  }
-  .zipcode {
-    position: fixed;
-    bottom: 400px;
-    left: 10px;
-  }
-  .description {
-    width: 300px;
-    position: fixed;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    left: 15px;
-    top: 540px;
-  }
-  .pricetag {
-    position: relative;
-    right: 540px;
-  }
-}
-/*# sourceMappingURL=dono.css.map */
+
+  

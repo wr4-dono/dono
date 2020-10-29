@@ -12,6 +12,7 @@ import NewDono from './Components/NewDono/NewDono'
 import PendingDonos from './Components/PendingDonos/PendingDonos'
 import SingleDono from './Components/Dono/SingleDono'
 import AcceptedDono from './Components/AcceptedDono/AcceptedDono'
+import PendingRatings from './Components/PendingRatings/PendingRatings'
 
 
 
@@ -25,6 +26,7 @@ export default (
         <Route path="/Rate/:dono_id" component={RateUser} />
         <Route path="/New" component={NewDono} />
         <Route path="/Pending" component={PendingDonos} />
+        <Route path="/PendingRatings" component={PendingRatings} />
         <Route path="/Dono/:dono_id" component={SingleDono} />
         <Route path='/AcceptedDono/:dono_id/:chat_id' component={AcceptedDono} />
         <Route render={() => <Redirect to='/' />} />

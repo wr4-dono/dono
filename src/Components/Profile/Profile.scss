@@ -8,6 +8,98 @@
 
 $font-stack: 'Open Sans', sans-serif;
 
-.user-ratings{
+
+
+.profile-container{
     padding-top: 140px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    font-family: $font-stack;
+    font-size: 19px;
+    padding-left: 65px;
+    color: #3F4652;
+    
+    h1{
+        padding-bottom: 15px;
+        font-size: 24px;
+        color: #3F4652;
+        
+    }
+
+    .label-info{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 25px;
+        padding-bottom: 15px;
+        
+        
+    }
+
+    button{
+        cursor: pointer;
+        font-family: $font-stack;
+        background: #4582C2;
+        border: none;
+        outline: 0;
+        font-size: 16px;
+        color: white;
+        padding: 5px;
+        margin-top: 10px;
+        border-radius: 7px;
+        
 }
+
+    button:hover{
+        opacity: .8;
+
+    }
+
+    .button-div{
+        padding-left: 23vw;
+    }
+
+    input{
+        font-size: 17px;
+        border: none;
+        outline: 0;
+        border-bottom: 1px solid #CDDEEE;
+        background: transparent;
+        width: 195px;
+        padding-left: 5px;
+        margin-top: 7px;
+        font-family: $font-stack;
+        padding-top: 5px;
+        
+    }
+
+    input:hover {
+        opacity: .5;
+    }
+
+
+    .selector-container{
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+        
+
+        .state-select{
+            border: none;
+            border-bottom: 1px solid #CDDEEE;
+            font-family: $font-stack;
+            font-size: 18px;
+            color: #3F4652;
+            background: transparent;
+            width: 215px;
+            
+        }
+    }
+
+    .info-div{
+        padding-top: 14px;
+    }
+}
+        
+
