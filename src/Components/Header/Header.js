@@ -7,6 +7,7 @@ import React, { Component, createRef } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logoutUser, loginUser } from '../../ducks/authReducer'
+import { withRouter } from 'react-router-dom'
 import './Header.css';
 import axios from 'axios';
 
@@ -30,8 +31,7 @@ class Header extends Component {
           pendingRatings: res2.data.length
         })
       }).catch(err => alert(err.message))
-    })
-    // .catch(err => props.history.push('/'))
+    }).catch(err => this.props.history.push('/'))
 
 
   }
@@ -90,4 +90,4 @@ class Header extends Component {
 
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps, { logoutUser, loginUser })(Header)
+export default connect(mapStateToProps, { logoutUser, loginUser })(withRouter(Header))
