@@ -95,12 +95,21 @@ body {
     font-size: 15px;
     cursor: pointer;
     box-shadow: 0 2px 5px #4B7197;
-
+    text-decoration: none;
+    list-style: none;
 }
 
+
 .pending-number{
-    font-size: 30px;
-    text-decoration: none;
+
+    height: 35px;
+    width: 35px;
+    color: #4B7197;
+    background-color: #fff;
+    border-radius: 100%;
+    font-size: 25px;
+    font-weight: 900;
+    list-style: none;
 }
 
 

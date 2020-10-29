@@ -53,7 +53,7 @@ class Header extends Component {
 
         <Link className="dono" to="/Landing"> <img className="dono" src="https://i.imgur.com/tuFQHxN.png" /></Link>
         {(this.state.pendingRatings) ?
-            <Link  to='/PendingRatings'> <button className='header-pending'><p className='pending-number'>
+            <Link style={{textDecoration:'none'}} to='/PendingRatings'> <button className='header-pending'><p  className='pending-number'>
               {this.state.pendingRatings}
             </p></button>
             </Link> : null}
