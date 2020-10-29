@@ -31,14 +31,14 @@ const Profile = (props) => {
       .catch(err => console.log(err.message))
 
   }
-    , [])
+    , [props.auth.user])
 
   useEffect(() => {
     axios.get(`/api/users/${props.auth.user.user_id}/ratings/carrierrating`)
       .then(res => setCarrierRating(+res.data.avg))
       .catch(err => console.log(err.message))
   }
-    , [])
+    , [props.auth.user])
 
   console.log(typeof giverRating)
   console.log(typeof carrierRating)

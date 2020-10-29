@@ -14,7 +14,7 @@ const LandingPage = (props) => {
     const { zip_code } = props.auth.user
     axios.get(`/api/donos?status=1&state=${props.auth.user.user_state}&zip_code=${zip_code}&radius=${radius}&search=${search}`)
       .then((res) => setDonos(res.data)).catch(err => console.log(err.message))
-  }, [props.auth.user.zip_code])
+  }, [props.auth.user.zip_code, props.auth.user.user_state])
 
   const searchDonos = () => {
     const { zip_code } = props.auth.user

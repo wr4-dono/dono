@@ -21,7 +21,7 @@ function ChatBox(props) {
       setChat(prev => [...prev, { username, message }])
     })
     getMessages();
-  }, [])
+  }, [props.auth.user])
 
   const getMessages = () => {
     axios.get(`/api/chat/${props.chatId}`).then(res => {

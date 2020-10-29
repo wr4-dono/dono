@@ -11,7 +11,7 @@ const PendingDonos = (props) => {
     axios.get(`/api/donos/pending/${props.auth.user.user_id}`)
       .then((res) => setPendingDonos(res.data)).catch(err => console.log(err.message))
 
-  }, [])
+  }, [props.auth.user])
 
   return (
     <div>
