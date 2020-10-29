@@ -55,7 +55,7 @@ class Header extends Component {
         {(this.state.pendingRatings) ?
           <Link to='/PendingRatings'> {this.state.pendingRatings} </Link> : null}
         <nav className="header" ref={this.headerRef}>
-          <Link to="/New" className="dono-button" ><button className="newdono-button">New Dono</button></Link>
+          <Link to="/New" ><button className="newdono-button">New Dono</button></Link>
           <div onClick={this.handleHamburgerMenuClick} className="hamburger-menu">
             <div className="line line-1"></div>
             <div className="line line-2"></div>
