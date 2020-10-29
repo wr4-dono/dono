@@ -33,7 +33,7 @@ const AcceptedDono = (props) => {
   }
 
   return (
-    <div style={{ paddingTop: 120 + 'px' }}>
+    <div style={{ paddingTop: 110 + 'px' }}>
       <div>
         <DonoThumbnail dono={donoInfo} />
       </div>

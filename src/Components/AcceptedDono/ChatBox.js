@@ -60,7 +60,7 @@ function ChatBox(props) {
           {renderChat()}
         </div>
         <form className='chat-form' onSubmit={onMessageSubmit}>
-          <div>
+          <div className='text-field-and-send'>
             <TextField className='text-field'
               name="message"
               onChange={e => onTextChange(e)}
@@ -69,8 +69,8 @@ function ChatBox(props) {
               variant="outlined"
               label="Message"
             />
+            <button className='send-message-btn'>&#10149;</button>
           </div>
-          <button className='send-message-btn'>Send Message</button>
         </form>
       </div>
     </div>

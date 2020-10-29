@@ -16,28 +16,57 @@
     font-family: 'Space Mono', monospace;
   }
 
+  .text-field-and-send{
+    display: flex;
+  }
+
   .text-field{
     width: 400px;
+    z-index: -100px;
+    padding-right: 200px;
   }
   
   .send-message-btn{
-    margin-top: 20px;
-    padding: 10px;
     background: transparent;
     border-radius: 5px;
     font-family: 'Space Mono', monospace;
+    cursor: pointer;
+    font-size: 50px;
+    height: 60px;
+    transform: rotate(270deg);
+    color: blue;
   }
   
   .render-chat {
+    height: 200px;
+    margin: 10px 40px;
+    position: center;
+    overflow-y: scroll;
+    overflow-anchor: auto;
     background-color: white;
     border-radius: 5px;
     padding: 20px;
-    /* box-shadow: 0px 3px 24px -8px rgba(0, 0, 0, 0.75); */
+    border: 1px solid #6699cc;
+    border-radius: 10px;
     font-family: 'Space Mono', monospace;
+  }
+
+  .render-chat::-webkit-scrollbar{
+    background-color: transparent;
+  }
+
+  .render-chat::-webkit-scrollbar-track{
+    background-color: transparent;
+    height: 100px;
+  }
+
+  .render-chat::-webkit-scrollbar-thumb{
+    background-color: #6699cc;
+    border-radius: inherit;
   }
   
   .chat-message {
-    color: #2f6bda;
+    color: #4582C1;
     font-family: 'Space Mono', monospace;
     text-align: left;
   }
