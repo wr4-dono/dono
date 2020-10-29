@@ -10,7 +10,7 @@ const PendingRatings = (props) => {
     axios.get(`/api/users/${props.auth.user.user_id}/ratings`).then(res => {
       setPendingRatings(res.data)
     }).catch(err => alert(err.message))
-  }, [])
+  }, [props.auth.user])
 
   return (
     <div>

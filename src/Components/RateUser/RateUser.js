@@ -29,7 +29,7 @@ const RateUser = (props) => {
         }
       })
     // axios.get(`/api/donos/29`).then(res => { setDono(res.data[0]) })
-  }, [])
+  }, [props.auth.user])
 
 
   const ratingChanged = (newRating) => {
