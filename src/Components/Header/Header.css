@@ -76,6 +76,17 @@ body {
 }
 
 
+.header-pending{
+    display: flex;
+    height: 100px;
+    width: 100px;
+    background-color: red;
+    border-radius: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 
 .line {
     width: 100%;

@@ -47,7 +47,9 @@ class Header extends Component {
 
         <Link className="dono" to="/Landing"> <img className="dono" src="https://i.imgur.com/tuFQHxN.png" /></Link>
         {(this.state.pendingRatings) ?
-          <Link to='/PendingRatings'> {this.state.pendingRatings} </Link> : null}
+          <div className="header-pending">
+            <Link  to='/PendingRatings'> {this.state.pendingRatings} </Link>
+          </div> : null}
         <nav className="header" ref={this.headerRef}>
           <Link to="/New" className="dono-button" ><button className="newdono-button" >New Dono</button></Link>
           <div onClick={this.handleHamburgerMenuClick} className="hamburger-menu">
