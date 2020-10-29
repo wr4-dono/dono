@@ -6,7 +6,7 @@
 import React, { Component, createRef } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { logoutUser } from '../../ducks/authReducer'
+import { logoutUser, loginUser } from '../../ducks/authReducer'
 import './Header.css';
 import axios from 'axios';
 
@@ -23,11 +23,17 @@ class Header extends Component {
     this.handleHamburgerMenuClick = this.handleHamburgerMenuClick.bind(this)
   }
   componentDidMount(props) {
-    axios.get(`/api/users/${this.props.auth.user.user_id}/ratings`).then(res => {
-      this.setState({
-        pendingRatings: res.data.length
-      })
-    }).catch(err => alert(err.message))
+    axios.get('/api/auth/user').then(res => {
+      this.props.loginUser(res.data)
+      axios.get(`/api/users/${this.props.auth.user.user_id}/ratings`).then(res2 => {
+        this.setState({
+          pendingRatings: res2.data.length
+        })
+      }).catch(err => alert(err.message))
+    })
+    // .catch(err => props.history.push('/'))
+
+
   }
   handleHamburgerMenuClick() {
 
@@ -49,7 +55,7 @@ class Header extends Component {
         {(this.state.pendingRatings) ?
           <Link to='/PendingRatings'> {this.state.pendingRatings} </Link> : null}
         <nav className="header" ref={this.headerRef}>
-          <Link to="/New"><button className="newdono-button" >New Dono</button></Link>
+          <Link to="/New" ><button className="newdono-button">New Dono</button></Link>
           <div onClick={this.handleHamburgerMenuClick} className="hamburger-menu">
             <div className="line line-1"></div>
             <div className="line line-2"></div>
@@ -84,4 +90,4 @@ class Header extends Component {
 
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps, { logoutUser })(Header)
+export default connect(mapStateToProps, { logoutUser, loginUser })(Header)

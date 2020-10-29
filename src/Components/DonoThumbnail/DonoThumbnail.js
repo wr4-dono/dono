@@ -27,7 +27,6 @@ const DonoThumbnail = (props) => {
     // console.log(isFavorite, 'unfavorite hit')
   }
 
-
   return (
 
     <div className="thumbnail-container">

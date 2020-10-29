@@ -26,7 +26,7 @@ const AcceptedDono = (props) => {
         })
       }
     })
-  }, [])
+  }, [props.auth.user])
 
   const pickupComplete = () => {
     axios.put(`/api/dono/${donoInfo.dono_id}?status=3`).then(res => props.history.push(`/rate/${donoInfo.dono_id}`))
