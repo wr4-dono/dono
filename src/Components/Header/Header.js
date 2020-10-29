@@ -79,6 +79,9 @@ class Header extends Component {
               <Link to="/Pending" className="header-link" >Pending Pickups</Link>
             </li>
             <li onClick={this.handleHamburgerMenuClick} className="header-item">
+              <Link to="/PendingRatings" className="header-link" >Pending Ratings</Link>
+            </li>
+            <li onClick={this.handleHamburgerMenuClick} className="header-item">
               <Link to="/Favorites" className="header-link" >Favorites</Link>
             </li>
             {/* <li onClick={this.handleHamburgerMenuClick} className="header-item">
