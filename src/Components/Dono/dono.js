@@ -36,15 +36,14 @@ const Dono = (props) => {
 
   return (
     <div className='dono-container' style={{ paddingTop: 120 + 'px' }}>
-      <img className="image" src={donoInfo.picture_url} ></img>
-      {/* <div>
+      <img src={donoInfo.picture_url} ></img>
+      <div>
         <h2>{donoInfo.title}</h2>
         <div>${donoInfo.price}</div>
-      </div> */}
+      </div>
       <div className='price-title'>
         <h2 className='Title'>{donoInfo.title}</h2>
-        <div className='price'><p className='pricetag'>Carrier will earn: <span>${donoInfo.price}</span></p></div>
-        <div className='zipcode'>zip code: <span>{donoInfo.zip_code}</span></div>
+        <div className='price'><span className='pricetag'>${donoInfo.price}</span></div>
         <div className='under-line'></div>
       </div>
       <div className='description'>{donoInfo.description}</div>
@@ -53,7 +52,7 @@ const Dono = (props) => {
         <div>{donoInfo.truck_trailer}</div>
       </div>
 
-     
+      <div className='zipcode'>zip code: {donoInfo.zip_code}</div>
 
       {/* The Ternary below will display the edit button if they are the owner of the dono. If they are not they will see the accept button. If it has already been accepted and they are not the owner no buttons will display at the moment.   */}
       {(donoInfo.giver_id === props.auth.user.user_id) ?
@@ -64,11 +63,11 @@ const Dono = (props) => {
         :
         (donoInfo.carrier_id) ?
           (donoInfo.carrier_id === props.auth.user.user_id) ?
-            <button className="dono-button" onClick={() => continueChatting()}>Continue Chatting</button>
+            <button onClick={() => continueChatting()}>Continue Chatting</button>
             :
             null
           :
-          <button className="dono-button" type="submit" onClick={() => acceptDono()}>Accept Dono</button>}
+          <button className='accept-button' type="submit" onClick={() => acceptDono()}>Accept Dono</button>}
     </div>
   )
 }
