@@ -33,9 +33,11 @@ const LandingPage = (props) => {
   return (
     <div className="landing-container">
       <div className="input-container">
-        <input type='text' placeholder='Search Title' onChange={(e) => setSearch(e.target.value)}></input>
-        <input type='number' placeholder='Distance In Miles' onChange={(e) => setRadius(e.target.value)}></input>
-        <button onClick={() => searchDonos()}>Search Donos</button>
+        <div className="input-landing">
+          <input type='text' placeholder='Search Title' onChange={(e) => setSearch(e.target.value)}></input>
+          <input type='number' placeholder='Distance In Miles' onChange={(e) => setRadius(e.target.value)}></input>
+        </div>
+        <div className="button-container"><button className="search-button" onClick={() => searchDonos()}>Search Donos</button></div>
       </div>
       {donos.map(dono => {
         return <DonoThumbnail dono={dono} />

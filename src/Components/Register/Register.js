@@ -44,7 +44,7 @@ const Register = (props) => {
   return (
     <div className="register-container">
       <div><img className="logo" src="https://i.imgur.com/WGq3YbT.png" /></div>
-      <h1>Register</h1>
+      
 
       <div className="input-container">
         <div>

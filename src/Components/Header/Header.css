@@ -121,8 +121,8 @@ body {
 .newdono-button {
     display: flex;
     justify-content: flex-end;
-    right: 10vh;
-    top: 25px;
+    right: 20vw;
+    top: 29px;
     border-radius: .5rem;
     text-decoration: none;
     font-size: 22px;
