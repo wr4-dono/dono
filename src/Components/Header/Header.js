@@ -53,9 +53,12 @@ class Header extends Component {
 
         <Link className="dono" to="/Landing"> <img className="dono" src="https://i.imgur.com/tuFQHxN.png" /></Link>
         {(this.state.pendingRatings) ?
-          <Link to='/PendingRatings'> {this.state.pendingRatings} </Link> : null}
+            <Link style={{textDecoration:'none'}} to='/PendingRatings'> <button className='header-pending'><p  className='pending-number'>
+              {this.state.pendingRatings}
+            </p></button>
+            </Link> : null}
         <nav className="header" ref={this.headerRef}>
-          <Link to="/New" className="dono-button" ><button className="newdono-button">New Dono</button></Link>
+          <Link to="/New" ><button className="newdono-button">New Dono</button></Link>
           <div onClick={this.handleHamburgerMenuClick} className="hamburger-menu">
             <div className="line line-1"></div>
             <div className="line line-2"></div>
@@ -67,6 +70,9 @@ class Header extends Component {
             </li>
             <li onClick={this.handleHamburgerMenuClick} className="header-item">
               <Link to="/Pending" className="header-link" >Pending Pickups</Link>
+            </li>
+            <li onClick={this.handleHamburgerMenuClick} className="header-item">
+              <Link to="/PendingRatings" className="header-link" >Pending Ratings</Link>
             </li>
             <li onClick={this.handleHamburgerMenuClick} className="header-item">
               <Link to="/Favorites" className="header-link" >Favorites</Link>

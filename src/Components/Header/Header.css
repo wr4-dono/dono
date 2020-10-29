@@ -75,6 +75,42 @@ body {
     width: 135px;
 }
 
+.header-pending{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 100px;
+    margin-top: 20px;
+    height: 50px;
+    width: 50px;
+    border-radius: .5rem;
+    text-decoration: none;
+    font-size: 22px;
+    color: #000000;
+    background-color:rgb(246, 153, 153) ;
+    border: none;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px #4B7197;
+    text-decoration: none;
+    list-style: none;
+}
+
+
+.pending-number{
+
+    height: 35px;
+    width: 35px;
+    color: #4B7197;
+    background-color: #fff;
+    border-radius: 100%;
+    font-size: 25px;
+    font-weight: 900;
+    list-style: none;
+}
 
 
 .line {
@@ -183,4 +219,6 @@ body {
     }
     
 }
+
+
 
