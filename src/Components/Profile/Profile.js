@@ -67,6 +67,7 @@ const Profile = (props) => {
   return (
 
     <div className = "profile-container">
+      <h1>{username}'s Profile</h1>
       <div className="user-ratings"><p>Carrier Rating: {carrierRating ? (<>
         <ReactStars
           count={5}
@@ -96,6 +97,7 @@ const Profile = (props) => {
       <div>
         {(editMode) ? (
           <div className="label-info">
+            
             <div>
               <label>Username: <input name="username" placeholder={username} value={userInfo.username} onChange={handleChange} /></label>
             </div>
