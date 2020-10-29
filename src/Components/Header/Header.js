@@ -51,7 +51,9 @@ class Header extends Component {
     return (
       <div className="container">
 
-        <Link className="dono" to="/Landing"> <img className="dono" src="https://i.imgur.com/tuFQHxN.png" /></Link>
+        
+          <Link className="dono" to="/Landing"> <img className="dono" src="https://i.imgur.com/tuFQHxN.png" /></Link>
+        
         {(this.state.pendingRatings) ?
           <Link to='/PendingRatings'> {this.state.pendingRatings} </Link> : null}
         <nav className="header" ref={this.headerRef}>
