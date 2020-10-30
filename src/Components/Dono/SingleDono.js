@@ -37,7 +37,8 @@ const Dono = (props) => {
   return (
     <div className='dono-container'>
       <div className='imagebackground'>
-        
+        {/* <img className='backgroundimage' src={donoInfo.picture_url}></img>
+        <img className='backgroundimage2' src={donoInfo.picture_url}></img> */}
         <div>
           <img className='image' src={donoInfo.picture_url} ></img>
         </div>

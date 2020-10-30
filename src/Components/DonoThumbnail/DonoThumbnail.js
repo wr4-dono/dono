@@ -27,6 +27,15 @@ const DonoThumbnail = (props) => {
     // console.log(isFavorite, 'unfavorite hit')
   }
 
+  // const locationPush = (props) => {
+  //   if(props.pendingRating){
+  //     props.history.push(`/rate/${props.dono.dono_id}`)
+  //   } else if(props.pendingPickup){
+  //     props.history.push(``)
+  //   }
+  // }
+
+  console.log(props)
   return (
 
     <div className="thumbnail-container">
