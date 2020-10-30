@@ -7,6 +7,7 @@
   flex-direction: column;
   font-family: "Open Sans", sans-serif;
   color: #3F4652;
+  box-sizing: border-box;
 
 }
   .dono-button {
@@ -29,11 +30,10 @@
 }
 
 .image {
+      margin-top: 136px;
       width: 275px;
       height: auto;
       border-radius: 10px;
-      
-      
 }
 .pricetag{
   font-size: 18px;
@@ -90,6 +90,10 @@ span{
 
 .dono-container {
   height: 88.1vh;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .price-title {

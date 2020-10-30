@@ -77,7 +77,7 @@ const Profile = (props) => {
           size={'20px'}
           isHalf={true}
           edit={false} />
-        <p> {carrierRating} out of 5</p>
+        <p> {carrierRating.toFixed(2)} out of 5</p>
       </>) : (<>
         None </>)} </p></div>
 
@@ -90,7 +90,7 @@ const Profile = (props) => {
           size={'20px'}
           isHalf={true}
           edit={false} />
-        <p>{giverRating} out of 5</p>
+        <p>{giverRating.toFixed(2)} out of 5</p>
       </>) : (<>
         None </>)}</p></div>
 
