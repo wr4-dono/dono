@@ -72,18 +72,18 @@ body {
 .dono{
     
     position: absolute;
-    left: -12px;
-    top: -5px;
-    height: 135px;
-    width: 135px;
+    left: 4px;
+    top: 6px;
+    height: 70px;
+    width: 70px;
 }
 
 .header-pending{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 120px;
-    margin-top: 25px;
+    margin-left: 90px;
+    margin-top: 26px;
     height: 50px;
     width: 50px;
     border-radius: .5rem;
