@@ -43,7 +43,7 @@ const AcceptedDono = (props) => {
       </div>
 
       <div>
-        <button onClick={() => pickupComplete()}>Pickup Complete</button>
+        <button className='pickup-complete' onClick={() => pickupComplete()}>Pickup Complete</button>
       </div>
     </div>
   )
