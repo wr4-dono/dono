@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import "./PendingRatings.scss"
+import './PendingRatings.scss'
 import { connect } from 'react-redux'
 import DonoThumbnail from '../DonoThumbnail/DonoThumbnail'
 
@@ -15,10 +15,7 @@ const PendingRatings = (props) => {
 
   return (
     <div className="pending-ratings-container">
-      <div className="header-div">
-        <h1>Please rate all listed donos</h1>
-      </div>
-      
+      <h1 className='header-div'>You have dono interactions that need to be rated.</h1>
       {pendingRatings.map(dono => {
         return (
           < DonoThumbnail
