@@ -57,7 +57,7 @@ class Header extends Component {
       <div className="container">
 
 
-        <Link className="dono" to="/Landing"> <img className="dono" src="https://i.imgur.com/tuFQHxN.png" /></Link>
+        <Link className="dono" to="/Landing"> <img className="dono" src="https://i.imgur.com/dUVp09L.png" /></Link>
 
         {(this.state.pendingRatings) ?
           <Link style={{ textDecoration: 'none' }} to='/PendingRatings'> <button className='header-pending'><p className='pending-number'>
