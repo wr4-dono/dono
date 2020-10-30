@@ -7,6 +7,7 @@
   flex-direction: column;
   font-family: "Open Sans", sans-serif;
   color: #3F4652;
+  margin-top: 110px;
 
 }
   .dono-button {
@@ -64,7 +65,18 @@ span{
   opacity: 8;
 }
 
-
+.accept-button{
+  cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+  background: #4582C2;
+  border: none;
+  outline: 0;
+  font-size: 16px;
+  color: white;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 7px;
+}
 .Title{
         font-size: 28px;
         padding: 5px;
