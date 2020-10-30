@@ -3,6 +3,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import DonoThumbnail from '../DonoThumbnail/DonoThumbnail'
 import ChatBox from './ChatBox'
+import "./Chat.css"
 
 const AcceptedDono = (props) => {
   const [donoInfo, setDonoInfo] = useState({})
@@ -43,7 +44,7 @@ const AcceptedDono = (props) => {
       </div>
 
       <div>
-        <button onClick={() => pickupComplete()}>Pickup Complete</button>
+        <button className="send-message-btn"onClick={() => pickupComplete()}>Pickup Complete</button>
       </div>
     </div>
   )

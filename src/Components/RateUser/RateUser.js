@@ -74,7 +74,7 @@ const RateUser = (props) => {
         char={'★'}
         color={'gray'}
         activeColor={'#ffd700'}
-        size={70}
+        size={50}
         edit={true}
         isHalf={true}
         a11y={true}

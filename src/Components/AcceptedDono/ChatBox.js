@@ -61,7 +61,7 @@ function ChatBox(props) {
         </div>
         <form className='chat-form' onSubmit={onMessageSubmit}>
           <div>
-            <TextField className='text-field'
+            <TextField  className='text-field'
               name="message"
               onChange={e => onTextChange(e)}
               value={message}
