@@ -9,7 +9,7 @@ const Dono = (props) => {
 
   useEffect(() => {
     axios.get(`/api/donos/${props.match.params.dono_id}`).then(res => setDonoInfo(res.data))
-  }, [])
+  }, [props.auth.user])
 
 
   const acceptDono = () => {

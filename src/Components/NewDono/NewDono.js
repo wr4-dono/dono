@@ -121,7 +121,8 @@ class NewDono extends Component {
     const { giver_id } = this.props.location.donoInfo
 
     axios.put(`/api/donos/${donoId}`, { zip_code, dono_state, title, price, description, multiplePeople, truckTrailer, url, giver_id }).then(res => {
-      this.props.history.push({ pathname: '/dono', donoId: `${donoId}` })
+      // this.props.history.push({ pathname: '/dono', donoId: `${donoId}` })
+      this.props.history.push(`/dono/${donoId}`)
     })
   }
 
@@ -185,7 +186,7 @@ class NewDono extends Component {
         </div>
         <div>
           <FaDonate className="icon" />
-          <input name='price' type='number' value={this.state.price} placeholder='Price' onChange={(e) => this.handleChanges(e)}></input>
+          <input name='price' type='number' value={this.state.price} placeholder='Pickup Offer' onChange={(e) => this.handleChanges(e)}></input>
         </div>
         <div>
           <FaGlobe className="icon" />

@@ -25,13 +25,18 @@ class Header extends Component {
   }
   componentDidMount(props) {
     axios.get('/api/auth/user').then(res => {
+      console.log(res.data)
       this.props.loginUser(res.data)
       axios.get(`/api/users/${this.props.auth.user.user_id}/ratings`).then(res2 => {
         this.setState({
           pendingRatings: res2.data.length
         })
       }).catch(err => alert(err.message))
-    }).catch(err => this.props.history.push('/'))
+    }).catch(err2 => {
+      console.log(err2)
+      this.props.history.push('/')
+    }
+    )
 
 
   }
@@ -51,14 +56,14 @@ class Header extends Component {
     return (
       <div className="container">
 
-        
-          <Link className="dono" to="/Landing"> <img className="dono" src="https://i.imgur.com/tuFQHxN.png" /></Link>
-        
+
+        <Link className="dono" to="/Landing"> <img className="dono" src="https://i.imgur.com/tuFQHxN.png" /></Link>
+
         {(this.state.pendingRatings) ?
-            <Link style={{textDecoration:'none'}} to='/PendingRatings'> <button className='header-pending'><p  className='pending-number'>
-              {this.state.pendingRatings}
-            </p></button>
-            </Link> : null}
+          <Link style={{ textDecoration: 'none' }} to='/PendingRatings'> <button className='header-pending'><p className='pending-number'>
+            {this.state.pendingRatings}
+          </p></button>
+          </Link> : null}
         <nav className="header" ref={this.headerRef}>
           <Link to="/New" ><button className="newdono-button">New Dono</button></Link>
           <div onClick={this.handleHamburgerMenuClick} className="hamburger-menu">
