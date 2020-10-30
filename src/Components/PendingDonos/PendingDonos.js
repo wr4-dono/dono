@@ -14,8 +14,10 @@ const PendingDonos = (props) => {
   }, [props.auth.user])
 
   return (
-    <div>
-      <p className="pending-p">Pending Pickups</p>
+    <div className="pending-container">
+      <div className="header-div">
+        <h1 className="pending-h1">Please complete pending donos </h1>
+      </div>
       {pendingDonos.map(dono => {
         return (
           < DonoThumbnail

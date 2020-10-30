@@ -18,8 +18,10 @@ const Favorites = (props) => {
   }
 
   return (
-    <div>
-      <p className="favorites-p">Favorites</p>
+    <div className="favorites-container">
+      <div className="header-container">
+        <h1 className="favorites-h1">Favorites</h1>
+      </div>
 
       {favoritedDonos.map(dono => {
         return <DonoThumbnail

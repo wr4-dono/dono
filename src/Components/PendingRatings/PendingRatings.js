@@ -14,8 +14,8 @@ const PendingRatings = (props) => {
   }, [props.auth.user])
 
   return (
-    <div>
-      <p className='pending-ratings'>You have dono interactions that need to be rated.</p>
+    <div className="pending-ratings-container">
+      <h1 className='header-div'>You have dono interactions that need to be rated.</h1>
       {pendingRatings.map(dono => {
         return (
           < DonoThumbnail

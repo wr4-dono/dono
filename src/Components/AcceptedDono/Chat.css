@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway&display=swap');
 
 .card {
     display: flex;  
@@ -12,12 +13,14 @@
     padding: 20px;
     align-self: center;
     justify-content: center;
-    font-family: 'Space Mono', monospace;
+    /* font-family: 'Space Mono', monospace; */
+    font-family: 'Open Sans', sans-serif;
+    
   }
   
   .name-field {
     margin-bottom: 40px;
-    font-family: 'Space Mono', monospace;
+    font-family: 'Open Sans', sans-serif;
   }
 
   .text-field-and-send{
@@ -70,7 +73,9 @@
     padding: 20px;
     border: 1px solid #6699cc;
     border-radius: 10px;
-    font-family: 'Space Mono', monospace;
+    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Space Mono', monospace; */
+    /* box-shadow: 0px 3px 24px -8px rgba(0, 0, 0, 0.75); */
   }
 
   .render-chat::-webkit-scrollbar{
@@ -88,9 +93,12 @@
   }
   
   .chat-message {
-    color: #4582C1;
-    font-family: 'Space Mono', monospace;
+    /* color: #4582C1;
+    font-family: 'Space Mono', monospace; */
+    color: #2f6bda;
+    font-family: 'Open Sans', sans-serif;;
     text-align: left;
+    margin-left: 20px;
   }
   
   .chat-span {

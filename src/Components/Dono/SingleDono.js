@@ -45,27 +45,27 @@ const Dono = (props) => {
       </div>
       <div className='price-title'>
         <h2 className='Title'>{donoInfo.title}</h2>
-        <div className='price'><span className='pricetag'>${donoInfo.price}</span></div>
+        <div className='price'><span className='pricetag'>Earn: ${donoInfo.price}</span></div>
         <div className='under-line'></div>
       </div>
       <div className='description'>{donoInfo.description}</div>
-      <div>
-        <div>{donoInfo.multiple_people}</div>
-        <div>{donoInfo.truck_trailer}</div>
-      </div>
 
       <div className='zipcode'>zip code: {donoInfo.zip_code}</div>
+      <div className='dono-needs'>
+        <div>{donoInfo.multiple_people ? <div>Requires multiple people</div> : null}</div>
+        <div>{donoInfo.truck_trailer ? <div> Requires a truck or trailer</div> : null}</div>
+      </div>
 
       {/* The Ternary below will display the edit button if they are the owner of the dono. If they are not they will see the accept button. If it has already been accepted and they are not the owner no buttons will display at the moment.   */}
       {(donoInfo.giver_id === props.auth.user.user_id) ?
         (donoInfo.carrier_id) ?
-          <button onClick={() => continueChatting()}>Continue Chatting</button>
+          <button className="dono-button" onClick={() => continueChatting()}>Continue Chatting</button>
           :
           <button className='edit' onClick={() => props.history.push({ pathname: '/new', donoInfo: donoInfo })}>Edit Dono</button>
         :
         (donoInfo.carrier_id) ?
           (donoInfo.carrier_id === props.auth.user.user_id) ?
-            <button onClick={() => continueChatting()}>Continue Chatting</button>
+            <button className="dono-button" onClick={() => continueChatting()}>Continue Chatting</button>
             :
             null
           :
