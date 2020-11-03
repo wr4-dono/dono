@@ -4,6 +4,7 @@ const session = require('express-session')
 const massive = require('massive')
 const favoritesCtrl = require('./favoritesController')
 const app = express()
+const path = require('path')
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 const aws = require('aws-sdk');
@@ -124,6 +125,13 @@ io.on('connection', socket => {
   socket.on('message', ({ username, message, chatId }) => {
     io.in({ chatId }).emit('message', { username, message })//what gets sent back to front end depending on chatId
   })
+})
+
+
+app.use(express.static(__dirname + '/../build'))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'))
 })
 
 http.listen(4000, function () {
