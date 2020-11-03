@@ -13,7 +13,7 @@ const donoCtrl = require('../server/donoController')
 const authCtrl = require('./authController')
 const prflCtrl = require('./profileController')
 
-const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET, S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = process.env
+const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET, S3_BUCKET, DONO_AWS_ACCESS_KEY_ID, DONO_AWS_SECRET_ACCESS_KEY } = process.env
 
 app.use(express.json())
 app.use(
@@ -74,8 +74,8 @@ app.get('/sign-s3', (req, res) => {
 
   aws.config = {
     region: 'us-west-1',
-    accessKeyId: AWS_ACCESS_KEY_ID,
-    secretAccessKey: AWS_SECRET_ACCESS_KEY
+    accessKeyId: DONO_AWS_ACCESS_KEY_ID,
+    secretAccessKey: DONO_AWS_SECRET_ACCESS_KEY
   }
 
   const s3 = new aws.S3();
