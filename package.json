@@ -58,5 +58,6 @@
     ]
   },
   "main": "server/index.js",
-  "proxy": "http://localhost:4050"
+  "proxy": "http://localhost:4050",
+  "homepage": "https://dono.vercel.app/"
 }
